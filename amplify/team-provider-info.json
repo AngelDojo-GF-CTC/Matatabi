@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-matatabi-dev-154002-authRole",
+      "UnauthRoleArn": "arn:aws:iam::793947852332:role/amplify-matatabi-dev-154002-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::793947852332:role/amplify-matatabi-dev-154002-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-matatabi-dev-154002-deployment",
+      "UnauthRoleName": "amplify-matatabi-dev-154002-unauthRole",
+      "StackName": "amplify-matatabi-dev-154002",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:793947852332:stack/amplify-matatabi-dev-154002/38a3b830-4312-11ee-9505-06f4410b724d",
+      "AmplifyAppId": "d1y7tsjvpasj3h"
+    },
+    "categories": {
+      "auth": {
+        "matatabicf3192bacf3192ba": {}
+      }
+    }
+  }
+}
