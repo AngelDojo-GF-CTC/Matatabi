@@ -17,6 +17,9 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
+    "matatabiNodejsLayer": {
+      "Arn": "string"
+    },
     "matatabicf3192bacf3192baPostConfirmation": {
       "Arn": "string",
       "LambdaExecutionRole": "string",

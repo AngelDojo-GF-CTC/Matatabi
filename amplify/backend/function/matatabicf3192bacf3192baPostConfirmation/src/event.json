@@ -1,7 +1,12 @@
 {
   "request": {
-    "userPoolId": "testID",
-    "userName": "testUser"
+    "userAttributes": {
+      "name": "テスト",
+      "email": "test@test.co.jp",
+      "gender": "MAN",
+      "birthdate": "23",
+      "sub": "XXXXXXXXXXXXXXXXXXXXXXXX"
+    }
   },
   "response": {}
 }

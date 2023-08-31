@@ -12,5 +12,21 @@
   "triggerTemplate": "PostConfirmation.json.ejs",
   "triggerEventPath": "PostConfirmation.event.json",
   "roleName": "matatabicf3192bacf3192baPostConfirmation",
-  "skipEdit": true
+  "skipEdit": true,
+  "permissions": {
+    "api": {
+      "matatabi": [
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "matatabiNodejsLayer",
+      "env": "dev",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ]
 }

@@ -71,13 +71,51 @@
     }
   },
   "function": {
+    "matatabiNodejsLayer": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer"
+    },
     "matatabicf3192bacf3192baPostConfirmation": {
       "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "matatabiNodejsLayer"
+        },
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ],
+          "category": "api",
+          "resourceName": "matatabi"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
   "parameters": {
+    "AMPLIFY_function_matatabiNodejsLayer_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiNodejsLayer"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiNodejsLayer_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiNodejsLayer"
+        }
+      ]
+    },
     "AMPLIFY_function_matatabicf3192bacf3192baPostConfirmation_deploymentBucketName": {
       "usedBy": [
         {
