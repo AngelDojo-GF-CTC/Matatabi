@@ -1,0 +1,39 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+type User @model @auth(rules: [{ allow: private }]) {
+  userId: ID! @primaryKey
+  name: String!
+  email: AWSEmail!
+  gender: Gender!
+  age: Int
+  travels: [Travel] @manyToMany(relationName: "TravelUser")
+}
+
+type Travel @model @auth(rules: [{ allow: private }]) {
+  travelId: ID! @primaryKey(sortKeyFields: ["travelDate"])
+  travelDate: AWSDate!
+  travelName: String!
+  users: [User] @manyToMany(relationName: "TravelUser")
+  spots: [Spot] @hasMany(indexName: "byTravel", fields: ["travelId"]) # ここ["travelId", "travelDate"]かも
+  ownerId: ID!
+  owner: User @hasOne(fields: ["ownerId"])
+}
+
+type Spot @model @auth(rules: [{ allow: private }]) {
+  spotId: ID! @primaryKey
+  location: String!
+  departureTime: AWSDateTime!
+  arrivalTime: AWSDateTime!
+  stayTimeMin: Int!
+  travelId: ID! @index(name: "byTravel", sortKeyFields: ["travelDate"])
+  travelDate: AWSDate!
+  travel: Travel @belongsTo(fields: ["travelId", "travelDate"])
+}
+
+enum Gender {
+  MAN
+  WOMAN
+}

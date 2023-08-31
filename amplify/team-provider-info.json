@@ -9,11 +9,21 @@
       "UnauthRoleName": "amplify-matatabi-dev-154002-unauthRole",
       "StackName": "amplify-matatabi-dev-154002",
       "StackId": "arn:aws:cloudformation:ap-northeast-1:793947852332:stack/amplify-matatabi-dev-154002/38a3b830-4312-11ee-9505-06f4410b724d",
-      "AmplifyAppId": "d1y7tsjvpasj3h"
+      "AmplifyAppId": "d1y7tsjvpasj3h",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-matatabi-dev-154002-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
         "matatabicf3192bacf3192ba": {}
+      },
+      "function": {
+        "matatabicf3192bacf3192baPostConfirmation": {
+          "deploymentBucketName": "amplify-matatabi-dev-154002-deployment",
+          "s3Key": "amplify-builds/matatabicf3192bacf3192baPostConfirmation-4a6c4833515a6d6f6c62-build.zip"
+        }
+      },
+      "api": {
+        "matatabi": {}
       }
     }
   }
