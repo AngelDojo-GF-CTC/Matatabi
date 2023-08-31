@@ -13,7 +13,7 @@ I18n.putVocabularies({ ...dict });
 
 Amplify.configure(awsconfig);
 
-export const App = () => {
+export default function App() {
   return (
     <Authenticator.Provider>
       <Authenticator
@@ -29,6 +29,22 @@ export const App = () => {
         socialProviders={awsconfig.aws_cognito_social_providers.map((str) =>
           str.toLowerCase()
         )}
+        components={{
+          SignUp: ({ fields, ...props }) => (
+            <Authenticator.SignUp
+              {...props}
+              fields={[
+                ...fields,
+                {
+                  name: "gender",
+                  label: "性別",
+                  type: "default",
+                  placeholder: "性別を入力してください",
+                },
+              ]}
+            />
+          ),
+        }}
       >
         <View style={styles.container}>
           <Text>Open up App.js to start working on your app!</Text>
@@ -39,7 +55,7 @@ export const App = () => {
       </Authenticator>
     </Authenticator.Provider>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
