@@ -17,6 +17,7 @@
     "aws-amplify": "^5.3.10",
     "expo": "^49.0.8",
     "expo-status-bar": "~1.6.0",
+    "metro-config": "^0.78.1",
     "native-base": "^3.4.28",
     "patch-package": "^8.0.0",
     "postinstall-postinstall": "^2.1.0",
