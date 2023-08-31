@@ -6,10 +6,10 @@ import { StyleSheet, Text, View } from "react-native";
 import { Amplify, I18n } from "aws-amplify";
 import { translations } from "@aws-amplify/ui";
 import { dict } from "./src/constants/lacales/auth";
+import awsconfig from "./src/aws-exports";
 I18n.putVocabularies(translations);
 I18n.setLanguage("ja");
 I18n.putVocabularies({ ...dict });
-import awsconfig from "./src/aws-exports";
 
 Amplify.configure(awsconfig);
 
