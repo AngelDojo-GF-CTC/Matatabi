@@ -10,7 +10,7 @@ export const Header = () => {
     <View
       style={{
         flexDirection: "row",
-        backgroundColor: color.base,
+        backgroundColor: color.background,
         height: 100,
       }}
       accessibilityRole="header"
@@ -18,6 +18,7 @@ export const Header = () => {
       <View style={{ flex: 1 }}>
         <Image
           source={matatabi_rogo}
+          alt="logo"
           style={{ width: 175, height: 50, marginTop: 40, marginLeft: 10 }}
         />
       </View>

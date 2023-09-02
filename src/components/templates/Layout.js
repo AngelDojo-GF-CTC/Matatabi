@@ -8,7 +8,8 @@ export const Layout = ({ children }) => {
     <View style={{ height: "100%", width: "100%" }}>
       <Header />
       {children}
-      <Footer />
+      {/* FooterはReact-navigationのタブで定義し画面遷移させる
+      <Footer />*/}
     </View>
   );
 };

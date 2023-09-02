@@ -10,7 +10,7 @@ export const Footer = () => {
     <View
       style={{
         justifyContent: "space-around",
-        backgroundColor: color.base,
+        backgroundColor: color.background,
         flexDirection: "row",
         height: 60,
       }}

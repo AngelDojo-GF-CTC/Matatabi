@@ -9,7 +9,7 @@ export const dict = {
     "Forgot Password?": "パスワードをお忘れですか？",
     "Your passwords must match": "パスワードが一致しません",
     "Enter your Username": "ユーザー名を入力してください",
-    "Enter your Birthdate": "生年月日を入力",
+    "Enter your Birthdate": "生年月日を入力(XXXX/XX/XX)",
     "Enter your Name": "ユーザー名を入力",
     "This field is required": "必須項目です",
     "Please enter a valid email": "メールアドレスを入力ください",
