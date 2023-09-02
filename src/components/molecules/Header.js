@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Image } from "react-native";
 import matatabi_rogo from "../../../assets/Matatabi_rogo.png";
 import { color } from "../../styles/color";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
