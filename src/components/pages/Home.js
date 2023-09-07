@@ -1,25 +1,24 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import { Layout } from "../templates/Layout";
+import { TravelList } from "../organisms/TravelList";
+import { TravelAddForm } from "../organisms/TravelAddForm";
+import { useHome } from "../../hooks/useHome";
 
 export const Home = () => {
+  const {
+    states: { pageMode },
+    handlers: { handleAddFormMode },
+  } = useHome();
   return (
     <Layout>
-      <View style={styles.container}>
-        <Text>HOME</Text>
-        <StatusBar style="auto" />
-      </View>
-      {/*<SignOutButton />*/}
+      {pageMode.addFormMode ? (
+        <TravelAddForm />
+      ) : pageMode.travelDetailMode ? (
+        // TODO: 個別の旅のしおり閲覧ページ
+        <></>
+      ) : (
+        <TravelList handleAddFormMode={handleAddFormMode} />
+      )}
     </Layout>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
