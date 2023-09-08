@@ -4,12 +4,13 @@ import { color } from "../../styles/color";
 
 export const TravelList = ({ handleAddFormMode }) => {
   return (
-    <Box style={{ marginTop: 30 }}>
+    <Box marginTop={30}>
       <VStack space={2} alignItems="center">
-        <Box style={{ width: "80%" }}>
+        <Box width={"80%"}>
           <Button
             startIcon={<AddIcon />}
-            style={{ width: "100%", backgroundColor: color.add }}
+            width={"100%"}
+            backgroundColor={color.add}
             onPress={handleAddFormMode}
           >
             新しい旅の登録
