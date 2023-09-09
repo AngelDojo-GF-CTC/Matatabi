@@ -1,10 +1,10 @@
 import React from "react";
-import { VStack, Button, AddIcon, Box, Text } from "native-base";
+import { VStack, Button, AddIcon, Box, Text, ScrollView } from "native-base";
 import { color } from "../../styles/color";
 
 export const TravelList = ({ handleAddFormMode }) => {
   return (
-    <Box marginTop={30}>
+    <ScrollView marginTop={30}>
       <VStack space={2} alignItems="center">
         <Box width={"80%"}>
           <Button
@@ -19,6 +19,6 @@ export const TravelList = ({ handleAddFormMode }) => {
           {/* TODO: 過去の旅 */}
         </Box>
       </VStack>
-    </Box>
+    </ScrollView>
   );
 };

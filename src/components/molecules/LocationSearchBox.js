@@ -1,6 +1,5 @@
-import { Box, Input, Text, Button, StatusBar } from "native-base";
 import React from "react";
-import { View } from "react-native";
+import { View, Box, Input, Text, Button, StatusBar } from "native-base";
 import { GOOGLE_API_KEY } from "@env";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
@@ -35,6 +34,7 @@ export const LocationSearchBox = () => {
             components: "country:jp",
           }}
         />
+        <Box height={300}></Box>
       </View>
 
       {/*  <View style={{ paddingTop: 40 }}>

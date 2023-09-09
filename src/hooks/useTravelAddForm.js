@@ -1,41 +1,37 @@
 import { useCallback, useEffect, useState } from "react";
+import { color } from "../styles/color";
 import moment from "moment";
 
 export const useTravelAddForm = (INITIAL_DATE) => {
   const [selected, setSelected] = useState({
-    start: moment(INITIAL_DATE),
-    end: moment(INITIAL_DATE),
+    start: "",
+    end: "",
   });
   const [targetDay, setTargetDay] = useState({ start: true, end: false });
-
   const [markedDates, setMarkedDates] = useState({});
+
   useEffect(() => {
     let between = {};
     const days = moment(selected.end).diff(moment(selected.start), "days") - 1;
-    console.log("start: ", selected.start);
-    console.log("end: ", selected.end);
-    console.log("days: ", days);
     for (let i = 0; i < days; i++) {
       const day = moment(selected.start)
         .add(i + 1, "days")
         .format("YYYY-MM-DD");
-      console.log("day: ", day);
       between = {
         ...between,
-        [day]: { color: "#70d7c7", textColor: "white" },
+        [day]: { color: color.add, textColor: "white" },
       };
     }
-    console.log(between);
     setMarkedDates({
       [selected.start]: {
         startingDay: true,
-        color: "#50cebb",
+        color: color.add,
         textColor: "white",
       },
       ...between,
       [selected.end]: {
         endingDay: true,
-        color: "#50cebb",
+        color: color.add,
         textColor: "white",
       },
     });
@@ -56,10 +52,19 @@ export const useTravelAddForm = (INITIAL_DATE) => {
         };
       });
     },
-    [targetDay, selected]
+    [targetDay]
   );
+
+  const handleTargetStart = useCallback(() => {
+    setTargetDay({ start: true, end: false });
+  }, []);
+
+  const handleTargetEnd = useCallback(() => {
+    setTargetDay({ start: false, end: true });
+  }, []);
+
   return {
-    states: { markedDates },
-    handlers: { handleDayPress },
+    states: { targetDay, markedDates },
+    handlers: { handleDayPress, handleTargetStart, handleTargetEnd },
   };
 };

@@ -1,30 +1,44 @@
 import React from "react";
-import { Text } from "react-native";
-import { Calendar, LocaleConfig } from "react-native-calendars";
+// import { Calendar, LocaleConfig } from "react-native-calendars";
 import { useTravelAddForm } from "../../hooks/useTravelAddForm";
-import { View, VStack } from "native-base";
+import { ScrollView, VStack } from "native-base";
 import { LocationSearchBox } from "../molecules/LocationSearchBox";
+import { CalendarForm } from "../molecules/CalendarForm";
+
 import moment from "moment";
 const INITIAL_DATE = moment().format("YYYY-MM-DD");
 
 export const TravelAddForm = () => {
   const {
-    states: { markedDates },
-    handlers: { handleDayPress },
+    states: { targetDay, markedDates },
+    handlers: { handleDayPress, handleTargetStart, handleTargetEnd },
   } = useTravelAddForm(INITIAL_DATE);
 
   return (
-    <VStack space={2} alignItems="center">
-      <View style={{ padding: 10, width: "100%" }}>
-        <Calendar
-          markingType="period"
-          monthFormat={"yyyy年 MM月"}
-          current={INITIAL_DATE}
+    <ScrollView>
+      <VStack space={2} alignItems="center">
+        <CalendarForm
+          initialDate={INITIAL_DATE}
+          targetDay={targetDay}
           markedDates={markedDates}
-          onDayPress={handleDayPress}
+          handleDayPress={handleDayPress}
+          handleTargetStart={handleTargetStart}
+          handleTargetEnd={handleTargetEnd}
         />
-      </View>
-      <LocationSearchBox />
-    </VStack>
+        {/* <Box>
+          <Text>ようこそ新しい旅！！</Text>
+        </Box>
+        <View style={{ padding: 10, width: "100%" }}>
+          <Calendar
+            markingType="period"
+            monthFormat={"yyyy年 MM月"}
+            current={INITIAL_DATE}
+            markedDates={markedDates}
+            onDayPress={handleDayPress}
+          />
+        </View> */}
+        <LocationSearchBox />
+      </VStack>
+    </ScrollView>
   );
 };
