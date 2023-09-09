@@ -6,7 +6,7 @@ export const useHome = () => {
     addFormMode: false,
     travelDetailMode: false,
   });
-
+  const [count, setCount] = useState(0);
   const handleAddFormMode = useCallback(() => {
     setPageMode({
       listMode: false,
@@ -34,6 +34,7 @@ export const useHome = () => {
   return {
     states: {
       pageMode,
+      count,
     },
     handlers: {
       handleAddFormMode,

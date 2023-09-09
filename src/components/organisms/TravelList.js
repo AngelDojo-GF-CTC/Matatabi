@@ -1,5 +1,5 @@
 import React from "react";
-import { VStack, Button, AddIcon, Box } from "native-base";
+import { VStack, Button, AddIcon, Box, Text } from "native-base";
 import { color } from "../../styles/color";
 
 export const TravelList = ({ handleAddFormMode }) => {
@@ -15,7 +15,6 @@ export const TravelList = ({ handleAddFormMode }) => {
           >
             新しい旅の登録
           </Button>
-
           {/* TODO: 次の旅 */}
           {/* TODO: 過去の旅 */}
         </Box>
