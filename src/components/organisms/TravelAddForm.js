@@ -1,7 +1,7 @@
 import React from "react";
 // import { Calendar, LocaleConfig } from "react-native-calendars";
 import { useTravelAddForm } from "../../hooks/useTravelAddForm";
-import { ScrollView, VStack } from "native-base";
+import { Box, ScrollView, VStack } from "native-base";
 import { LocationSearchBox } from "../molecules/LocationSearchBox";
 import { CalendarForm } from "../molecules/CalendarForm";
 
@@ -38,6 +38,8 @@ export const TravelAddForm = () => {
           />
         </View> */}
         <LocationSearchBox />
+        {/* 仮の余白 */}
+        <Box height={200} />
       </VStack>
     </ScrollView>
   );
