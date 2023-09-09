@@ -11,6 +11,16 @@ export const useTravelAddForm = (INITIAL_DATE) => {
   const [markedDates, setMarkedDates] = useState({});
 
   useEffect(() => {
+    if (selected.start === selected.end) {
+      return setMarkedDates({
+        [selected.start]: {
+          startingDay: true,
+          endingDay: true,
+          color: color.add,
+          textColor: "white",
+        },
+      });
+    }
     let between = {};
     const days = moment(selected.end).diff(moment(selected.start), "days") - 1;
     for (let i = 0; i < days; i++) {
