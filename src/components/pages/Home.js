@@ -7,12 +7,12 @@ import { useHome } from "../../hooks/useHome";
 export const Home = () => {
   const {
     states: { pageMode },
-    handlers: { handleAddFormMode },
+    handlers: { handleAddFormMode, handleResetPage },
   } = useHome();
   return (
     <Layout>
       {pageMode.addFormMode ? (
-        <TravelAddForm />
+        <TravelAddForm handleResetPage={handleResetPage} />
       ) : pageMode.travelDetailMode ? (
         // TODO: 個別の旅のしおり閲覧ページ
         <></>

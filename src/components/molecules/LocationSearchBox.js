@@ -5,12 +5,17 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 // import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 export const LocationSearchBox = () => {
+  const handleOnPress = (data, details) => {
+    console.log(data);
+    console.log(details);
+  };
+
   return (
     <>
       <View
         style={{
           padding: 10,
-          height: "60%",
+          height: "100%",
           width: "100%",
           marginTop: 10,
         }}
@@ -24,10 +29,7 @@ export const LocationSearchBox = () => {
           onFail={(err) => {
             console.log(err);
           }}
-          onPress={(data, details = null) => {
-            // 'details' is provided when fetchDetails = true
-            console.log(data, details);
-          }}
+          onPress={(data, details = null) => handleOnPress(data, details)}
           query={{
             key: GOOGLE_API_KEY,
             language: "ja",

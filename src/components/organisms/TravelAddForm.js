@@ -1,46 +1,65 @@
 import React from "react";
 // import { Calendar, LocaleConfig } from "react-native-calendars";
 import { useTravelAddForm } from "../../hooks/useTravelAddForm";
-import { Box, ScrollView, VStack } from "native-base";
+import { Box, HStack, ScrollView, VStack, View } from "native-base";
 import { LocationSearchBox } from "../molecules/LocationSearchBox";
 import { CalendarForm } from "../molecules/CalendarForm";
 
 import moment from "moment";
+import { BackButton } from "../atoms/Buttons/BackButton";
+import { NextButton } from "../atoms/Buttons/NextButton";
 const INITIAL_DATE = moment().format("YYYY-MM-DD");
 
-export const TravelAddForm = () => {
+export const TravelAddForm = ({ handleResetPage }) => {
   const {
-    states: { targetDay, markedDates },
-    handlers: { handleDayPress, handleTargetStart, handleTargetEnd },
-  } = useTravelAddForm(INITIAL_DATE);
+    states: { step, targetDay, markedDates },
+    handlers: {
+      handleNextStep,
+      handlePrevStep,
+      handleDayPress,
+      handleTargetStart,
+      handleTargetEnd,
+    },
+  } = useTravelAddForm(INITIAL_DATE, handleResetPage);
 
   return (
-    <ScrollView>
-      <VStack space={2} alignItems="center">
-        <CalendarForm
-          initialDate={INITIAL_DATE}
-          targetDay={targetDay}
-          markedDates={markedDates}
-          handleDayPress={handleDayPress}
-          handleTargetStart={handleTargetStart}
-          handleTargetEnd={handleTargetEnd}
+    <>
+      <HStack
+        position="fixed"
+        marginLeft={10}
+        marginRight={10}
+        top={440}
+        justifyContent="space-between"
+        alignItems="center"
+        zIndex={1}
+      >
+        <BackButton
+          onPress={handlePrevStep}
+          variant={"solid"}
+          borderRadius="full"
         />
-        {/* <Box>
-          <Text>ようこそ新しい旅！！</Text>
-        </Box>
-        <View style={{ padding: 10, width: "100%" }}>
-          <Calendar
-            markingType="period"
-            monthFormat={"yyyy年 MM月"}
-            current={INITIAL_DATE}
+        <NextButton
+          onPress={handleNextStep}
+          variant={"solid"}
+          borderRadius="full"
+        />
+      </HStack>
+      <VStack alignItems="center" marginTop={-8}>
+        {step === 0 ? (
+          <CalendarForm
+            initialDate={INITIAL_DATE}
+            targetDay={targetDay}
             markedDates={markedDates}
-            onDayPress={handleDayPress}
+            handleDayPress={handleDayPress}
+            handleTargetStart={handleTargetStart}
+            handleTargetEnd={handleTargetEnd}
           />
-        </View> */}
-        <LocationSearchBox />
-        {/* 仮の余白 */}
-        <Box height={200} />
+        ) : step === 1 ? (
+          <LocationSearchBox />
+        ) : (
+          <></>
+        )}
       </VStack>
-    </ScrollView>
+    </>
   );
 };

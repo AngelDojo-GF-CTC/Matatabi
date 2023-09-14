@@ -1,14 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { color } from "../styles/color";
 import moment from "moment";
 
-export const useTravelAddForm = (INITIAL_DATE) => {
+export const useTravelAddForm = (INITIAL_DATE, handleResetPage) => {
   const [selected, setSelected] = useState({
     start: "",
     end: "",
   });
   const [targetDay, setTargetDay] = useState({ start: true, end: false });
   const [markedDates, setMarkedDates] = useState({});
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     if (selected.start === selected.end) {
@@ -48,6 +50,7 @@ export const useTravelAddForm = (INITIAL_DATE) => {
   }, [selected]);
   const handleDayPress = useCallback(
     (day) => {
+      // TODO: 過去の日程は選択できないようにする
       setSelected((prev) => {
         return {
           start: targetDay.start ? day.dateString : prev.start,
@@ -73,8 +76,28 @@ export const useTravelAddForm = (INITIAL_DATE) => {
     setTargetDay({ start: false, end: true });
   }, []);
 
+  const handleNextStep = useCallback(() => {
+    if (step === 0) {
+      if (!selected.start)
+        return Alert.alert("入力エラー", "旅の開始日付を選択してください");
+      if (!selected.end)
+        return Alert.alert("入力エラー", "旅の終了日付を選択してください");
+    }
+    setStep((prev) => prev + 1);
+  }, [selected, step]);
+
+  const handlePrevStep = useCallback(() => {
+    step === 0 ? handleResetPage() : setStep((prev) => prev - 1);
+  }, [step]);
+
   return {
-    states: { targetDay, markedDates },
-    handlers: { handleDayPress, handleTargetStart, handleTargetEnd },
+    states: { step, targetDay, markedDates },
+    handlers: {
+      handleNextStep,
+      handlePrevStep,
+      handleDayPress,
+      handleTargetStart,
+      handleTargetEnd,
+    },
   };
 };

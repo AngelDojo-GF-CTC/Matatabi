@@ -38,6 +38,7 @@ export const useHome = () => {
     },
     handlers: {
       handleAddFormMode,
+      handleResetPage,
     },
   };
 };

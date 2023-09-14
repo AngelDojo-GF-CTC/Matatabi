@@ -12,7 +12,7 @@ export const CalendarForm = ({
 }) => {
   return (
     <>
-      <Box marginTop={2}>
+      <Box>
         <Text fontSize="md">ようこそ新しい旅！！</Text>
       </Box>
       <HStack justifyContent="center" space={20}>
