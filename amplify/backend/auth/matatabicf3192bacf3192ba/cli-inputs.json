@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "matatabicf3192ba_identitypool_cf3192ba",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "matatacf3192ba",
     "userPoolName": "matatabicf3192ba_userpool_cf3192ba",
     "autoVerifiedAttributes": [
@@ -14,8 +14,8 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "【Matatabi】認証コード",
-    "emailVerificationMessage": "あなたの認証コードは{####}です",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
@@ -39,8 +39,7 @@
     "sharedId": "cf3192ba",
     "resourceName": "matatabicf3192bacf3192ba",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "manual",
-    "thirdPartyAuth": false,
+    "useDefault": "default",
     "usernameAttributes": [
       "email"
     ],
@@ -80,11 +79,13 @@
         ]
       }
     ],
-    "authProviders": [],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
     "permissions": [],
-    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"matatabicf3192bacf3192baPostConfirmation\"\n  }\n]"
+    "authTriggerConnections": [
+      "{\"triggerType\":\"PostConfirmation\",\"lambdaFunctionName\":\"matatabicf3192bacf3192baPostConfirmation\"}"
+    ],
+    "authProviders": []
   }
 }

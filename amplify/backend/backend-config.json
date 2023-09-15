@@ -99,6 +99,24 @@
       "service": "Lambda"
     }
   },
+  "geo": {
+    "testmap": {
+      "accessType": "AuthorizedAndGuestUsers",
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "matatabicf3192bacf3192ba"
+        }
+      ],
+      "isDefault": true,
+      "mapStyle": "VectorHereExplore",
+      "providerPlugin": "awscloudformation",
+      "service": "Map"
+    }
+  },
   "parameters": {
     "AMPLIFY_function_matatabiNodejsLayer_deploymentBucketName": {
       "usedBy": [
