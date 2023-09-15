@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { Layout } from "../templates/Layout";
 import { SignOutButton } from "../atoms/Buttons/SignOutButton";
+import App from "../../../App";
 
 
 function App() {
