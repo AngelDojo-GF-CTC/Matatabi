@@ -9,7 +9,6 @@ export const LocationSearchBox = ({
   locations,
   handleDeleteLocation,
 }) => {
-  console.log(locations);
 
   const [zindexValue, setZindexValue] = useState(-1);
   const searchRef = createRef();

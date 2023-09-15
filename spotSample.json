@@ -1,0 +1,208 @@
+{
+  "address_components": [
+    { "long_name": "8", "short_name": "8", "types": [] },
+    {
+      "long_name": "HULIC &New GINZA",
+      "short_name": "HULIC &New GINZA",
+      "types": []
+    },
+    { "long_name": "７", "short_name": "７", "types": [] },
+    { "long_name": "９", "short_name": "９", "types": [] },
+    { "long_name": "８丁目", "short_name": "８丁目", "types": [] },
+    { "long_name": "銀座", "short_name": "銀座", "types": [] },
+    { "long_name": "中央区", "short_name": "中央区", "types": [] },
+    { "long_name": "東京都", "short_name": "東京都", "types": [] },
+    { "long_name": "日本", "short_name": "JP", "types": [] },
+    { "long_name": "104-0061", "short_name": "104-0061", "types": [] }
+  ],
+  "adr_address": "<span class=\"country-name\">日本</span>、<span class=\"postal-code\">〒104-0061</span> <span class=\"region\">東京都</span><span class=\"street-address\">中央区銀座８丁目９−７ HULIC &amp;New GINZA 8</span>",
+  "business_status": "OPERATIONAL",
+  "curbside_pickup": false,
+  "current_opening_hours": {
+    "open_now": true,
+    "periods": [],
+    "weekday_text": [
+      "月曜日: 10時00分～21時00分",
+      "火曜日: 10時00分～21時00分",
+      "水曜日: 10時00分～21時00分",
+      "木曜日: 10時00分～21時00分",
+      "金曜日: 10時00分～21時00分",
+      "土曜日: 10時00分～21時00分",
+      "日曜日: 10時00分～21時00分"
+    ]
+  },
+  "delivery": true,
+  "editorial_summary": {
+    "language": "ja",
+    "overview": "美しく洗練された空間で iPhone、iPad などを展示販売する Apple の直営店。"
+  },
+  "formatted_address": "日本、〒104-0061 東京都中央区銀座８丁目９−７ HULIC &New GINZA 8",
+  "formatted_phone_number": "03-4345-3600",
+  "geometry": {
+    "location": { "lat": 35.66784940000001, "lng": 139.7618736 },
+    "viewport": {}
+  },
+  "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/shopping-71.png",
+  "icon_background_color": "#4B96F3",
+  "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/shopping_pinlet",
+  "international_phone_number": "+81 3-4345-3600",
+  "name": "Apple 銀座",
+  "opening_hours": {
+    "open_now": true,
+    "periods": [],
+    "weekday_text": [
+      "月曜日: 10時00分～21時00分",
+      "火曜日: 10時00分～21時00分",
+      "水曜日: 10時00分～21時00分",
+      "木曜日: 10時00分～21時00分",
+      "金曜日: 10時00分～21時00分",
+      "土曜日: 10時00分～21時00分",
+      "日曜日: 10時00分～21時00分"
+    ]
+  },
+  "photos": [
+    {
+      "height": 1612,
+      "html_attributions": [],
+      "photo_reference": "ATJ83zhS4PqdbhE9NXCSu2yyxMKR1es4FXC2zywijx6p_PKh52JLqzQEKSMjoYk_U0LnmPspXHTnQtmJydLe69N3OrPrNArcHo3NORtRLCBLCkSbouzH7Os-1a2HB4eeZQIy4d1Wv1oxRMLrvSdiTd3Cyf5Lr8wKyseAIMUrbQAHYjp-de0k",
+      "width": 2880
+    },
+    {
+      "height": 3024,
+      "html_attributions": [],
+      "photo_reference": "ATJ83ziEbNtrYmTQ3VVp8KveVoffICJ9ono6gFTH0kFvhhpGmi-tGnxiIcbK17LXNhNy_cCUMQhma4CcU4zXAzamznK7d2",
+      "width": 4032
+    },
+    {
+      "height": 3024,
+      "html_attributions": [],
+      "photo_reference": "ATJ83ziNStJ0PrbSNOC9UcXGT6Fv-d1eorMGcL5_j4dw6eIc15xEG2SC0K9Vxur8LkZ0n2oQ3Df-tz6c9k2aul-nNV5CEKmI8SHHsDkAVGYqIBz4shfeF4aUGlhJrQaUgs2PtnJVDEE9VnCdvvtZcxGqAjggSU7WRa0I7tKRw9Di6HC6PEPh",
+      "width": 4032
+    },
+    {
+      "height": 713,
+      "html_attributions": [],
+      "photo_reference": "ATJ83zh6gJiyyOxHT915UclQMoL3mWeKg6ylqM7mi0jBpEgC2ByQC7SvZmktSeeVE6IBHdf-46S2ZaLgSn5eoyKnKcOXxVL_SeHLHO1V-f-DEO7wuT0RTtytuJDILSxsByT4TV-I-K7mnsGhP3CGTQOQvS1xAoiPEAm1Sy-sB4DxpLVb2xNs",
+      "width": 950
+    },
+    {
+      "height": 3024,
+      "html_attributions": [],
+      "photo_reference": "ATJ83zhpPWkcaYSTc6ycep6sfZjDCBXA1nvBacMNcNg3yd4CeShcJwzOaF4mPPtL8OtqlALdoS0XRLuLGm6opWDOfKWieHSrllZj6wDWTh9FPbgntLatHMr_rodDWclC7EQO04qtE-LJSRPvAkbODjeL21TXiNWnomaHFNvHCPCupoeXaswU",
+      "width": 4032
+    },
+    {
+      "height": 4032,
+      "html_attributions": [],
+      "photo_reference": "ATJ83zi5vrNSs2wxDVLlv2KQWLZ0HTkKkOKeoMt-imJkcgrbB3vE_Wyf6J91FJQwmYV9L7d8Bx4i0D14LUhcf0y5TUsCr27Ix0QI_xQFH_-PfOKqNN2VzDlF5PCPkBDEs0yDRD8bI3fYYbEA_vyWkJlSOju-ulHqSm4b6FplPtFyYFj9WHSe",
+      "width": 3024
+    },
+    {
+      "height": 3024,
+      "html_attributions": [],
+      "photo_reference": "ATJ83zhVqmDrbUyup797UFy6VYj6lSs6WvO6691_hLDk7SKxPEKVwZyrXdqjO9B3EVnckVzn89MtWDrnOsqxvs-H14y9un456F0ngnEL7LDOz2y1ZCoqHjSo3F4pPTzBrqLeH2yPfqewVHGwQrHWEQLUkjOPEjpM3EG0oaHbkm-drld25cF1",
+      "width": 4032
+    },
+    {
+      "height": 4032,
+      "html_attributions": [],
+      "photo_reference": "ATJ83zgAZIQzOD4jF_KsCHVc_VN6Jtz-__jwyBPK3fldx9P9xlzb7NJ2GiHSPepaMXfCx1nyTqLmZAB35ewSJq_nYrmh3qCp4eQaNYUjoi1OP9azvfKSrPkI18IWWg6l6w2Zle6fsIedRfncd155qi6jh3ypozzu3mF4KFL5uTXFKF0mQ6lO",
+      "width": 3024
+    },
+    {
+      "height": 4032,
+      "html_attributions": [],
+      "photo_reference": "ATJ83ziGmtGmoZCWjkElmvY7Zrjewe7zDvgzKXK64qM_f04RCbvVzbqx-6KdzEz03SKsR5fhOHrfQ4dJmn6fbSK9Q4GWZz0TgAm5zrxH1DJUlDgUlbzyXn_Aq8jiapn0GbHxZXnYBgnOER3-iHF1suV0sM_LsKida2uEV3tPNMsyCw8iGv29",
+      "width": 3024
+    },
+    {
+      "height": 3024,
+      "html_attributions": [],
+      "photo_reference": "ATJ83zg7UzVKCtD-2--NOpvlviytx9aSuZK6AcduGOWRfJPBPkRmSxmLRStbMox-I0bb_BX7WNJwF047t9d3CtaHai3B0urJT1lolSDnLspLlotsqDlEeoCPibhx9aZGDREWUJH8E9L0nsUXvMiUZRogzjk3GNYN0EficUC78tLFPQ1Ij0y0",
+      "width": 4032
+    },
+    {
+      "height": 4032,
+      "html_attributions": [],
+      "photo_reference": "ATJ83zi5vrNSs2wxDVLlv2KQWLZ0HTkKkOKeoMt-imJkcgrbB3vE_Wyf6J91FJQwmYV9L7d8Bx4i0D14LUhcf0y5TUsCr27Ix0QI_xQFH_-PfOKqNN2VzDlF5PCPkBDEs0yDRD8bI3fYYbEA_vyWkJlSOju-ulHqSm4b6FplPtFyYFj9WHSe",
+      "width": 3024
+    }
+  ],
+  "place_id": "ChIJmRHbKOSLGGARuLcCNrwgcg4",
+  "plus_code": {
+    "compound_code": "MQ96+4P 日本、東京都中央区",
+    "global_code": "8Q7XMQ96+4P"
+  },
+  "price_level": 3,
+  "rating": 3.9,
+  "reference": "ChIJmRHbKOSLGGARuLcCNrwgcg4",
+  "reviews": [
+    {
+      "author_name": "SurfTV Kitano",
+      "author_url": "https://www.google.com/maps/contrib/107515048515856114245/reviews",
+      "language": "ja",
+      "original_language": "ja",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjUAiIT4_mjt0s-lsG-ohxnCnjkElXtotBa74Q4dM4oPvDpK=s128-c0x00000000-cc-rp-mo-ba5",
+      "rating": 2,
+      "relative_time_description": "1 年前",
+      "text": "初めて来店！ネットで買うか？お店で買うか？検討中で下見してきました🙆‍♂️雰囲気は良いのですが...効率的なのか非効率的なのかスタッフの見分けが付きにくく、テーブル上で商談しているので歩きにくいのと商品をゆっくり見れない感じです。カウンターで商談できる場所と商品を展示を分けてあると良いかなって思いました💦結局、実物を見てネットでAppleストア購入が良いの方がいいような感じがしました🥹",
+      "time": 1657432753,
+      "translated": false
+    },
+    {
+      "author_name": "kk",
+      "author_url": "https://www.google.com/maps/contrib/114312791853963517137/reviews",
+      "language": "ja",
+      "original_language": "ja",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjXYN3GGWWHWVGiyDdSbBSJhcFq_-JsnkomUHRRsrfG8TQcy=s128-c0x00000000-cc-rp-mo-ba5",
+      "rating": 1,
+      "relative_time_description": "3 週間前",
+      "text": "問題解決をせずにすぐに修理の見積もりを出してきます。壊れてます。とだけ言われて見積もりは8万円程度。明らかにおかしいと思い、こちらから色々と説明しといただしたら7千円の美品を買うだけで全て解決しました。こうやって情報弱者からお金を取るのがここの店舗スタッフのやり方なんだと理解しました。もう銀座店には2度といきません。",
+      "time": 1692032936,
+      "translated": false
+    },
+    {
+      "author_name": "Strawberry Pink",
+      "author_url": "https://www.google.com/maps/contrib/110885346300906907275/reviews",
+      "language": "ja",
+      "original_language": "ja",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjVVeNmb29vGpwLn9bU3F4I6JHegWEp8_975pCeEZMvrovw=s128-c0x00000000-cc-rp-mo-ba6",
+      "rating": 4,
+      "relative_time_description": "3 か月前",
+      "text": "8丁目の仮店舗になってからは初めてきました。以前のMacBookっぽい質感の外観から、こちらは木の温もりが感じられる外観になっていて、仮店舗ながら素敵なデザインと思います。平日金曜日の夜に伺いましたが、移転前はいつも長蛇の列の印象があったので念の為予約して来店しましたが、予約なくても問題なく接客していただけました。今回Apple Watchのバンドを買いに行きましたが、担当してくださったスタッフの方はバンド選びで一緒に考えてくださったり、フレンドリーかつ親切な対応で、楽しく選ぶことができました。これは他の店舗でも同様で、実にApple Storeぽい接客の体験でした。",
+      "time": 1683972039,
+      "translated": false
+    },
+    {
+      "author_name": "旅を極めし大男",
+      "author_url": "https://www.google.com/maps/contrib/100274241418759291645/reviews",
+      "language": "ja",
+      "original_language": "ja",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjVtcGkfA1WQ62NjRHyMlXw8UEPACYIdAbam-2jv6frYN88=s128-c0x00000000-cc-rp-mo-ba5",
+      "rating": 5,
+      "relative_time_description": "5 か月前",
+      "text": "念願のMacBook Airを購入！！やっとです笑笑数ヶ月迷ったけど買って正解、Windowsとは違う良さがたくさんあります！！有効活用できるように色々と使います！",
+      "time": 1681221132,
+      "translated": false
+    },
+    {
+      "author_name": "Yuji K",
+      "author_url": "https://www.google.com/maps/contrib/117597915779721155464/reviews",
+      "language": "ja",
+      "original_language": "ja",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjUtNki7ffdL9bmXRJJIvxYNA6u5gnv8epS6LesJ2lmkhWjL=s128-c0x00000000-cc-rp-mo-ba3",
+      "rating": 4,
+      "relative_time_description": "3 か月前",
+      "text": "【genius BARは3F / 前の銀座店と比べると超狭い / 柔軟な対応】MacBookのバッテリー交換で予約して訪問。1時間前に着いちゃったんだけど、たまたまなのかAppleCareの恩恵なのか、柔軟に対応してくださり直ぐにテーブルへ。10分くらいの相談のあと工場行きになりました。★平日空いてた16時に予約したけど、あまり客はおらず徘徊してる店員さん多かった。★狭い以前の銀座店を知っているととても狭く感じます。アクセサリーなどの商品ラインナップはぎゅうぎゅうに陳列されてるので、その辺りは変化ないかも。★立地悪車で行ったけど、電車からの徒歩の場合は新橋と有楽町の真ん中にあるので歩く覚悟が必要。店員さんも遠いんよと嘆いてた。★アップルケアには入りましょう高いけど機器の調子が悪くても不安を感じない。",
+      "time": 1685429745,
+      "translated": false
+    }
+  ],
+  "types": ["electronics_store", "store", "point_of_interest", "establishment"],
+  "url": "https://maps.google.com/?cid=1040930456608094136",
+  "user_ratings_total": 5460,
+  "utc_offset": 540,
+  "vicinity": "中央区銀座８丁目９−７ HULIC &New GINZA 8",
+  "website": "https://www.apple.com/jp/store?cid=aos-jp-seo-maps",
+  "wheelchair_accessible_entrance": true
+}
