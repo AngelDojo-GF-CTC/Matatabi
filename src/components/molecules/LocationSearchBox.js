@@ -8,6 +8,11 @@ export const LocationSearchBox = () => {
   const handleOnPress = (data, details) => {
     console.log(data);
     console.log(details);
+    console.log(data, details);
+    const spotName = data.structured_formatting.main_text;
+    console.log("スポット名： ", spotName);
+    const spotAddress = data.description.split("、")[1];
+    console.log("住所： ", spotAddress);
   };
 
   return (
