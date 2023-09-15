@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { createRef, useCallback, useEffect, useState } from "react";
 import { Alert } from "react-native";
 import { color } from "../styles/color";
 import moment from "moment";
@@ -11,6 +11,7 @@ export const useTravelAddForm = (INITIAL_DATE, handleResetPage) => {
   const [targetDay, setTargetDay] = useState({ start: true, end: false });
   const [markedDates, setMarkedDates] = useState({});
   const [step, setStep] = useState(0);
+  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
     if (selected.start === selected.end) {
@@ -90,14 +91,32 @@ export const useTravelAddForm = (INITIAL_DATE, handleResetPage) => {
     step === 0 ? handleResetPage() : setStep((prev) => prev - 1);
   }, [step]);
 
+  const handleLocationAddPress = useCallback((data, details) => {
+    console.log(data, details);
+    const spotName = data.structured_formatting.main_text;
+    console.log("スポット名： ", spotName);
+    const spotAddress = data.description.split("、")[1];
+    console.log("住所： ", spotAddress);
+    setLocations((prev) => [...prev, { spotName, spotAddress }]);
+  }, []);
+
+  const handleDeleteLocation = useCallback((item) => {
+    console.log("delete");
+    setLocations((prev) =>
+      prev.filter((location) => location.spotAddress !== item.spotAddress)
+    );
+  }, []);
+
   return {
-    states: { step, targetDay, markedDates },
+    states: { step, targetDay, markedDates, locations },
     handlers: {
+      handleDeleteLocation,
       handleNextStep,
       handlePrevStep,
       handleDayPress,
       handleTargetStart,
       handleTargetEnd,
+      handleLocationAddPress,
     },
   };
 };
