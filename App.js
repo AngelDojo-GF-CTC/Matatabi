@@ -1,12 +1,12 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { NativeBaseProvider } from "native-base";
-import { Authenticater } from "../templates/Authenticater";
+import { Authenticater } from "./src/components/templates/Authenticater";
 import { Amplify, I18n } from "aws-amplify";
 import { translations } from "@aws-amplify/ui";
-import { dict } from "../../constants/lacales/auth";
-import { TabContainer } from "../../navigations/TabContainer";
-import awsconfig from "../../aws-exports";
+import { dict } from "./src/constants/lacales/auth";
+import { TabContainer } from "./src/navigations/TabContainer";
+import awsconfig from "./src/aws-exports";
 import { useEffect } from 'react';
 import { createMap } from "maplibre-gl-js-amplify";
 
