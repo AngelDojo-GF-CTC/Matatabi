@@ -1,14 +1,18 @@
-import React from "react";
-import { View, Box, Input, Text, Button, StatusBar } from "native-base";
+import React, { createRef, useState } from "react";
+import { View, Box, Text, VStack, HStack, FlatList } from "native-base";
+import { DeleteButton } from "../atoms/Buttons/DeleteButton";
 import { GOOGLE_API_KEY } from "@env";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-// import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
-export const LocationSearchBox = () => {
-  const handleOnPress = (data, details) => {
-    console.log(data);
-    console.log(details);
-  };
+export const LocationSearchBox = ({
+  handleLocationAddPress,
+  locations,
+  handleDeleteLocation,
+}) => {
+  console.log(locations);
+
+  const [zindexValue, setZindexValue] = useState(-1);
+  const searchRef = createRef();
 
   return (
     <>
@@ -23,46 +27,95 @@ export const LocationSearchBox = () => {
         <Text fontSize="md" marginBottom="1rem">
           ここだけは外せないスポットを選ぼう！
         </Text>
-        <GooglePlacesAutocomplete
-          placeholder="観光地・住所"
-          fetchDetails={true}
-          onFail={(err) => {
-            console.log(err);
+        <View
+          style={{
+            height: "30%",
+            width: "100%",
           }}
-          onPress={(data, details = null) => handleOnPress(data, details)}
-          query={{
-            key: GOOGLE_API_KEY,
-            language: "ja",
-            components: "country:jp",
+        >
+          <GooglePlacesAutocomplete
+            ref={searchRef}
+            placeholder="観光地・住所"
+            //
+            // fetchDetails={true}
+            onFail={(err) => {
+              console.log(err);
+            }}
+            onPress={(data, details = null) => {
+              handleLocationAddPress(data, details);
+            }}
+            textInputProps={{
+              onFocus: () => {
+                setZindexValue(-1);
+                searchRef.current.clear();
+              },
+              onBlur: () => {
+                setZindexValue(1);
+              },
+            }}
+            query={{
+              key: GOOGLE_API_KEY,
+              language: "ja",
+              components: "country:jp",
+            }}
+          />
+        </View>
+        {/* ここでuseTravelAddformから受け取った値をリスト表示する */}
+        <View
+          style={{
+            marginTop: -190,
+            zIndex: zindexValue,
+            height: "50%",
+            width: "100%",
           }}
-        />
+        >
+          {locations?.length > 0 && (
+            <Box
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <FlatList
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+                data={locations}
+                renderItem={({ item }) => (
+                  <Box
+                    borderBottomWidth="1"
+                    _dark={{
+                      borderColor: "muted.50",
+                    }}
+                    borderColor="muted.800"
+                    pl={["0", "4"]}
+                    pr={["0", "5"]}
+                    py="2"
+                  >
+                    <HStack space={[1, 3]} justifyContent="space-between">
+                      <VStack
+                        style={{
+                          width: "85%",
+                        }}
+                      >
+                        <Text fontSize="xl" bold color="gray.600">
+                          {item.spotName}
+                        </Text>
+                        <Text fontSize="xs">{item.spotAddress}</Text>
+                      </VStack>
+                      <DeleteButton
+                        style={{ zIndex: 1 }}
+                        onPress={() => handleDeleteLocation(item)}
+                      />
+                    </HStack>
+                  </Box>
+                )}
+              />
+            </Box>
+          )}
+        </View>
       </View>
-
-      {/*  <View style={{ paddingTop: 40 }}>
-       <Text mx="3">絶対に行きたい場所を登録しましょう</Text>
-       {/* 見た目は後で変える  
-       <View style={{ width: "80%", flexDirection: "row" }}>
-         <Input mx="3" placeholder="観光地名・住所" w="80%" />
-        <Button mx="3" onPress={() => {}}>
-           追加
-         </Button> 
-     </View>
-     </View>
-
-    // テスト用 */}
-      {/* <View>
-        <MapView
-          style={{ height: "10%", width: "10%" }}
-          provider="google"
-          initialRegion={{
-            latitude: 35.714,
-            longitude: 139.4256,
-            latitudeDelta: 0.0461,
-            longitudeDelta: 0.021,
-          }}
-        />
-        <StatusBar style="auto" />
-      </View> */}
     </>
   );
 };

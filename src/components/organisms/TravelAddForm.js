@@ -1,5 +1,4 @@
 import React from "react";
-// import { Calendar, LocaleConfig } from "react-native-calendars";
 import { useTravelAddForm } from "../../hooks/useTravelAddForm";
 import { Box, HStack, ScrollView, VStack, View } from "native-base";
 import { LocationSearchBox } from "../molecules/LocationSearchBox";
@@ -12,13 +11,15 @@ const INITIAL_DATE = moment().format("YYYY-MM-DD");
 
 export const TravelAddForm = ({ handleResetPage }) => {
   const {
-    states: { step, targetDay, markedDates },
+    states: { step, targetDay, markedDates, locations },
     handlers: {
       handleNextStep,
       handlePrevStep,
       handleDayPress,
       handleTargetStart,
       handleTargetEnd,
+      handleLocationAddPress,
+      handleDeleteLocation,
     },
   } = useTravelAddForm(INITIAL_DATE, handleResetPage);
 
@@ -55,7 +56,11 @@ export const TravelAddForm = ({ handleResetPage }) => {
             handleTargetEnd={handleTargetEnd}
           />
         ) : step === 1 ? (
-          <LocationSearchBox />
+          <LocationSearchBox
+            handleLocationAddPress={handleLocationAddPress}
+            handleDeleteLocation={handleDeleteLocation}
+            locations={locations}
+          />
         ) : (
           <></>
         )}
