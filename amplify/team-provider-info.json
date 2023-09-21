@@ -31,7 +31,9 @@
           "s3Key": "amplify-builds/matatabiRouteDurations-5a4b6b50746d70563048-build.zip"
         },
         "matatabiRecommendedSpots": {
-          "secretsPathAmplifyAppId": "d1y7tsjvpasj3h"
+          "secretsPathAmplifyAppId": "d1y7tsjvpasj3h",
+          "deploymentBucketName": "amplify-matatabi-dev-154002-deployment",
+          "s3Key": "amplify-builds/matatabiRecommendedSpots-6167353271786b384c65-build.zip"
         }
       },
       "api": {

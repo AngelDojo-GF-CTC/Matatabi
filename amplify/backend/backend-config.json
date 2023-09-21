@@ -137,6 +137,22 @@
         }
       ]
     },
+    "AMPLIFY_function_matatabiRecommendedSpots_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiRecommendedSpots"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiRecommendedSpots_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiRecommendedSpots"
+        }
+      ]
+    },
     "AMPLIFY_function_matatabiRecommendedSpots_secretsPathAmplifyAppId": {
       "usedBy": [
         {
