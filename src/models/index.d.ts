@@ -7,7 +7,37 @@ export enum Gender {
   WOMAN = "WOMAN"
 }
 
+type EagerRouteDurations = {
+  readonly spotName: string;
+  readonly spotAddress: string;
+  readonly duration: string;
+  readonly distance: string;
+}
 
+type LazyRouteDurations = {
+  readonly spotName: string;
+  readonly spotAddress: string;
+  readonly duration: string;
+  readonly distance: string;
+}
+
+export declare type RouteDurations = LazyLoading extends LazyLoadingDisabled ? EagerRouteDurations : LazyRouteDurations
+
+export declare const RouteDurations: (new (init: ModelInit<RouteDurations>) => RouteDurations)
+
+type EagerRouteDurationsResponse = {
+  readonly car: RouteDurations[];
+  readonly walk: RouteDurations[];
+}
+
+type LazyRouteDurationsResponse = {
+  readonly car: RouteDurations[];
+  readonly walk: RouteDurations[];
+}
+
+export declare type RouteDurationsResponse = LazyLoading extends LazyLoadingDisabled ? EagerRouteDurationsResponse : LazyRouteDurationsResponse
+
+export declare const RouteDurationsResponse: (new (init: ModelInit<RouteDurationsResponse>) => RouteDurationsResponse)
 
 type EagerUser = {
   readonly [__modelMeta__]: {

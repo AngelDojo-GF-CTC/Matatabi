@@ -34,3 +34,28 @@ enum Gender {
   MAN
   WOMAN
 }
+
+input SpotsInput {
+  spotName: String!
+  spotAddress: String!
+}
+
+type RouteDurations {
+  spotName: String!
+  spotAddress: String!
+  duration: String!
+  distance: String!
+}
+type RouteDurationsResponse {
+  car: [RouteDurations!]!
+  walk: [RouteDurations!]!
+}
+
+type Query {
+  getRouteDurations(
+    currentSpot: SpotsInput!
+    nextSpots: [SpotsInput!]!
+  ): [RouteDurationsResponse!]!
+    @function(name: "matatabiRouteDurations-${env}")
+    @auth(rules: [{ allow: private }])
+}

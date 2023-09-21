@@ -76,6 +76,27 @@
       "providerPlugin": "awscloudformation",
       "service": "LambdaLayer"
     },
+    "matatabiRecommendedSpots": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ],
+          "category": "api",
+          "resourceName": "matatabi"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "matatabiRouteDurations": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "matatabicf3192bacf3192baPostConfirmation": {
       "build": true,
       "dependsOn": [
@@ -113,6 +134,38 @@
         {
           "category": "function",
           "resourceName": "matatabiNodejsLayer"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiRecommendedSpots_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiRecommendedSpots"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiRouteDurations_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiRouteDurations"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiRouteDurations_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiRouteDurations"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiRouteDurations_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiRouteDurations"
         }
       ]
     },

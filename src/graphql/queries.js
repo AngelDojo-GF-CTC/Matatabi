@@ -442,6 +442,56 @@ export const syncSpots = /* GraphQL */ `
     }
   }
 `;
+export const spotsByTravelIdAndTravelDate = /* GraphQL */ `
+  query SpotsByTravelIdAndTravelDate(
+    $travelId: ID!
+    $travelDate: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelSpotFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    spotsByTravelIdAndTravelDate(
+      travelId: $travelId
+      travelDate: $travelDate
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        spotId
+        location
+        departureTime
+        arrivalTime
+        stayTimeMin
+        travelId
+        travelDate
+        travel {
+          travelId
+          travelDate
+          travelName
+          ownerId
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          __typename
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        __typename
+      }
+      nextToken
+      startedAt
+      __typename
+    }
+  }
+`;
 export const getTravelUser = /* GraphQL */ `
   query GetTravelUser($id: ID!) {
     getTravelUser(id: $id) {
@@ -617,56 +667,6 @@ export const syncTravelUsers = /* GraphQL */ `
     }
   }
 `;
-export const spotsByTravelIdAndTravelDate = /* GraphQL */ `
-  query SpotsByTravelIdAndTravelDate(
-    $travelId: ID!
-    $travelDate: ModelStringKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelSpotFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    spotsByTravelIdAndTravelDate(
-      travelId: $travelId
-      travelDate: $travelDate
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        spotId
-        location
-        departureTime
-        arrivalTime
-        stayTimeMin
-        travelId
-        travelDate
-        travel {
-          travelId
-          travelDate
-          travelName
-          ownerId
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-          __typename
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        __typename
-      }
-      nextToken
-      startedAt
-      __typename
-    }
-  }
-`;
 export const travelUsersByUserUserId = /* GraphQL */ `
   query TravelUsersByUserUserId(
     $userUserId: ID!
@@ -781,6 +781,30 @@ export const travelUsersByTravelTravelIdAndTraveltravelDate = /* GraphQL */ `
       }
       nextToken
       startedAt
+      __typename
+    }
+  }
+`;
+export const getRouteDurations = /* GraphQL */ `
+  query GetRouteDurations(
+    $currentSpot: SpotsInput!
+    $nextSpots: [SpotsInput!]!
+  ) {
+    getRouteDurations(currentSpot: $currentSpot, nextSpots: $nextSpots) {
+      car {
+        spotName
+        spotAddress
+        duration
+        distance
+        __typename
+      }
+      walk {
+        spotName
+        spotAddress
+        duration
+        distance
+        __typename
+      }
       __typename
     }
   }

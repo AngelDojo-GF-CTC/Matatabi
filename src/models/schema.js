@@ -493,7 +493,66 @@ export const schema = {
             ]
         }
     },
-    "nonModels": {},
+    "nonModels": {
+        "RouteDurations": {
+            "name": "RouteDurations",
+            "fields": {
+                "spotName": {
+                    "name": "spotName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "spotAddress": {
+                    "name": "spotAddress",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "duration": {
+                    "name": "duration",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "distance": {
+                    "name": "distance",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        },
+        "RouteDurationsResponse": {
+            "name": "RouteDurationsResponse",
+            "fields": {
+                "car": {
+                    "name": "car",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "RouteDurations"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": false
+                },
+                "walk": {
+                    "name": "walk",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "RouteDurations"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": false
+                }
+            }
+        }
+    },
     "codegenVersion": "3.4.4",
-    "version": "1a7dd39efcbcb2433aba3bd8ad6c3ddd"
+    "version": "fa4c2d4b1c172a92bf5ce91f887e71ec"
 };

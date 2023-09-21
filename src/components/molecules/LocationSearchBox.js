@@ -9,7 +9,6 @@ export const LocationSearchBox = ({
   locations,
   handleDeleteLocation,
 }) => {
-
   const [zindexValue, setZindexValue] = useState(-1);
   const searchRef = createRef();
 
@@ -42,6 +41,7 @@ export const LocationSearchBox = ({
             }}
             onPress={(data, details = null) => {
               handleLocationAddPress(data, details);
+              // searchRef.current.clear();
             }}
             textInputProps={{
               onFocus: () => {
