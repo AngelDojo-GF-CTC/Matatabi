@@ -1,7 +1,6 @@
 {
-  "permissions": {},
   "lambdaLayers": [],
   "secretNames": [
-    "googleApiKey"
+    "GOOGLE_API_KEY"
   ]
 }

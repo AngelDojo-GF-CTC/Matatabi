@@ -511,8 +511,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "duration": {
-                    "name": "duration",
+                "drivingDration": {
+                    "name": "drivingDration",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "walkingDration": {
+                    "name": "walkingDration",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -527,21 +534,11 @@ export const schema = {
                 }
             }
         },
-        "RouteDurationsResponse": {
-            "name": "RouteDurationsResponse",
+        "SpotsResponse": {
+            "name": "SpotsResponse",
             "fields": {
-                "car": {
-                    "name": "car",
-                    "isArray": true,
-                    "type": {
-                        "nonModel": "RouteDurations"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "isArrayNullable": false
-                },
-                "walk": {
-                    "name": "walk",
+                "spots": {
+                    "name": "spots",
                     "isArray": true,
                     "type": {
                         "nonModel": "RouteDurations"
@@ -554,5 +551,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "fa4c2d4b1c172a92bf5ce91f887e71ec"
+    "version": "3ea757b2ed7012feb75ed4e3ea88a657"
 };

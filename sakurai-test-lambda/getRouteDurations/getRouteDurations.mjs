@@ -1,11 +1,11 @@
-import { SSMClient, GetParameterCommand } from "@aws-sdk/client-ssm";
-const ssmClient = new SSMClient();
+// import { SSMClient, GetParameterCommand } from "@aws-sdk/client-ssm";
+// const ssmClient = new SSMClient();
 import distanceMatrixService from "google-distance-matrix";
 
 export const handler = async (event, context) => {
-  const getParameterCommand = new GetParameterCommand({
-    Name: process.env("googleApiKey"),
-  });
+  // const getParameterCommand = new GetParameterCommand({
+  //   Name: process.env("googleApiKey"),
+  // });
   distanceMatrixService.key("AIzaSyAGwm9_X6uxVsnsCw9yw99QcZyslQOy50I");
   distanceMatrixService.language("ja");
   const origins = [event.currentSpots.spotAddress];
@@ -27,7 +27,7 @@ export const handler = async (event, context) => {
             trips.push({
               spotName: spot.spotName,
               spotAddress: spot.spotAddress,
-              duration:
+              [`${transportation}Dration`]:
                 distances.rows[0].elements[event.nextSpots.indexOf(spot)]
                   .duration.text,
               distance:
@@ -42,16 +42,31 @@ export const handler = async (event, context) => {
   };
 
   const walkingMode = await getDistance("walking");
-  console.log(walkingMode);
+  // console.log(walkingMode);
 
   // console.log(walkingMode);
 
   const drivingMode = await getDistance("driving");
-  const test = { car: drivingMode, walk: walkingMode };
-  console.log(test);
+  const routeDurations = (walkingMode, drivingMode) => {
+    const mergedSpots = walkingMode.map((spot, index) => {
+      const carSpot = drivingMode.find(
+        (carSpot) => carSpot.spotAddress === spot.spotAddress
+      );
+      if (carSpot) {
+        return {
+          ...spot,
+          drivingDration: carSpot.drivingDration,
+        };
+      } else {
+        return spot;
+      }
+    });
+    return mergedSpots;
+  };
+
+  console.log(routeDurations(walkingMode, drivingMode));
   return {
-    car: drivingMode,
-    walk: walkingMode,
+    spots: routeDurations(walkingMode, drivingMode),
   };
 };
 

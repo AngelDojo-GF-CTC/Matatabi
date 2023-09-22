@@ -71,31 +71,16 @@
     }
   },
   "function": {
-    "matatabiNodejsLayer": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer"
-    },
-    "matatabiRecommendedSpots": {
-      "build": true,
-      "dependsOn": [
-        {
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
-          ],
-          "category": "api",
-          "resourceName": "matatabi"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "matatabiRouteDurations": {
+    "matatabiGoogleResolver": {
       "build": true,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "matatabiNodejsLayer": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer"
     },
     "matatabicf3192bacf3192baPostConfirmation": {
       "build": true,
@@ -121,6 +106,30 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_matatabiGoogleResolver_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiGoogleResolver"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiGoogleResolver_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiGoogleResolver"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiGoogleResolver_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiGoogleResolver"
+        }
+      ]
+    },
     "AMPLIFY_function_matatabiNodejsLayer_deploymentBucketName": {
       "usedBy": [
         {
@@ -134,54 +143,6 @@
         {
           "category": "function",
           "resourceName": "matatabiNodejsLayer"
-        }
-      ]
-    },
-    "AMPLIFY_function_matatabiRecommendedSpots_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "matatabiRecommendedSpots"
-        }
-      ]
-    },
-    "AMPLIFY_function_matatabiRecommendedSpots_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "matatabiRecommendedSpots"
-        }
-      ]
-    },
-    "AMPLIFY_function_matatabiRecommendedSpots_secretsPathAmplifyAppId": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "matatabiRecommendedSpots"
-        }
-      ]
-    },
-    "AMPLIFY_function_matatabiRouteDurations_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "matatabiRouteDurations"
-        }
-      ]
-    },
-    "AMPLIFY_function_matatabiRouteDurations_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "matatabiRouteDurations"
-        }
-      ]
-    },
-    "AMPLIFY_function_matatabiRouteDurations_secretsPathAmplifyAppId": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "matatabiRouteDurations"
         }
       ]
     },

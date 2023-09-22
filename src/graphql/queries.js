@@ -791,17 +791,26 @@ export const getRouteDurations = /* GraphQL */ `
     $nextSpots: [SpotsInput!]!
   ) {
     getRouteDurations(currentSpot: $currentSpot, nextSpots: $nextSpots) {
-      car {
+      spots {
         spotName
         spotAddress
-        duration
+        drivingDration
+        walkingDration
         distance
         __typename
       }
-      walk {
+      __typename
+    }
+  }
+`;
+export const recomendedSpots = /* GraphQL */ `
+  query RecomendedSpots($currentSpot: SpotsInput!) {
+    recomendedSpots(currentSpot: $currentSpot) {
+      spots {
         spotName
         spotAddress
-        duration
+        drivingDration
+        walkingDration
         distance
         __typename
       }

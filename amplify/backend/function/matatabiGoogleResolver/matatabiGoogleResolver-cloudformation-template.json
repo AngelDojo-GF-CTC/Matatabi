@@ -50,12 +50,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "matatabiRouteDurations",
+            "matatabiGoogleResolver",
             {
               "Fn::Join": [
                 "",
                 [
-                  "matatabiRouteDurations",
+                  "matatabiGoogleResolver",
                   "-",
                   {
                     "Ref": "env"
@@ -73,7 +73,7 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "googleApiKey": {
+            "GOOGLE_API_KEY": {
               "Fn::Join": [
                 "",
                 [
@@ -87,11 +87,11 @@
                         "env": {
                           "Ref": "env"
                         },
-                        "functionName": "matatabiRouteDurations"
+                        "functionName": "matatabiGoogleResolver"
                       }
                     ]
                   },
-                  "googleApiKey"
+                  "GOOGLE_API_KEY"
                 ]
               ]
             }
@@ -114,12 +114,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "matatabiLambdaRole67b43112",
+            "matatabiLambdaRole5e35d483",
             {
               "Fn::Join": [
                 "",
                 [
-                  "matatabiLambdaRole67b43112",
+                  "matatabiLambdaRole5e35d483",
                   "-",
                   {
                     "Ref": "env"
@@ -231,7 +231,7 @@
                           "env": {
                             "Ref": "env"
                           },
-                          "functionName": "matatabiRouteDurations"
+                          "functionName": "matatabiGoogleResolver"
                         }
                       ]
                     },

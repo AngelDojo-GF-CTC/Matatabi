@@ -43,19 +43,22 @@ input SpotsInput {
 type RouteDurations {
   spotName: String!
   spotAddress: String!
-  duration: String!
+  drivingDration: String!
+  walkingDration: String!
   distance: String!
 }
-type RouteDurationsResponse {
-  car: [RouteDurations!]!
-  walk: [RouteDurations!]!
+type SpotsResponse {
+  spots: [RouteDurations!]!
 }
 
 type Query {
   getRouteDurations(
     currentSpot: SpotsInput!
     nextSpots: [SpotsInput!]!
-  ): [RouteDurationsResponse!]!
-    @function(name: "matatabiRouteDurations-${env}")
+  ): SpotsResponse!
+    @function(name: "matatabiGoogleResolver-${env}")
+    @auth(rules: [{ allow: private }])
+  recomendedSpots(currentSpot: SpotsInput!): SpotsResponse!
+    @function(name: "matatabiGoogleResolver-${env}")
     @auth(rules: [{ allow: private }])
 }
