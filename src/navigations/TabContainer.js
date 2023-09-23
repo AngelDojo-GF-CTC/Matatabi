@@ -1,5 +1,5 @@
 import React from "react";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faHouse, faBell, faGear } from "@fortawesome/free-solid-svg-icons";
 import { Home } from "../components/pages/Home";
@@ -8,28 +8,25 @@ import { Settings } from "../components/pages/Settings";
 import { color } from "../styles/color";
 import * as navigation from "../constants/navigations";
 
-const Tab = createMaterialTopTabNavigator();
+const Tab = createBottomTabNavigator();
 
 export const TabContainer = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: color.accent,
         tabBarStyle: { backgroundColor: color.background, height: 70 },
       }}
       initialRouteName={navigation.HOME}
-      tabBarPosition="bottom"
     >
       <Tab.Screen
         name={navigation.HOME}
         component={Home}
         options={{
-          tabBarShowLabel: false,
-          tabBarIcon: ({ focused }) => (
-            <FontAwesomeIcon
-              icon={faHouse}
-              size={35}
-              color={focused ? color.accent : color.base}
-            />
+          title: "ホーム",
+          tabBarIcon: ({ color }) => (
+            <FontAwesomeIcon icon={faHouse} size={35} color={color} />
           ),
         }}
       />
@@ -37,13 +34,9 @@ export const TabContainer = () => {
         name={navigation.NOTIFY}
         component={Notify}
         options={{
-          tabBarShowLabel: false,
-          tabBarIcon: ({ focused }) => (
-            <FontAwesomeIcon
-              icon={faBell}
-              size={35}
-              color={focused ? color.accent : color.base}
-            />
+          title: "通知",
+          tabBarIcon: ({ color }) => (
+            <FontAwesomeIcon icon={faBell} size={35} color={color} />
           ),
         }}
       />
@@ -51,13 +44,9 @@ export const TabContainer = () => {
         name={navigation.SETTINGS}
         component={Settings}
         options={{
-          tabBarShowLabel: false,
-          tabBarIcon: ({ focused }) => (
-            <FontAwesomeIcon
-              icon={faGear}
-              size={35}
-              color={focused ? color.accent : color.base}
-            />
+          title: "設定",
+          tabBarIcon: ({ color }) => (
+            <FontAwesomeIcon icon={faGear} size={35} color={color} />
           ),
         }}
       />
