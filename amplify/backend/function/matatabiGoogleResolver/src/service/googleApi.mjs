@@ -1,16 +1,15 @@
 import distanceMatrixService from "google-distance-matrix";
-import { SSMClient, GetParameterCommand } from "@aws-sdk/client-ssm";
-const ssmClient = new SSMClient();
-const getParameterCommand = new GetParameterCommand({
-  Name: process.env["GOOGLE_API_KEY"],
-  WithDecryption: true,
-});
+import { getGoogleApiKey } from "../ssm/getSsmParameter.mjs";
+import axios from "axios";
 
-const getParameterCommandResponse = await ssmClient.send(getParameterCommand);
-const apiKey = getParameterCommandResponse.Parameter.Value;
+const apiKey = await getGoogleApiKey();
 distanceMatrixService.key(apiKey);
 distanceMatrixService.language("ja");
 
+const googleClient = axios.create({
+  baseURL: "https://maps.googleapis.com/maps/api",
+  timeout: 5000,
+});
 export const getDistance = (
   transportation,
   origins,
@@ -41,5 +40,22 @@ export const getDistance = (
         resolve(trips);
       }
     );
+  });
+};
+
+export const getRecommendedSpots = (placeType, currentSpotAddress) => {
+  return new Promise((resolve, reject) => {
+    const path = `/place/textsearch/json?query=${currentSpotAddress}%20${placeType}&language=ja&radius=100&key=${apiKey}`;
+    console.log(path);
+    googleClient
+      .get(path)
+      .then((response) => {
+        // console.log(JSON.stringify(response.data));
+        resolve(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        reject(error);
+      });
   });
 };

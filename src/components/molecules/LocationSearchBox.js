@@ -3,7 +3,6 @@ import { View, Box, Text, VStack, HStack, FlatList } from "native-base";
 import { DeleteButton } from "../atoms/Buttons/DeleteButton";
 import { GOOGLE_API_KEY } from "@env";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { Button } from "@aws-amplify/ui-react-native/dist/primitives";
 export const LocationSearchBox = ({
   handleLocationAddPress,
   locations,
