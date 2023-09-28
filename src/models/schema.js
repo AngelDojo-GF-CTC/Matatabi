@@ -258,8 +258,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "location": {
-                    "name": "location",
+                "spotName": {
+                    "name": "spotName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "spotAddress": {
+                    "name": "spotAddress",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -268,14 +275,14 @@ export const schema = {
                 "departureTime": {
                     "name": "departureTime",
                     "isArray": false,
-                    "type": "AWSDateTime",
+                    "type": "AWSTime",
                     "isRequired": true,
                     "attributes": []
                 },
                 "arrivalTime": {
                     "name": "arrivalTime",
                     "isArray": false,
-                    "type": "AWSDateTime",
+                    "type": "AWSTime",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -511,15 +518,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "drivingDration": {
-                    "name": "drivingDration",
+                "drivingDuration": {
+                    "name": "drivingDuration",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "walkingDration": {
-                    "name": "walkingDration",
+                "walkingDuration": {
+                    "name": "walkingDuration",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -551,5 +558,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "3ea757b2ed7012feb75ed4e3ea88a657"
+    "version": "017909ef8935da4ac906ee392a8eaa4a"
 };

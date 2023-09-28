@@ -129,7 +129,8 @@ export const onCreateTravel = /* GraphQL */ `
       spots {
         items {
           spotId
-          location
+          spotName
+          spotAddress
           departureTime
           arrivalTime
           stayTimeMin
@@ -200,7 +201,8 @@ export const onUpdateTravel = /* GraphQL */ `
       spots {
         items {
           spotId
-          location
+          spotName
+          spotAddress
           departureTime
           arrivalTime
           stayTimeMin
@@ -271,7 +273,8 @@ export const onDeleteTravel = /* GraphQL */ `
       spots {
         items {
           spotId
-          location
+          spotName
+          spotAddress
           departureTime
           arrivalTime
           stayTimeMin
@@ -320,7 +323,8 @@ export const onCreateSpot = /* GraphQL */ `
   subscription OnCreateSpot($filter: ModelSubscriptionSpotFilterInput) {
     onCreateSpot(filter: $filter) {
       spotId
-      location
+      spotName
+      spotAddress
       departureTime
       arrivalTime
       stayTimeMin
@@ -374,7 +378,8 @@ export const onUpdateSpot = /* GraphQL */ `
   subscription OnUpdateSpot($filter: ModelSubscriptionSpotFilterInput) {
     onUpdateSpot(filter: $filter) {
       spotId
-      location
+      spotName
+      spotAddress
       departureTime
       arrivalTime
       stayTimeMin
@@ -428,7 +433,8 @@ export const onDeleteSpot = /* GraphQL */ `
   subscription OnDeleteSpot($filter: ModelSubscriptionSpotFilterInput) {
     onDeleteSpot(filter: $filter) {
       spotId
-      location
+      spotName
+      spotAddress
       departureTime
       arrivalTime
       stayTimeMin
