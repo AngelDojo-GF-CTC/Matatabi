@@ -71,6 +71,12 @@
     }
   },
   "function": {
+    "matatabiGoogleResolver": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "matatabiNodejsLayer": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -100,6 +106,30 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_matatabiGoogleResolver_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiGoogleResolver"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiGoogleResolver_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiGoogleResolver"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiGoogleResolver_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiGoogleResolver"
+        }
+      ]
+    },
     "AMPLIFY_function_matatabiNodejsLayer_deploymentBucketName": {
       "usedBy": [
         {

@@ -3,13 +3,11 @@ import { View, Box, Text, VStack, HStack, FlatList } from "native-base";
 import { DeleteButton } from "../atoms/Buttons/DeleteButton";
 import { GOOGLE_API_KEY } from "@env";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-
 export const LocationSearchBox = ({
   handleLocationAddPress,
   locations,
   handleDeleteLocation,
 }) => {
-
   const [zindexValue, setZindexValue] = useState(-1);
   const searchRef = createRef();
 
@@ -42,6 +40,7 @@ export const LocationSearchBox = ({
             }}
             onPress={(data, details = null) => {
               handleLocationAddPress(data, details);
+              // searchRef.current.clear();
             }}
             textInputProps={{
               onFocus: () => {

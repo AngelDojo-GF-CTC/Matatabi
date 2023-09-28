@@ -7,12 +7,14 @@ const Gender = {
   "WOMAN": "WOMAN"
 };
 
-const { User, Travel, Spot, TravelUser } = initSchema(schema);
+const { User, Travel, Spot, TravelUser, RouteDurations, SpotsResponse } = initSchema(schema);
 
 export {
   User,
   Travel,
   Spot,
   TravelUser,
-  Gender
+  Gender,
+  RouteDurations,
+  SpotsResponse
 };

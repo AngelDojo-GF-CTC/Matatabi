@@ -1,0 +1,10 @@
+{
+  "typeName": "Query",
+  "fieldName": "getRouteDurations",
+  "arguments": {
+    "currentSpot": {
+      "spotName": "スカイツリー",
+      "spotAddress": " 〒131-0045 東京都墨田区押上１丁目１−２"
+    }
+  }
+}

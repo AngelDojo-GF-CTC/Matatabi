@@ -97,6 +97,12 @@ export const useTravelAddForm = (INITIAL_DATE, handleResetPage) => {
     console.log("スポット名： ", spotName);
     const spotAddress = data.description.split("、")[1];
     console.log("住所： ", spotAddress);
+    if (!spotAddress) {
+      return Alert.alert(
+        "入力タイプエラー",
+        "住所が特定できないスポットです。"
+      );
+    }
     setLocations((prev) => [...prev, { spotName, spotAddress }]);
   }, []);
 

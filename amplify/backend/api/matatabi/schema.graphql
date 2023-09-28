@@ -34,3 +34,31 @@ enum Gender {
   MAN
   WOMAN
 }
+
+input SpotsInput {
+  spotName: String!
+  spotAddress: String!
+}
+
+type RouteDurations {
+  spotName: String!
+  spotAddress: String!
+  drivingDration: String!
+  walkingDration: String!
+  distance: String!
+}
+type SpotsResponse {
+  spots: [RouteDurations!]!
+}
+
+type Query {
+  getRouteDurations(
+    currentSpot: SpotsInput!
+    nextSpots: [SpotsInput!]!
+  ): SpotsResponse!
+    @function(name: "matatabiGoogleResolver-${env}")
+    @auth(rules: [{ allow: private }])
+  recomendedSpots(currentSpot: SpotsInput!): SpotsResponse!
+    @function(name: "matatabiGoogleResolver-${env}")
+    @auth(rules: [{ allow: private }])
+}

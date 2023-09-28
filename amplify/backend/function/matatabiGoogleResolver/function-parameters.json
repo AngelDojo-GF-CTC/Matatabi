@@ -1,0 +1,6 @@
+{
+  "lambdaLayers": [],
+  "secretNames": [
+    "GOOGLE_API_KEY"
+  ]
+}

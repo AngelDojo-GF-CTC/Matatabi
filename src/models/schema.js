@@ -493,7 +493,63 @@ export const schema = {
             ]
         }
     },
-    "nonModels": {},
+    "nonModels": {
+        "RouteDurations": {
+            "name": "RouteDurations",
+            "fields": {
+                "spotName": {
+                    "name": "spotName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "spotAddress": {
+                    "name": "spotAddress",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "drivingDration": {
+                    "name": "drivingDration",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "walkingDration": {
+                    "name": "walkingDration",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "distance": {
+                    "name": "distance",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        },
+        "SpotsResponse": {
+            "name": "SpotsResponse",
+            "fields": {
+                "spots": {
+                    "name": "spots",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "RouteDurations"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": false
+                }
+            }
+        }
+    },
     "codegenVersion": "3.4.4",
-    "version": "1a7dd39efcbcb2433aba3bd8ad6c3ddd"
+    "version": "3ea757b2ed7012feb75ed4e3ea88a657"
 };
