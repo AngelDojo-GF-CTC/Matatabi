@@ -272,18 +272,25 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "departureTime": {
-                    "name": "departureTime",
-                    "isArray": false,
-                    "type": "AWSTime",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "arrivalTime": {
                     "name": "arrivalTime",
                     "isArray": false,
                     "type": "AWSTime",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "drivingDuration": {
+                    "name": "drivingDuration",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "walkingDuration": {
+                    "name": "walkingDuration",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "stayTimeMin": {
@@ -558,5 +565,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "017909ef8935da4ac906ee392a8eaa4a"
+    "version": "cf924800e71a8ce6787a03cc88fcf562"
 };

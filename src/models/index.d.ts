@@ -121,8 +121,9 @@ type EagerSpot = {
   readonly spotId: string;
   readonly spotName: string;
   readonly spotAddress: string;
-  readonly departureTime: string;
   readonly arrivalTime: string;
+  readonly drivingDuration?: string | null;
+  readonly walkingDuration?: string | null;
   readonly stayTimeMin: number;
   readonly travelId: string;
   readonly travelDate: string;
@@ -139,8 +140,9 @@ type LazySpot = {
   readonly spotId: string;
   readonly spotName: string;
   readonly spotAddress: string;
-  readonly departureTime: string;
   readonly arrivalTime: string;
+  readonly drivingDuration?: string | null;
+  readonly walkingDuration?: string | null;
   readonly stayTimeMin: number;
   readonly travelId: string;
   readonly travelDate: string;

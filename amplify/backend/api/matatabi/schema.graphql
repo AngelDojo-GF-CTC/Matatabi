@@ -23,8 +23,9 @@ type Spot @model @auth(rules: [{ allow: private }]) {
   spotId: ID! @primaryKey
   spotName: String!
   spotAddress: String!
-  departureTime: AWSTime!
   arrivalTime: AWSTime!
+  drivingDuration: String
+  walkingDuration: String
   stayTimeMin: Int!
   travelId: ID! @index(name: "byTravel", sortKeyFields: ["travelDate"])
   travelDate: AWSDate!

@@ -139,8 +139,9 @@ export const getTravel = /* GraphQL */ `
           spotId
           spotName
           spotAddress
-          departureTime
           arrivalTime
+          drivingDuration
+          walkingDuration
           stayTimeMin
           travelId
           travelDate
@@ -301,8 +302,9 @@ export const getSpot = /* GraphQL */ `
       spotId
       spotName
       spotAddress
-      departureTime
       arrivalTime
+      drivingDuration
+      walkingDuration
       stayTimeMin
       travelId
       travelDate
@@ -369,8 +371,9 @@ export const listSpots = /* GraphQL */ `
         spotId
         spotName
         spotAddress
-        departureTime
         arrivalTime
+        drivingDuration
+        walkingDuration
         stayTimeMin
         travelId
         travelDate
@@ -416,8 +419,9 @@ export const syncSpots = /* GraphQL */ `
         spotId
         spotName
         spotAddress
-        departureTime
         arrivalTime
+        drivingDuration
+        walkingDuration
         stayTimeMin
         travelId
         travelDate
@@ -467,8 +471,9 @@ export const spotsByTravelIdAndTravelDate = /* GraphQL */ `
         spotId
         spotName
         spotAddress
-        departureTime
         arrivalTime
+        drivingDuration
+        walkingDuration
         stayTimeMin
         travelId
         travelDate
