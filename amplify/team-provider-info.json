@@ -30,7 +30,7 @@
         "matatabiGoogleResolver": {
           "secretsPathAmplifyAppId": "d1y7tsjvpasj3h",
           "deploymentBucketName": "amplify-matatabi-dev-154002-deployment",
-          "s3Key": "amplify-builds/matatabiGoogleResolver-57457259797568645668-build.zip"
+          "s3Key": "amplify-builds/matatabiGoogleResolver-446d30754677656a636d-build.zip"
         },
         "matatabiRouteDurations": {},
         "matatabiRecommendedSpots": {}

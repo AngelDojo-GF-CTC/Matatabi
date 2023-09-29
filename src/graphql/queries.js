@@ -140,6 +140,8 @@ export const getTravel = /* GraphQL */ `
           spotName
           spotAddress
           arrivalTime
+          lat
+          lng
           drivingDuration
           walkingDuration
           stayTimeMin
@@ -303,6 +305,8 @@ export const getSpot = /* GraphQL */ `
       spotName
       spotAddress
       arrivalTime
+      lat
+      lng
       drivingDuration
       walkingDuration
       stayTimeMin
@@ -372,6 +376,8 @@ export const listSpots = /* GraphQL */ `
         spotName
         spotAddress
         arrivalTime
+        lat
+        lng
         drivingDuration
         walkingDuration
         stayTimeMin
@@ -420,6 +426,8 @@ export const syncSpots = /* GraphQL */ `
         spotName
         spotAddress
         arrivalTime
+        lat
+        lng
         drivingDuration
         walkingDuration
         stayTimeMin
@@ -472,6 +480,8 @@ export const spotsByTravelIdAndTravelDate = /* GraphQL */ `
         spotName
         spotAddress
         arrivalTime
+        lat
+        lng
         drivingDuration
         walkingDuration
         stayTimeMin
@@ -802,6 +812,7 @@ export const getRouteDurations = /* GraphQL */ `
   ) {
     getRouteDurations(currentSpot: $currentSpot, nextSpots: $nextSpots) {
       spots {
+        spotId
         spotName
         spotAddress
         drivingDuration
@@ -809,7 +820,6 @@ export const getRouteDurations = /* GraphQL */ `
         distance
         lat
         lng
-        spotId
         __typename
       }
       __typename
@@ -820,6 +830,7 @@ export const recomendedSpots = /* GraphQL */ `
   query RecomendedSpots($currentSpot: SpotsInput!) {
     recomendedSpots(currentSpot: $currentSpot) {
       spots {
+        spotId
         spotName
         spotAddress
         drivingDuration
@@ -827,7 +838,6 @@ export const recomendedSpots = /* GraphQL */ `
         distance
         lat
         lng
-        spotId
         __typename
       }
       __typename
