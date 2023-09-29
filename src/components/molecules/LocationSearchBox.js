@@ -10,6 +10,7 @@ export const LocationSearchBox = ({
 }) => {
   const [zindexValue, setZindexValue] = useState(-1);
   const searchRef = createRef();
+  console.log("locations", locations);
 
   return (
     <>
@@ -34,7 +35,7 @@ export const LocationSearchBox = ({
             ref={searchRef}
             placeholder="観光地・住所"
             //
-            // fetchDetails={true}
+            fetchDetails={true}
             onFail={(err) => {
               console.log(err);
             }}

@@ -797,6 +797,9 @@ export const getRouteDurations = /* GraphQL */ `
         drivingDration
         walkingDration
         distance
+        lat
+        lng
+        spotId
         __typename
       }
       __typename
@@ -812,6 +815,9 @@ export const recomendedSpots = /* GraphQL */ `
         drivingDration
         walkingDration
         distance
+        lat
+        lng
+        spotId
         __typename
       }
       __typename

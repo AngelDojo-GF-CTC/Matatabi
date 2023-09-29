@@ -38,6 +38,8 @@ enum Gender {
 input SpotsInput {
   spotName: String!
   spotAddress: String!
+  lat: Float!
+  lng: Float!
 }
 
 type RouteDurations {
@@ -46,6 +48,9 @@ type RouteDurations {
   drivingDration: String!
   walkingDration: String!
   distance: String!
+  lat: Float!
+  lng: Float!
+  spotId: String!
 }
 type SpotsResponse {
   spots: [RouteDurations!]!

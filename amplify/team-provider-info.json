@@ -23,14 +23,14 @@
         },
         "matatabiNodejsLayer": {
           "deploymentBucketName": "amplify-matatabi-dev-154002-deployment",
-          "s3Key": "amplify-builds/matatabiNodejsLayer-LambdaLayerVersion0f440023-build.zip"
+          "s3Key": "amplify-builds/matatabiNodejsLayer-LambdaLayerVersionaec81096-build.zip"
         },
         "matatabi": {},
         "matatabicf3192bacf3192ba": {},
         "matatabiGoogleResolver": {
           "secretsPathAmplifyAppId": "d1y7tsjvpasj3h",
           "deploymentBucketName": "amplify-matatabi-dev-154002-deployment",
-          "s3Key": "amplify-builds/matatabiGoogleResolver-586d6c33585845356e48-build.zip"
+          "s3Key": "amplify-builds/matatabiGoogleResolver-36776d39795243686271-build.zip"
         },
         "matatabiRouteDurations": {},
         "matatabiRecommendedSpots": {}
