@@ -129,9 +129,11 @@ export const onCreateTravel = /* GraphQL */ `
       spots {
         items {
           spotId
-          location
-          departureTime
+          spotName
+          spotAddress
           arrivalTime
+          drivingDuration
+          walkingDuration
           stayTimeMin
           travelId
           travelDate
@@ -200,9 +202,11 @@ export const onUpdateTravel = /* GraphQL */ `
       spots {
         items {
           spotId
-          location
-          departureTime
+          spotName
+          spotAddress
           arrivalTime
+          drivingDuration
+          walkingDuration
           stayTimeMin
           travelId
           travelDate
@@ -271,9 +275,11 @@ export const onDeleteTravel = /* GraphQL */ `
       spots {
         items {
           spotId
-          location
-          departureTime
+          spotName
+          spotAddress
           arrivalTime
+          drivingDuration
+          walkingDuration
           stayTimeMin
           travelId
           travelDate
@@ -320,9 +326,11 @@ export const onCreateSpot = /* GraphQL */ `
   subscription OnCreateSpot($filter: ModelSubscriptionSpotFilterInput) {
     onCreateSpot(filter: $filter) {
       spotId
-      location
-      departureTime
+      spotName
+      spotAddress
       arrivalTime
+      drivingDuration
+      walkingDuration
       stayTimeMin
       travelId
       travelDate
@@ -374,9 +382,11 @@ export const onUpdateSpot = /* GraphQL */ `
   subscription OnUpdateSpot($filter: ModelSubscriptionSpotFilterInput) {
     onUpdateSpot(filter: $filter) {
       spotId
-      location
-      departureTime
+      spotName
+      spotAddress
       arrivalTime
+      drivingDuration
+      walkingDuration
       stayTimeMin
       travelId
       travelDate
@@ -428,9 +438,11 @@ export const onDeleteSpot = /* GraphQL */ `
   subscription OnDeleteSpot($filter: ModelSubscriptionSpotFilterInput) {
     onDeleteSpot(filter: $filter) {
       spotId
-      location
-      departureTime
+      spotName
+      spotAddress
       arrivalTime
+      drivingDuration
+      walkingDuration
       stayTimeMin
       travelId
       travelDate

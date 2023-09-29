@@ -21,9 +21,11 @@ type Travel @model @auth(rules: [{ allow: private }]) {
 
 type Spot @model @auth(rules: [{ allow: private }]) {
   spotId: ID! @primaryKey
-  location: String!
-  departureTime: AWSDateTime!
-  arrivalTime: AWSDateTime!
+  spotName: String!
+  spotAddress: String!
+  arrivalTime: AWSTime!
+  drivingDuration: String
+  walkingDuration: String
   stayTimeMin: Int!
   travelId: ID! @index(name: "byTravel", sortKeyFields: ["travelDate"])
   travelDate: AWSDate!
@@ -43,10 +45,11 @@ input SpotsInput {
 type RouteDurations {
   spotName: String!
   spotAddress: String!
-  drivingDration: String!
-  walkingDration: String!
+  drivingDuration: String!
+  walkingDuration: String!
   distance: String!
 }
+
 type SpotsResponse {
   spots: [RouteDurations!]!
 }

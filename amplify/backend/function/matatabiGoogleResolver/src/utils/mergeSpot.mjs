@@ -6,7 +6,7 @@ export const mergedSpot = (walkingMode, drivingMode) => {
     if (carSpot) {
       return {
         ...spot,
-        drivingDration: carSpot.drivingDration,
+        drivingDuration: carSpot.drivingDuration,
       };
     } else {
       return spot;
