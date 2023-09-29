@@ -92,18 +92,27 @@ export const useTravelAddForm = (INITIAL_DATE, handleResetPage) => {
   }, [step]);
 
   const handleLocationAddPress = useCallback((data, details) => {
-    console.log(data, details);
+    console.log("データ", JSON.stringify(data), "詳細", details);
     const spotName = data.structured_formatting.main_text;
     console.log("スポット名： ", spotName);
     const spotAddress = data.description.split("、")[1];
     console.log("住所： ", spotAddress);
+    const spotId = details.place_id;
+    console.log("spotId: ", spotId);
+    const lat = details.geometry.location.lat;
+    console.log("lat: ", lat);
+    const lng = details.geometry.location.lng;
+    console.log("lng: ", lng);
     if (!spotAddress) {
       return Alert.alert(
         "入力タイプエラー",
         "住所が特定できないスポットです。"
       );
     }
-    setLocations((prev) => [...prev, { spotName, spotAddress }]);
+    setLocations((prev) => [
+      ...prev,
+      { spotName, spotAddress, placeId, lat, lng },
+    ]);
   }, []);
 
   const handleDeleteLocation = useCallback((item) => {

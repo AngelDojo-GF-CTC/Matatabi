@@ -13,6 +13,9 @@ type EagerRouteDurations = {
   readonly drivingDuration: string;
   readonly walkingDuration: string;
   readonly distance: string;
+  readonly lat: number;
+  readonly lng: number;
+  readonly spotId: string;
 }
 
 type LazyRouteDurations = {
@@ -21,6 +24,9 @@ type LazyRouteDurations = {
   readonly drivingDuration: string;
   readonly walkingDuration: string;
   readonly distance: string;
+  readonly lat: number;
+  readonly lng: number;
+  readonly spotId: string;
 }
 
 export declare type RouteDurations = LazyLoading extends LazyLoadingDisabled ? EagerRouteDurations : LazyRouteDurations

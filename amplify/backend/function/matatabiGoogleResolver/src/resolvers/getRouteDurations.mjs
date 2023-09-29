@@ -21,7 +21,7 @@ export const getRouteDurations = async (event) => {
   );
 
   const spots = mergedSpot(walkingMode, drivingMode);
-  console.log(spots);
+  console.log("spots: ", spots);
 
   return {
     spots: spots,

@@ -545,6 +545,27 @@ export const schema = {
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
+                },
+                "lat": {
+                    "name": "lat",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "lng": {
+                    "name": "lng",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "spotId": {
+                    "name": "spotId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
                 }
             }
         },
@@ -565,5 +586,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "cf924800e71a8ce6787a03cc88fcf562"
+    "version": "4db23401c9128142681297051c3dfda4"
 };

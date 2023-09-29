@@ -35,6 +35,9 @@ export const getDistance = (
               distances.rows[0].elements[nextSpots.indexOf(spot)].duration.text,
             distance:
               distances.rows[0].elements[nextSpots.indexOf(spot)].distance.text,
+            spotId: spot.placeId,
+            lat: spot.lat,
+            lng: spot.lng,
           });
         }
         resolve(trips);
