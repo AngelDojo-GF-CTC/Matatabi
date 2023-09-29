@@ -258,25 +258,39 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "location": {
-                    "name": "location",
+                "spotName": {
+                    "name": "spotName",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "departureTime": {
-                    "name": "departureTime",
+                "spotAddress": {
+                    "name": "spotAddress",
                     "isArray": false,
-                    "type": "AWSDateTime",
+                    "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
                 "arrivalTime": {
                     "name": "arrivalTime",
                     "isArray": false,
-                    "type": "AWSDateTime",
+                    "type": "AWSTime",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "drivingDuration": {
+                    "name": "drivingDuration",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "walkingDuration": {
+                    "name": "walkingDuration",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "stayTimeMin": {
@@ -511,15 +525,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "drivingDration": {
-                    "name": "drivingDration",
+                "drivingDuration": {
+                    "name": "drivingDuration",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
-                "walkingDration": {
-                    "name": "walkingDration",
+                "walkingDuration": {
+                    "name": "walkingDuration",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -572,5 +586,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "ba3d9c506978b6bfc4b0f61f9e6999b3"
+    "version": "4db23401c9128142681297051c3dfda4"
 };

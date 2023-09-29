@@ -141,9 +141,11 @@ export const createTravel = /* GraphQL */ `
       spots {
         items {
           spotId
-          location
-          departureTime
+          spotName
+          spotAddress
           arrivalTime
+          drivingDuration
+          walkingDuration
           stayTimeMin
           travelId
           travelDate
@@ -215,9 +217,11 @@ export const updateTravel = /* GraphQL */ `
       spots {
         items {
           spotId
-          location
-          departureTime
+          spotName
+          spotAddress
           arrivalTime
+          drivingDuration
+          walkingDuration
           stayTimeMin
           travelId
           travelDate
@@ -289,9 +293,11 @@ export const deleteTravel = /* GraphQL */ `
       spots {
         items {
           spotId
-          location
-          departureTime
+          spotName
+          spotAddress
           arrivalTime
+          drivingDuration
+          walkingDuration
           stayTimeMin
           travelId
           travelDate
@@ -341,9 +347,11 @@ export const createSpot = /* GraphQL */ `
   ) {
     createSpot(input: $input, condition: $condition) {
       spotId
-      location
-      departureTime
+      spotName
+      spotAddress
       arrivalTime
+      drivingDuration
+      walkingDuration
       stayTimeMin
       travelId
       travelDate
@@ -398,9 +406,11 @@ export const updateSpot = /* GraphQL */ `
   ) {
     updateSpot(input: $input, condition: $condition) {
       spotId
-      location
-      departureTime
+      spotName
+      spotAddress
       arrivalTime
+      drivingDuration
+      walkingDuration
       stayTimeMin
       travelId
       travelDate
@@ -455,9 +465,11 @@ export const deleteSpot = /* GraphQL */ `
   ) {
     deleteSpot(input: $input, condition: $condition) {
       spotId
-      location
-      departureTime
+      spotName
+      spotAddress
       arrivalTime
+      drivingDuration
+      walkingDuration
       stayTimeMin
       travelId
       travelDate

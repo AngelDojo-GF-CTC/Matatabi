@@ -10,7 +10,7 @@ export const Home = () => {
     handlers: { handleAddFormMode, handleResetPage },
   } = useHome();
   return (
-    <Layout>
+    <Layout handleResetPage={handleResetPage}>
       {pageMode.addFormMode ? (
         <TravelAddForm handleResetPage={handleResetPage} />
       ) : pageMode.travelDetailMode ? (

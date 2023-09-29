@@ -31,7 +31,7 @@ export const getDistance = (
           trips.push({
             spotName: spot.spotName,
             spotAddress: spot.spotAddress,
-            [`${transportation}Dration`]:
+            [`${transportation}Duration`]:
               distances.rows[0].elements[nextSpots.indexOf(spot)].duration.text,
             distance:
               distances.rows[0].elements[nextSpots.indexOf(spot)].distance.text,

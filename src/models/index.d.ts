@@ -10,8 +10,8 @@ export enum Gender {
 type EagerRouteDurations = {
   readonly spotName: string;
   readonly spotAddress: string;
-  readonly drivingDration: string;
-  readonly walkingDration: string;
+  readonly drivingDuration: string;
+  readonly walkingDuration: string;
   readonly distance: string;
   readonly lat: number;
   readonly lng: number;
@@ -21,8 +21,8 @@ type EagerRouteDurations = {
 type LazyRouteDurations = {
   readonly spotName: string;
   readonly spotAddress: string;
-  readonly drivingDration: string;
-  readonly walkingDration: string;
+  readonly drivingDuration: string;
+  readonly walkingDuration: string;
   readonly distance: string;
   readonly lat: number;
   readonly lng: number;
@@ -125,9 +125,11 @@ type EagerSpot = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly spotId: string;
-  readonly location: string;
-  readonly departureTime: string;
+  readonly spotName: string;
+  readonly spotAddress: string;
   readonly arrivalTime: string;
+  readonly drivingDuration?: string | null;
+  readonly walkingDuration?: string | null;
   readonly stayTimeMin: number;
   readonly travelId: string;
   readonly travelDate: string;
@@ -142,9 +144,11 @@ type LazySpot = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly spotId: string;
-  readonly location: string;
-  readonly departureTime: string;
+  readonly spotName: string;
+  readonly spotAddress: string;
   readonly arrivalTime: string;
+  readonly drivingDuration?: string | null;
+  readonly walkingDuration?: string | null;
   readonly stayTimeMin: number;
   readonly travelId: string;
   readonly travelDate: string;
