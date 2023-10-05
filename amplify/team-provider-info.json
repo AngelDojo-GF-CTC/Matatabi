@@ -19,11 +19,11 @@
       "function": {
         "matatabicf3192bacf3192baPostConfirmation": {
           "deploymentBucketName": "amplify-matatabi-dev-154002-deployment",
-          "s3Key": "amplify-builds/matatabicf3192bacf3192baPostConfirmation-4e654768715855773765-build.zip"
+          "s3Key": "amplify-builds/matatabicf3192bacf3192baPostConfirmation-61446343743272716d5a-build.zip"
         },
         "matatabiNodejsLayer": {
           "deploymentBucketName": "amplify-matatabi-dev-154002-deployment",
-          "s3Key": "amplify-builds/matatabiNodejsLayer-LambdaLayerVersionaec81096-build.zip"
+          "s3Key": "amplify-builds/matatabiNodejsLayer-LambdaLayerVersionb665155b-build.zip"
         },
         "matatabi": {},
         "matatabicf3192bacf3192ba": {},

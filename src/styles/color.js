@@ -3,4 +3,7 @@ export const color = {
   base: "#9E9E9E",
   accent: "#C1A14E",
   add: "#FFA775",
+  text: "#424242",
+  error: "#F44336",
+  border: "gray.500",
 };

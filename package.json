@@ -23,6 +23,7 @@
     "amazon-cognito-identity-js": "^6.3.5",
     "aws-amplify": "^5.3.10",
     "expo": "^49.0.8",
+    "expo-crypto": "^12.6.0",
     "expo-status-bar": "~1.6.0",
     "metro-config": "^0.78.1",
     "moment": "^2.29.4",
@@ -44,7 +45,9 @@
     "react-native-svg": "13.9.0",
     "react-native-tab-view": "^3.5.2",
     "react-native-url-polyfill": "^2.0.0",
-    "react-native-vector-icons": "^10.0.0"
+    "react-native-vector-icons": "^10.0.0",
+    "recoil": "^0.7.7",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

@@ -1,13 +1,15 @@
-import { createRef, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Alert } from "react-native";
 import { color } from "../styles/color";
 import moment from "moment";
+import { ERROR_MESSAGE, ERROR_TYPE } from "../constants/error";
 
-export const useTravelAddForm = (INITIAL_DATE, handleResetPage) => {
+export const useTravelAddForm = (handleResetPage) => {
   const [selected, setSelected] = useState({
     start: "",
     end: "",
   });
+  const [travelName, setTravelName] = useState("");
   const [targetDay, setTargetDay] = useState({ start: true, end: false });
   const [markedDates, setMarkedDates] = useState({});
   const [step, setStep] = useState(0);
@@ -79,39 +81,37 @@ export const useTravelAddForm = (INITIAL_DATE, handleResetPage) => {
 
   const handleNextStep = useCallback(() => {
     if (step === 0) {
+      if (!travelName)
+        return Alert.alert(
+          ERROR_TYPE.inputError,
+          ERROR_MESSAGE.travelNameError
+        );
       if (!selected.start)
-        return Alert.alert("入力エラー", "旅の開始日付を選択してください");
+        return Alert.alert(ERROR_TYPE.inputError, ERROR_MESSAGE.startDaysError);
       if (!selected.end)
-        return Alert.alert("入力エラー", "旅の終了日付を選択してください");
+        return Alert.alert(ERROR_TYPE.inputError, ERROR_MESSAGE.endDaysError);
     }
     setStep((prev) => prev + 1);
-  }, [selected, step]);
+  }, [selected, step, travelName]);
 
   const handlePrevStep = useCallback(() => {
     step === 0 ? handleResetPage() : setStep((prev) => prev - 1);
   }, [step]);
 
   const handleLocationAddPress = useCallback((data, details) => {
-    console.log("データ", JSON.stringify(data), "詳細", details);
+    // console.log(data, details);
+    const spotId = data.place_id;
     const spotName = data.structured_formatting.main_text;
-    console.log("スポット名： ", spotName);
     const spotAddress = data.description.split("、")[1];
-    console.log("住所： ", spotAddress);
-    const spotId = details.place_id;
-    console.log("spotId: ", spotId);
     const lat = details.geometry.location.lat;
-    console.log("lat: ", lat);
     const lng = details.geometry.location.lng;
-    console.log("lng: ", lng);
+    // console.log({ spotName, spotAddress, spotId, lat, lng });
     if (!spotAddress) {
-      return Alert.alert(
-        "入力タイプエラー",
-        "住所が特定できないスポットです。"
-      );
+      return Alert.alert(ERROR_TYPE.inputError, ERROR_MESSAGE.addressNotFound);
     }
     setLocations((prev) => [
       ...prev,
-      { spotName, spotAddress, placeId, lat, lng },
+      { spotName, spotAddress, spotId, lat, lng },
     ]);
   }, []);
 
@@ -122,8 +122,12 @@ export const useTravelAddForm = (INITIAL_DATE, handleResetPage) => {
     );
   }, []);
 
+  const handleTravelName = useCallback((name) => {
+    setTravelName(name);
+  }, []);
+
   return {
-    states: { step, targetDay, markedDates, locations },
+    states: { step, targetDay, markedDates, locations, travelName },
     handlers: {
       handleDeleteLocation,
       handleNextStep,
@@ -132,6 +136,7 @@ export const useTravelAddForm = (INITIAL_DATE, handleResetPage) => {
       handleTargetStart,
       handleTargetEnd,
       handleLocationAddPress,
+      handleTravelName,
     },
   };
 };

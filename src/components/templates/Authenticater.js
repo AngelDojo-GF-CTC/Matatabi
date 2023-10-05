@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Authenticator } from "@aws-amplify/ui-react-native";
 import awsconfig from "../../aws-exports";
+import { useSetRecoilState } from "recoil";
+import { myUserIdState } from "../../recoil/atoms";
+import { Auth } from "aws-amplify";
 
 export const Authenticater = ({ children }) => {
+  const setMyUserId = useSetRecoilState(myUserIdState);
+
+  useEffect(() => {
+    Auth.currentAuthenticatedUser()
+      .then((user) => {
+        if (user?.attributes?.sub) {
+          setMyUserId(user.attributes.sub);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Authenticator.Provider>
       <Authenticator
