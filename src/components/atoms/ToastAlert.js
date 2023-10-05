@@ -7,6 +7,8 @@ import {
   VStack,
   useToast,
 } from "native-base";
+import { useSetRecoilState } from "recoil";
+import { isToastOpenState } from "../../recoil/atoms";
 
 export const ToastAlert = ({
   id,
@@ -16,6 +18,7 @@ export const ToastAlert = ({
   description,
   isClosable,
 }) => {
+  const setIsToastOpen = useSetRecoilState(isToastOpenState);
   const toast = useToast();
   return (
     <Alert
@@ -55,7 +58,10 @@ export const ToastAlert = ({
               _icon={{
                 color: variant === "solid" ? "lightText" : "darkText",
               }}
-              onPress={() => toast.close(id)}
+              onPress={() => {
+                setIsToastOpen(false);
+                toast.close(id);
+              }}
             />
           ) : null}
         </HStack>
