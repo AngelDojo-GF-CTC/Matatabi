@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { useToast } from "native-base";
 import { useRecoilValue } from "recoil";
 import { isToastOpenState, toastDetailsState } from "../../recoil/atoms";
-import { ToastAlert } from "../atoms/ToastAlert";
+import { ToastAlert } from "../molecules/ToastAlert";
 
 export const Layout = ({ handleResetPage, children }) => {
   const isToastOpen = useRecoilValue(isToastOpenState);
