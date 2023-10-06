@@ -59,8 +59,8 @@ export const ToastAlert = ({
                 color: variant === "solid" ? "lightText" : "darkText",
               }}
               onPress={() => {
-                setIsToastOpen(false);
                 toast.close(id);
+                setIsToastOpen(false);
               }}
             />
           ) : null}

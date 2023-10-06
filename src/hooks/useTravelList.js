@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { getUserById } from "../service/appsync/user";
-import { useRecoilValue } from "recoil";
-import { myUserIdState } from "../recoil/atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isMatatabiLoadingState, myUserIdState } from "../recoil/atoms";
 import { groupsArrayByKey } from "../utils/array";
 import { TRAVEL_KEY } from "../constants/itinerary";
 
 export const useTravelList = (handleTravelDetailMode, pageMode) => {
   const userId = useRecoilValue(myUserIdState);
+  const setIsMatatabiLoading = useSetRecoilState(isMatatabiLoadingState);
   const [travelList, setTravelList] = useState();
   const [targetTravelName, setTargetTravelName] = useState();
   const [targetTravelData, setTargetTravelData] = useState();
@@ -14,6 +15,7 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
   useEffect(() => {
     if (!userId || !pageMode?.listMode) return;
     (async () => {
+      setIsMatatabiLoading(true);
       const userData = await getUserById(userId);
       const travels = userData.travels.items.map(
         (travelUser) => travelUser.travel
@@ -26,6 +28,7 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
       );
       // console.log("list: ", list);
       setTravelList(list);
+      setIsMatatabiLoading(false);
     })();
   }, [userId, pageMode?.listMode]);
 

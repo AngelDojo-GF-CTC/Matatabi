@@ -15,12 +15,14 @@ import {
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { TOAST } from "../constants/toast";
 import {
+  isMatatabiLoadingState,
   isToastOpenState,
   myUserIdState,
   toastDetailsState,
 } from "../recoil/atoms";
 import { createTravelProject } from "../service/appsync/travel";
-import { groupsArrayByKey } from "../utils/array";
+import "react-native-get-random-values";
+import { v4 } from "uuid";
 
 export const useItinerary = (
   dates,
@@ -29,6 +31,7 @@ export const useItinerary = (
   handleResetPage,
   travelData
 ) => {
+  const setIsMatatabiLoading = useSetRecoilState(isMatatabiLoadingState);
   const userId = useRecoilValue(myUserIdState);
   const setIsToastOpen = useSetRecoilState(isToastOpenState);
   const setIsToastDetails = useSetRecoilState(toastDetailsState);
@@ -145,7 +148,7 @@ export const useItinerary = (
           ],
         };
       }
-      console.log(result);
+      // console.log(result);
       setValues(result);
     } else {
       let result;
@@ -200,14 +203,14 @@ export const useItinerary = (
                 required: true,
               },
               [ITINERARY_KEY.stayTimeMin]: {
-                required: true,
+                required: false,
               },
               [ITINERARY_KEY.drivingDuration]: {
                 required: false,
               },
               [ITINERARY_KEY.walkingDuration]: { required: false },
               [ITINERARY_KEY.lat]: { required: true },
-              [ITINERARY_KEY.lng]: { required: false },
+              [ITINERARY_KEY.lng]: { required: true },
             };
           }),
         };
@@ -376,6 +379,7 @@ export const useItinerary = (
       console.log(value);
       try {
         if (index !== 0) {
+          setIsMatatabiLoading(true);
           // 最初以外は前のスポット情報を取得する
           currentSpotName.current = value[index - 1][ITINERARY_KEY.spotName];
           const currentSpot = {
@@ -396,8 +400,6 @@ export const useItinerary = (
                 lng: location.lng,
               };
             });
-          console.log(currentSpot);
-          console.log(nextSpots);
           const fetchDurationResult = await fetchRouteDurations({
             currentSpot,
             nextSpots,
@@ -430,6 +432,7 @@ export const useItinerary = (
             };
           });
           setSelectSpotsMenu([...durationResultSpots, ...recomendedSpots]);
+          setIsMatatabiLoading(false);
         } else {
           currentSpotName.current = "";
           setSelectSpotsMenu(
@@ -459,8 +462,12 @@ export const useItinerary = (
   }, []);
 
   const handleSubmit = useCallback(async () => {
+    const isError = handleErrorCheck();
+    if (isError)
+      return Alert.alert(ERROR_TYPE.inputError, ERROR_MESSAGE.inputError);
     let isSucess;
     try {
+      setIsMatatabiLoading(true);
       await createTravelProject(travelName, userId, values);
       isSucess = true;
     } catch (err) {
@@ -468,7 +475,7 @@ export const useItinerary = (
       console.log(err);
     } finally {
       setIsToastDetails({
-        id: 1,
+        id: v4(),
         status: isSucess
           ? TOAST.status.travelAddSuccess
           : TOAST.status.travelAddError,
@@ -484,6 +491,7 @@ export const useItinerary = (
         isClosable: true,
       });
       handleResetPage();
+      setIsMatatabiLoading(false);
       setIsToastOpen(true);
     }
   }, [values, travelName, userId]);
