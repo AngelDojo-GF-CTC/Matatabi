@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { getUserById } from "../service/appsync/user";
 import { useRecoilValue } from "recoil";
 import { myUserIdState } from "../recoil/atoms";
@@ -29,11 +29,14 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
     })();
   }, [userId, pageMode?.listMode]);
 
-  const handleTravelPress = (travelName) => {
-    setTargetTravelName(travelName);
-    setTargetTravelData(travelList[travelName]);
-    handleTravelDetailMode();
-  };
+  const handleTravelPress = useCallback(
+    (travelName) => {
+      setTargetTravelName(travelName);
+      setTargetTravelData(travelList[travelName]);
+      handleTravelDetailMode();
+    },
+    [travelList]
+  );
   return {
     state: { travelList, targetTravelName, targetTravelData },
     handlers: { handleTravelPress },
