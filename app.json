@@ -17,6 +17,9 @@
       "bundleIdentifier": "com.example.Matatabi",
       "config": {
         "googleMapsApiKey": "AIzaSyAGwm9_X6uxVsnsCw9yw99QcZyslQOy50I"
+      },
+      "infoPlist": {
+        "UIBackgroundModes": ["location"]
       }
     },
     "android": {
@@ -35,6 +38,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ]
+    ]
   }
 }
