@@ -5,14 +5,14 @@ import { myUserIdState } from "../recoil/atoms";
 import { groupsArrayByKey } from "../utils/array";
 import { TRAVEL_KEY } from "../constants/itinerary";
 
-export const useTravelList = (handleTravelDetailMode) => {
+export const useTravelList = (handleTravelDetailMode, pageMode) => {
   const userId = useRecoilValue(myUserIdState);
   const [travelList, setTravelList] = useState();
   const [targetTravelName, setTargetTravelName] = useState();
   const [targetTravelData, setTargetTravelData] = useState();
 
   useEffect(() => {
-    if (!userId) return;
+    if (!userId || !pageMode?.listMode) return;
     (async () => {
       const userData = await getUserById(userId);
       const travels = userData.travels.items.map(
@@ -27,7 +27,7 @@ export const useTravelList = (handleTravelDetailMode) => {
       // console.log("list: ", list);
       setTravelList(list);
     })();
-  }, [userId]);
+  }, [userId, pageMode?.listMode]);
 
   const handleTravelPress = (travelName) => {
     setTargetTravelName(travelName);

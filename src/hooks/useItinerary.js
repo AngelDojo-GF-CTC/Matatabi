@@ -72,12 +72,81 @@ export const useItinerary = (
 
   useEffect(() => {
     if (travelData) {
-      const spotValue = groupsArrayByKey(
-        travelData.map((data) => data.spots.items),
-        ITINERARY_KEY.travelDate
-      );
-      console.log(spotValue);
-      setValues(spotValue);
+      // const travelData = {
+      //   "2023-10-30": [
+      //     {
+      //       arrivalTime: "10:07:00.000Z",
+      //       drivingDuration: "",
+      //       lat: 35.6585805,
+      //       lng: 139.7454329,
+      //       spotAddress: "東京都港区芝公園４丁目２−８ 東京タワー",
+      //       spotId: "ChIJCewJkL2LGGAR3Qmk0vCTGkg",
+      //       spotName: "東京タワー",
+      //       stayTimeMin: 150,
+      //       walkingDuration: "",
+      //     },
+      //     {
+      //       arrivalTime: "18:07:00.000Z",
+      //       drivingDuration: "1分",
+      //       lat: 35.6585696,
+      //       lng: 139.745484,
+      //       spotAddress:
+      //         "日本、〒105-0011 東京都港区芝公園４丁目２−８ 東京タワー 2F",
+      //       spotId: "ChIJN2D06d6LGGARyz8lzMkN8Y4",
+      //       spotName: "生パスタ専門店SPALA 東京タワー店",
+      //       stayTimeMin: 0,
+      //       walkingDuration: "1分",
+      //     },
+      //   ],
+      //   "2023-10-31": [
+      //     {
+      //       arrivalTime: "10:07:00.000Z",
+      //       drivingDuration: "",
+      //       lat: 35.71006269999999,
+      //       lng: 139.8107004,
+      //       spotAddress: "東京都墨田区押上１丁目１−２, トウキョウスカイツリー",
+      //       spotId: "ChIJ35ov0dCOGGARKvdDH7NPHX0",
+      //       spotName: "トウキョウスカイツリー",
+      //       stayTimeMin: 120,
+      //       walkingDuration: "",
+      //     },
+      //     {
+      //       arrivalTime: "18:07:00.000Z",
+      //       drivingDuration: "3分",
+      //       lat: 35.7102538,
+      //       lng: 139.8124786,
+      //       spotAddress:
+      //         "日本、〒131-0045 東京都墨田区押上１丁目１−２ 東京スカイツリータウン ソラマチ6F",
+      //       spotId: "ChIJrfccWNaOGGARVhFln5H6kug",
+      //       spotName: "牛たん炭焼 利久 東京ソラマチ店",
+      //       stayTimeMin: 0,
+      //       walkingDuration: "10分",
+      //     },
+      //   ],
+      // };
+      let result;
+      for (const data of travelData) {
+        result = {
+          ...result,
+          [data.travelDate]: [
+            ...data.spots.items
+              .filter((travel) => travel.travelDate === data.travelDate)
+              .map((spot) => ({
+                [ITINERARY_KEY.spotId]: spot.spotId,
+                [ITINERARY_KEY.spotName]: spot.spotName,
+                [ITINERARY_KEY.spotAddress]: spot.spotAddress,
+                [ITINERARY_KEY.arrivalTime]: spot.arrivalTime,
+                [ITINERARY_KEY.stayTimeMin]: spot.stayTimeMin,
+                [ITINERARY_KEY.drivingDuration]: spot.drivingDuration,
+                [ITINERARY_KEY.walkingDuration]: spot.walkingDuration,
+                [ITINERARY_KEY.lat]: spot.lat,
+                [ITINERARY_KEY.lng]: spot.lng,
+              })),
+          ],
+        };
+      }
+      console.log(result);
+      setValues(result);
     } else {
       let result;
       for (const date in dates) {

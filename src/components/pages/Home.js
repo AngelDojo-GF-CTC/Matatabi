@@ -15,7 +15,7 @@ export const Home = () => {
   const {
     state: { travelList, targetTravelName: travelName, targetTravelData },
     handlers: { handleTravelPress },
-  } = useTravelList(handleTravelDetailMode);
+  } = useTravelList(handleTravelDetailMode, pageMode);
   const {
     states: { values, formConfig, isSpotModal, selectSpotsMenu, zIndex },
     refs: { searchRef, currentSpotName },

@@ -42,7 +42,9 @@ export const ItineraryFormParts = ({
 
   return (
     <>
-      {value.length === formConfig.length &&
+      {value &&
+        formConfig &&
+        value.length === formConfig.length &&
         value?.map((val, index) => (
           <View key={index} mt={10}>
             <HStack space={10}>
