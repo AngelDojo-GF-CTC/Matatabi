@@ -10,7 +10,6 @@ export const LocationSearchBox = ({
 }) => {
   const [zindexValue, setZindexValue] = useState(-1);
   const searchRef = createRef();
-  console.log("locations", locations);
 
   return (
     <>
@@ -19,7 +18,7 @@ export const LocationSearchBox = ({
           padding: 10,
           height: "100%",
           width: "100%",
-          marginTop: 10,
+          marginTop: 12,
         }}
       >
         <Text fontSize="md" marginBottom="1rem">
@@ -33,7 +32,7 @@ export const LocationSearchBox = ({
         >
           <GooglePlacesAutocomplete
             ref={searchRef}
-            placeholder="観光地・住所"
+            placeholder="行きたいスポットを検索"
             //
             fetchDetails={true}
             onFail={(err) => {

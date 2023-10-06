@@ -1,4 +1,5 @@
 import React from "react";
+import { RecoilRoot } from "recoil";
 import { NavigationContainer } from "@react-navigation/native";
 import { NativeBaseProvider } from "native-base";
 import { Authenticater } from "./src/components/templates/Authenticater";
@@ -16,12 +17,14 @@ Amplify.configure(awsconfig);
 
 export default function App() {
   return (
-    <NativeBaseProvider>
-      <Authenticater>
-        <NavigationContainer>
-          <TabContainer />
-        </NavigationContainer>
-      </Authenticater>
-    </NativeBaseProvider>
+    <RecoilRoot>
+      <NativeBaseProvider>
+        <Authenticater>
+          <NavigationContainer>
+            <TabContainer />
+          </NavigationContainer>
+        </Authenticater>
+      </NativeBaseProvider>
+    </RecoilRoot>
   );
 }
