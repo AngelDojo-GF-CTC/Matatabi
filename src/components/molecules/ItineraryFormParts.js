@@ -55,7 +55,7 @@ export const ItineraryFormParts = ({
                     onPress={() => showTimePicker(index)}
                     backgroundColor={"gray.200"}
                     _text={{ color: color.text }}
-                    disabled={isConfirmMode}
+                    disabled={!isEditMode}
                   >
                     {val[ITINERARY_KEY.arrivalTime]
                       ? convertTimeFromAWSTime(val[ITINERARY_KEY.arrivalTime])
@@ -71,7 +71,7 @@ export const ItineraryFormParts = ({
                     endIcon={!val.spotName && <SearchIcon color={"white"} />}
                     onPress={() => showSpotModal(date, index)}
                     backgroundColor={color.add}
-                    disabled={isConfirmMode}
+                    disabled={!isEditMode}
                     _text={{ color: "white" }}
                   >
                     {val.spotName ||
@@ -103,7 +103,7 @@ export const ItineraryFormParts = ({
                       ITINERARY_LABEL[ITINERARY_KEY.stayTimeMin]
                     }：`}</Text>
                     <VStack>
-                      {isEditMode && (
+                      {isEditMode ? (
                         <Input
                           w={20}
                           size="md"
@@ -117,8 +117,9 @@ export const ItineraryFormParts = ({
                             )
                           }
                         />
+                      ) : (
+                        <Text m={2}>{val.stayTimeMin}</Text>
                       )}
-                      {isConfirmMode && <Text m={2}>{val.stayTimeMin}</Text>}
                     </VStack>
                     <Text m={2}>分</Text>
                   </HStack>
