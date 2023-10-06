@@ -279,6 +279,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "lat": {
+                    "name": "lat",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "lng": {
+                    "name": "lng",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "drivingDuration": {
                     "name": "drivingDuration",
                     "isArray": false,
@@ -297,7 +311,7 @@ export const schema = {
                     "name": "stayTimeMin",
                     "isArray": false,
                     "type": "Int",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "travelId": {
@@ -511,6 +525,13 @@ export const schema = {
         "RouteDurations": {
             "name": "RouteDurations",
             "fields": {
+                "spotId": {
+                    "name": "spotId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "spotName": {
                     "name": "spotName",
                     "isArray": false,
@@ -559,13 +580,6 @@ export const schema = {
                     "type": "Float",
                     "isRequired": true,
                     "attributes": []
-                },
-                "spotId": {
-                    "name": "spotId",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
                 }
             }
         },
@@ -586,5 +600,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "4db23401c9128142681297051c3dfda4"
+    "version": "ff2a333f1f1f06bf80444c9fae3050a6"
 };

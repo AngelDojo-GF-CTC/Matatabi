@@ -8,6 +8,7 @@ export enum Gender {
 }
 
 type EagerRouteDurations = {
+  readonly spotId: string;
   readonly spotName: string;
   readonly spotAddress: string;
   readonly drivingDuration: string;
@@ -15,10 +16,10 @@ type EagerRouteDurations = {
   readonly distance: string;
   readonly lat: number;
   readonly lng: number;
-  readonly spotId: string;
 }
 
 type LazyRouteDurations = {
+  readonly spotId: string;
   readonly spotName: string;
   readonly spotAddress: string;
   readonly drivingDuration: string;
@@ -26,7 +27,6 @@ type LazyRouteDurations = {
   readonly distance: string;
   readonly lat: number;
   readonly lng: number;
-  readonly spotId: string;
 }
 
 export declare type RouteDurations = LazyLoading extends LazyLoadingDisabled ? EagerRouteDurations : LazyRouteDurations
@@ -128,9 +128,11 @@ type EagerSpot = {
   readonly spotName: string;
   readonly spotAddress: string;
   readonly arrivalTime: string;
+  readonly lat: number;
+  readonly lng: number;
   readonly drivingDuration?: string | null;
   readonly walkingDuration?: string | null;
-  readonly stayTimeMin: number;
+  readonly stayTimeMin?: number | null;
   readonly travelId: string;
   readonly travelDate: string;
   readonly travel?: Travel | null;
@@ -147,9 +149,11 @@ type LazySpot = {
   readonly spotName: string;
   readonly spotAddress: string;
   readonly arrivalTime: string;
+  readonly lat: number;
+  readonly lng: number;
   readonly drivingDuration?: string | null;
   readonly walkingDuration?: string | null;
-  readonly stayTimeMin: number;
+  readonly stayTimeMin?: number | null;
   readonly travelId: string;
   readonly travelDate: string;
   readonly travel: AsyncItem<Travel | undefined>;

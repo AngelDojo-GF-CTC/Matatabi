@@ -35,7 +35,7 @@ export const getDistance = (
               distances.rows[0].elements[nextSpots.indexOf(spot)].duration.text,
             distance:
               distances.rows[0].elements[nextSpots.indexOf(spot)].distance.text,
-            spotId: spot.placeId,
+            spotId: spot.spotId,
             lat: spot.lat,
             lng: spot.lng,
           });
@@ -48,7 +48,7 @@ export const getDistance = (
 
 export const getRecommendedSpots = (placeType, currentSpotAddress) => {
   return new Promise((resolve, reject) => {
-    const path = `/place/textsearch/json?query=${currentSpotAddress}%20${placeType}&language=ja&radius=100&key=${apiKey}`;
+    const path = `/place/textsearch/json?query=${currentSpotAddress}%20${placeType}&language=ja&radius=1000&key=${apiKey}`;
     console.log(path);
     googleClient
       .get(path)
