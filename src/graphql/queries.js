@@ -136,6 +136,7 @@ export const getTravel = /* GraphQL */ `
       }
       spots {
         items {
+          id
           spotId
           spotName
           spotAddress
@@ -299,8 +300,9 @@ export const syncTravels = /* GraphQL */ `
   }
 `;
 export const getSpot = /* GraphQL */ `
-  query GetSpot($spotId: ID!) {
-    getSpot(spotId: $spotId) {
+  query GetSpot($id: ID!) {
+    getSpot(id: $id) {
+      id
       spotId
       spotName
       spotAddress
@@ -358,20 +360,13 @@ export const getSpot = /* GraphQL */ `
 `;
 export const listSpots = /* GraphQL */ `
   query ListSpots(
-    $spotId: ID
     $filter: ModelSpotFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listSpots(
-      spotId: $spotId
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
+    listSpots(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        id
         spotId
         spotName
         spotAddress
@@ -422,6 +417,7 @@ export const syncSpots = /* GraphQL */ `
       lastSync: $lastSync
     ) {
       items {
+        id
         spotId
         spotName
         spotAddress
@@ -476,6 +472,7 @@ export const spotsByTravelIdAndTravelDate = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        id
         spotId
         spotName
         spotAddress

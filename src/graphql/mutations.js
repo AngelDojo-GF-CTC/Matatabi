@@ -140,6 +140,7 @@ export const createTravel = /* GraphQL */ `
       }
       spots {
         items {
+          id
           spotId
           spotName
           spotAddress
@@ -218,6 +219,7 @@ export const updateTravel = /* GraphQL */ `
       }
       spots {
         items {
+          id
           spotId
           spotName
           spotAddress
@@ -296,6 +298,7 @@ export const deleteTravel = /* GraphQL */ `
       }
       spots {
         items {
+          id
           spotId
           spotName
           spotAddress
@@ -352,6 +355,7 @@ export const createSpot = /* GraphQL */ `
     $condition: ModelSpotConditionInput
   ) {
     createSpot(input: $input, condition: $condition) {
+      id
       spotId
       spotName
       spotAddress
@@ -413,6 +417,7 @@ export const updateSpot = /* GraphQL */ `
     $condition: ModelSpotConditionInput
   ) {
     updateSpot(input: $input, condition: $condition) {
+      id
       spotId
       spotName
       spotAddress
@@ -474,6 +479,7 @@ export const deleteSpot = /* GraphQL */ `
     $condition: ModelSpotConditionInput
   ) {
     deleteSpot(input: $input, condition: $condition) {
+      id
       spotId
       spotName
       spotAddress

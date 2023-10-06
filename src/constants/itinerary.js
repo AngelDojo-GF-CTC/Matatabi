@@ -1,7 +1,7 @@
 export const ITINERARY_KEY = {
   spotId: "spotId",
   spotName: "spotName",
-  spotAddress: "spitAddress",
+  spotAddress: "spotAddress",
   arrivalTime: "arrivalTime",
   stayTimeMin: "stayTimeMin",
   lat: "lat",
@@ -24,4 +24,9 @@ export const LOCATION_TYPE = {
   prevSubmit: "事前登録済みのスポット",
   additional: "追加スポット",
   recomended: "おすすめスポット",
+};
+
+export const TRAVEL_KEY = {
+  travelName: "travelName",
+  travelDate: "travelDate",
 };

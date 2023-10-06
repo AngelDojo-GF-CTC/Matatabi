@@ -6,4 +6,6 @@ export const color = {
   text: "#424242",
   error: "#F44336",
   border: "gray.500",
+  gray: "#F4F4F4",
+  grayText: "#848484",
 };

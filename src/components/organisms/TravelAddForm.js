@@ -39,7 +39,13 @@ export const TravelAddForm = ({ handleResetPage }) => {
       // setZIndex,
       handleSubmit,
     },
-  } = useItinerary(markedDates, locations, travelName, handleResetPage);
+  } = useItinerary(
+    markedDates,
+    locations,
+    travelName,
+    handleResetPage,
+    undefined
+  );
 
   return (
     <>

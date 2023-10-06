@@ -4,7 +4,7 @@ type User
   userId: ID! @primaryKey
   name: String!
   email: AWSEmail!
-  gender: Gender!
+  gender: Gender
   age: Int
   travels: [Travel] @manyToMany(relationName: "TravelUser")
 }
@@ -20,7 +20,8 @@ type Travel @model @auth(rules: [{ allow: private }]) {
 }
 
 type Spot @model @auth(rules: [{ allow: private }]) {
-  spotId: ID! @primaryKey
+  id: ID!
+  spotId: ID!
   spotName: String!
   spotAddress: String!
   arrivalTime: AWSTime!

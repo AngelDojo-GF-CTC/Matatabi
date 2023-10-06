@@ -1,39 +1,37 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-matatabi-dev-154002-authRole",
-      "UnauthRoleArn": "arn:aws:iam::793947852332:role/amplify-matatabi-dev-154002-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::793947852332:role/amplify-matatabi-dev-154002-authRole",
+      "AuthRoleName": "amplify-matatabi-dev-164939-authRole",
+      "UnauthRoleArn": "arn:aws:iam::793947852332:role/amplify-matatabi-dev-164939-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::793947852332:role/amplify-matatabi-dev-164939-authRole",
       "Region": "ap-northeast-1",
-      "DeploymentBucketName": "amplify-matatabi-dev-154002-deployment",
-      "UnauthRoleName": "amplify-matatabi-dev-154002-unauthRole",
-      "StackName": "amplify-matatabi-dev-154002",
-      "StackId": "arn:aws:cloudformation:ap-northeast-1:793947852332:stack/amplify-matatabi-dev-154002/38a3b830-4312-11ee-9505-06f4410b724d",
+      "DeploymentBucketName": "amplify-matatabi-dev-164939-deployment",
+      "UnauthRoleName": "amplify-matatabi-dev-164939-unauthRole",
+      "StackName": "amplify-matatabi-dev-164939",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:793947852332:stack/amplify-matatabi-dev-164939/e7a61ff0-641c-11ee-9292-0e2c17cb6fa7",
       "AmplifyAppId": "d1y7tsjvpasj3h",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-matatabi-dev-154002-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-matatabi-dev-164939-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
         "matatabicf3192bacf3192ba": {}
       },
       "function": {
-        "matatabicf3192bacf3192baPostConfirmation": {
-          "deploymentBucketName": "amplify-matatabi-dev-154002-deployment",
-          "s3Key": "amplify-builds/matatabicf3192bacf3192baPostConfirmation-61446343743272716d5a-build.zip"
-        },
-        "matatabiNodejsLayer": {
-          "deploymentBucketName": "amplify-matatabi-dev-154002-deployment",
-          "s3Key": "amplify-builds/matatabiNodejsLayer-LambdaLayerVersionb665155b-build.zip"
-        },
-        "matatabi": {},
-        "matatabicf3192bacf3192ba": {},
         "matatabiGoogleResolver": {
           "secretsPathAmplifyAppId": "d1y7tsjvpasj3h",
-          "deploymentBucketName": "amplify-matatabi-dev-154002-deployment",
+          "deploymentBucketName": "amplify-matatabi-dev-164939-deployment",
           "s3Key": "amplify-builds/matatabiGoogleResolver-446d30754677656a636d-build.zip"
         },
-        "matatabiRouteDurations": {},
-        "matatabiRecommendedSpots": {}
+        "matatabiNodejsLayer": {
+          "deploymentBucketName": "amplify-matatabi-dev-164939-deployment",
+          "s3Key": "amplify-builds/matatabiNodejsLayer-LambdaLayerVersionac9ca51b-build.zip"
+        },
+        "matatabicf3192bacf3192baPostConfirmation": {
+          "deploymentBucketName": "amplify-matatabi-dev-164939-deployment",
+          "s3Key": "amplify-builds/matatabicf3192bacf3192baPostConfirmation-4e654768715855773765-build.zip"
+        },
+        "matatabi": {},
+        "matatabicf3192bacf3192ba": {}
       },
       "api": {
         "matatabi": {}

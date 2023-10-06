@@ -2,11 +2,15 @@ import React from "react";
 import { VStack, Button, AddIcon, Box, Text, ScrollView } from "native-base";
 import { color } from "../../styles/color";
 
-export const TravelList = ({ handleAddFormMode }) => {
+export const TravelList = ({
+  travelList,
+  handleTravelPress,
+  handleAddFormMode,
+}) => {
   return (
-    <ScrollView marginTop={30}>
+    <ScrollView bgColor={"white"} w={"100%"} h={"100%"}>
       <VStack space={2} alignItems="center">
-        <Box width={"80%"}>
+        <Box w={"80%"} m={30}>
           <Button
             startIcon={<AddIcon />}
             width={"100%"}
@@ -15,9 +19,30 @@ export const TravelList = ({ handleAddFormMode }) => {
           >
             新しい旅の登録
           </Button>
-          {/* TODO: 次の旅 */}
-          {/* TODO: 過去の旅 */}
         </Box>
+        {/* TODO: 次の旅 */}
+        {/* TODO: 過去の旅 */}
+        {travelList &&
+          Object.keys(travelList).map((travelName, id) => (
+            <Box w={"80%"} m={2} key={id}>
+              <Button
+                width={"100%"}
+                backgroundColor={color.gray}
+                p={2}
+                onPress={() => handleTravelPress(travelName)}
+              >
+                <Text bold fontSize={20} color={color.grayText}>
+                  {travelName}
+                </Text>
+                <Text bold fontSize={13} color={color.grayText}>
+                  {`${travelList[travelName][0].travelDate} 〜 ${
+                    travelList[travelName][travelList[travelName].length - 1]
+                      .travelDate
+                  }`}
+                </Text>
+              </Button>
+            </Box>
+          ))}
       </VStack>
     </ScrollView>
   );

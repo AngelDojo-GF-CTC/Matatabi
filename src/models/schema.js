@@ -30,7 +30,7 @@ export const schema = {
                     "type": {
                         "enum": "Gender"
                     },
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "age": {
@@ -251,6 +251,13 @@ export const schema = {
         "Spot": {
             "name": "Spot",
             "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "spotId": {
                     "name": "spotId",
                     "isArray": false,
@@ -367,14 +374,6 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "fields": [
-                            "spotId"
-                        ]
-                    }
                 },
                 {
                     "type": "key",
@@ -600,5 +599,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.4",
-    "version": "ff2a333f1f1f06bf80444c9fae3050a6"
+    "version": "dda63280dab6f7bded9de23beec01d1d"
 };

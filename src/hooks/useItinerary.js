@@ -13,15 +13,22 @@ import {
   fetchRecomendedSpots,
 } from "../service/appsync/lambdaResolver";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import { TOAST } from "../constants/toast";
 import {
   isToastOpenState,
   myUserIdState,
   toastDetailsState,
 } from "../recoil/atoms";
 import { createTravelProject } from "../service/appsync/travel";
-import { TOAST } from "../constants/toast";
+import { groupsArrayByKey } from "../utils/array";
 
-export const useItinerary = (dates, locations, travelName, handleResetPage) => {
+export const useItinerary = (
+  dates,
+  locations,
+  travelName,
+  handleResetPage,
+  travelData
+) => {
   const userId = useRecoilValue(myUserIdState);
   const setIsToastOpen = useSetRecoilState(isToastOpenState);
   const setIsToastDetails = useSetRecoilState(toastDetailsState);
@@ -64,29 +71,38 @@ export const useItinerary = (dates, locations, travelName, handleResetPage) => {
   const searchRef = createRef();
 
   useEffect(() => {
-    let result;
-    for (const date in dates) {
-      if (dates.hasOwnProperty(date)) {
-        result = {
-          ...result,
-          [date]: [
-            {
-              [ITINERARY_KEY.spotId]: -1,
-              [ITINERARY_KEY.spotName]: "",
-              [ITINERARY_KEY.spotAddress]: "",
-              [ITINERARY_KEY.arrivalTime]: "",
-              [ITINERARY_KEY.stayTimeMin]: "",
-              [ITINERARY_KEY.drivingDuration]: "",
-              [ITINERARY_KEY.walkingDuration]: "",
-              [ITINERARY_KEY.lat]: "",
-              [ITINERARY_KEY.lng]: "",
-            },
-          ],
-        };
+    if (travelData) {
+      const spotValue = groupsArrayByKey(
+        travelData.map((data) => data.spots.items),
+        ITINERARY_KEY.travelDate
+      );
+      console.log(spotValue);
+      setValues(spotValue);
+    } else {
+      let result;
+      for (const date in dates) {
+        if (dates.hasOwnProperty(date)) {
+          result = {
+            ...result,
+            [date]: [
+              {
+                [ITINERARY_KEY.spotId]: -1,
+                [ITINERARY_KEY.spotName]: "",
+                [ITINERARY_KEY.spotAddress]: "",
+                [ITINERARY_KEY.arrivalTime]: "",
+                [ITINERARY_KEY.stayTimeMin]: "",
+                [ITINERARY_KEY.drivingDuration]: "",
+                [ITINERARY_KEY.walkingDuration]: "",
+                [ITINERARY_KEY.lat]: "",
+                [ITINERARY_KEY.lng]: "",
+              },
+            ],
+          };
+        }
       }
+      setValues(result);
     }
-    setValues(result);
-  }, [dates]);
+  }, [dates, travelData]);
 
   useEffect(() => {
     formConfigRef.current = formConfig;
@@ -320,34 +336,30 @@ export const useItinerary = (dates, locations, travelName, handleResetPage) => {
           const fetchRecomendedResult = await fetchRecomendedSpots({
             currentSpot,
           });
-          console.log(fetchRecomendedResult.data.recomendedSpots);
-          // console.log(fetchDurationResult.data.getRouteDurations);
-          const durationResultSpots =
-            fetchDurationResult.data.getRouteDurations.spots.map((spot) => {
-              return {
-                spotId: spot.spotId,
-                description: LOCATION_TYPE.prevSubmit,
-                spotName: spot.spotName,
-                spotAddress: spot.spotAddress,
-                drivingDuration: spot.drivingDuration,
-                walkingDuration: spot.walkingDuration,
-                lat: spot.lat,
-                lng: spot.lng,
-              };
-            });
-          const recomendedSpots =
-            fetchRecomendedResult.data.recomendedSpots.spots.map((spot) => {
-              return {
-                spotId: spot.spotId,
-                description: LOCATION_TYPE.recomended,
-                spotName: spot.spotName,
-                spotAddress: spot.spotAddress,
-                drivingDuration: spot.drivingDuration,
-                walkingDuration: spot.walkingDuration,
-                lat: spot.lat,
-                lng: spot.lng,
-              };
-            });
+          const durationResultSpots = fetchDurationResult.spots.map((spot) => {
+            return {
+              spotId: spot.spotId,
+              description: LOCATION_TYPE.prevSubmit,
+              spotName: spot.spotName,
+              spotAddress: spot.spotAddress,
+              drivingDuration: spot.drivingDuration,
+              walkingDuration: spot.walkingDuration,
+              lat: spot.lat,
+              lng: spot.lng,
+            };
+          });
+          const recomendedSpots = fetchRecomendedResult.spots.map((spot) => {
+            return {
+              spotId: spot.spotId,
+              description: LOCATION_TYPE.recomended,
+              spotName: spot.spotName,
+              spotAddress: spot.spotAddress,
+              drivingDuration: spot.drivingDuration,
+              walkingDuration: spot.walkingDuration,
+              lat: spot.lat,
+              lng: spot.lng,
+            };
+          });
           setSelectSpotsMenu([...durationResultSpots, ...recomendedSpots]);
         } else {
           currentSpotName.current = "";
@@ -405,7 +417,6 @@ export const useItinerary = (dates, locations, travelName, handleResetPage) => {
       handleResetPage();
       setIsToastOpen(true);
     }
-    // console.log(values);
   }, [values, travelName, userId]);
 
   return {

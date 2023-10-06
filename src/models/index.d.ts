@@ -53,7 +53,7 @@ type EagerUser = {
   readonly userId: string;
   readonly name: string;
   readonly email: string;
-  readonly gender: Gender | keyof typeof Gender;
+  readonly gender?: Gender | keyof typeof Gender | null;
   readonly age?: number | null;
   readonly travels?: (TravelUser | null)[] | null;
   readonly createdAt?: string | null;
@@ -68,7 +68,7 @@ type LazyUser = {
   readonly userId: string;
   readonly name: string;
   readonly email: string;
-  readonly gender: Gender | keyof typeof Gender;
+  readonly gender?: Gender | keyof typeof Gender | null;
   readonly age?: number | null;
   readonly travels: AsyncCollection<TravelUser>;
   readonly createdAt?: string | null;
@@ -121,9 +121,10 @@ export declare const Travel: (new (init: ModelInit<Travel>) => Travel) & {
 
 type EagerSpot = {
   readonly [__modelMeta__]: {
-    identifier: CustomIdentifier<Spot, 'spotId'>;
+    identifier: ManagedIdentifier<Spot, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
+  readonly id: string;
   readonly spotId: string;
   readonly spotName: string;
   readonly spotAddress: string;
@@ -142,9 +143,10 @@ type EagerSpot = {
 
 type LazySpot = {
   readonly [__modelMeta__]: {
-    identifier: CustomIdentifier<Spot, 'spotId'>;
+    identifier: ManagedIdentifier<Spot, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
+  readonly id: string;
   readonly spotId: string;
   readonly spotName: string;
   readonly spotAddress: string;

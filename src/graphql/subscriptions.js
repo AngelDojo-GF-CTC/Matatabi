@@ -128,6 +128,7 @@ export const onCreateTravel = /* GraphQL */ `
       }
       spots {
         items {
+          id
           spotId
           spotName
           spotAddress
@@ -203,6 +204,7 @@ export const onUpdateTravel = /* GraphQL */ `
       }
       spots {
         items {
+          id
           spotId
           spotName
           spotAddress
@@ -278,6 +280,7 @@ export const onDeleteTravel = /* GraphQL */ `
       }
       spots {
         items {
+          id
           spotId
           spotName
           spotAddress
@@ -331,6 +334,7 @@ export const onDeleteTravel = /* GraphQL */ `
 export const onCreateSpot = /* GraphQL */ `
   subscription OnCreateSpot($filter: ModelSubscriptionSpotFilterInput) {
     onCreateSpot(filter: $filter) {
+      id
       spotId
       spotName
       spotAddress
@@ -389,6 +393,7 @@ export const onCreateSpot = /* GraphQL */ `
 export const onUpdateSpot = /* GraphQL */ `
   subscription OnUpdateSpot($filter: ModelSubscriptionSpotFilterInput) {
     onUpdateSpot(filter: $filter) {
+      id
       spotId
       spotName
       spotAddress
@@ -447,6 +452,7 @@ export const onUpdateSpot = /* GraphQL */ `
 export const onDeleteSpot = /* GraphQL */ `
   subscription OnDeleteSpot($filter: ModelSubscriptionSpotFilterInput) {
     onDeleteSpot(filter: $filter) {
+      id
       spotId
       spotName
       spotAddress
