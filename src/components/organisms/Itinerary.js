@@ -6,6 +6,8 @@ import { Button, Center, Container, Text, VStack, View } from "native-base";
 // import { color } from "../../styles/color";
 import { ScrollView } from "react-native";
 import { LocationSelectModal } from "../molecules/LocationSelectModal";
+import { GoogleMap } from "../molecules/GoogleMap";
+import { useGoogleMap } from "../../hooks/useGoogleMap";
 
 // TODO: 閲覧と作成どっちもで使い回しできるように作成
 export const Itinerary = ({
@@ -30,56 +32,69 @@ export const Itinerary = ({
   locations,
   isEditMode,
   isConfirmMode,
+  isDetailMode,
 }) => {
+  const {
+    state: { endSpot, currentCoordinate },
+    funcs: { handleSpotPress },
+  } = useGoogleMap(isDetailMode, values);
+
   return (
     <>
-      <ScrollView>
-        <VStack>
-          {isConfirmMode && (
-            <Center mt={5}>
-              <Text bold fontSize={"md"}>
-                以下の内容で登録します。
-              </Text>
-              <Text mt={5} bold fontSize={"xl"}>
-                {`${travelName}`}
-              </Text>
+      <VStack>
+        {isDetailMode && <GoogleMap {...{ currentCoordinate, endSpot }} />}
+        <ScrollView>
+          <VStack>
+            {isConfirmMode && (
+              <Center mt={5}>
+                <Text bold fontSize={"md"}>
+                  以下の内容で登録します。
+                </Text>
+                <Text mt={5} bold fontSize={"xl"}>
+                  {`${travelName}`}
+                </Text>
+              </Center>
+            )}
+            {values &&
+              formConfig &&
+              Object.keys(values).map((date, index) => (
+                <React.Fragment key={index}>
+                  <Center
+                    _text={{
+                      fontSize: "lg",
+                      fontWeight: "bold",
+                    }}
+                    mt={5}
+                  >
+                    {date}
+                  </Center>
+                  <ItineraryFormParts
+                    values={values}
+                    setValue={setValue}
+                    date={date}
+                    formConfig={formConfig[date]}
+                    locations={locations}
+                    setAddSpot={setAddSpot}
+                    showSpotModal={showSpotModal}
+                    isEndDays={Object.keys(values).length === Number(index + 1)}
+                    isEditMode={isEditMode}
+                    isDetailMode={isDetailMode}
+                    handleSpotPress={handleSpotPress}
+                  />
+                </React.Fragment>
+              ))}
+            <Center>
+              <Container h={400}>
+                <View mt={10}>
+                  {isConfirmMode && (
+                    <Button onPress={handleSubmit}>登録</Button>
+                  )}
+                </View>
+              </Container>
             </Center>
-          )}
-          {values &&
-            formConfig &&
-            Object.keys(values).map((date, index) => (
-              <React.Fragment key={index}>
-                <Center
-                  _text={{
-                    fontSize: "lg",
-                    fontWeight: "bold",
-                  }}
-                  mt={5}
-                >
-                  {date}
-                </Center>
-                <ItineraryFormParts
-                  values={values}
-                  setValue={setValue}
-                  date={date}
-                  formConfig={formConfig[date]}
-                  locations={locations}
-                  setAddSpot={setAddSpot}
-                  showSpotModal={showSpotModal}
-                  isEndDays={Object.keys(values).length === Number(index + 1)}
-                  isEditMode={isEditMode}
-                />
-              </React.Fragment>
-            ))}
-          <Center>
-            <Container h={400}>
-              <View mt={10}>
-                {isConfirmMode && <Button onPress={handleSubmit}>登録</Button>}
-              </View>
-            </Container>
-          </Center>
-        </VStack>
-      </ScrollView>
+          </VStack>
+        </ScrollView>
+      </VStack>
       <LocationSelectModal
         {...{
           isSpotModal,
