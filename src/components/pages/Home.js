@@ -43,7 +43,6 @@ export const Home = () => {
       {pageMode.addFormMode ? (
         <TravelAddForm handleResetPage={handleResetPage} />
       ) : pageMode.travelDetailMode ? (
-        // TODO: 個別の旅のしおり閲覧ページ
         <Itinerary
           {...{
             travelName,
