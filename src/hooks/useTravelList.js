@@ -17,7 +17,8 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
     (async () => {
       setIsMatatabiLoading(true);
       const userData = await getUserById(userId);
-      if (userData.travels.items.length === 0) return;
+      if (userData.travels.items.length === 0)
+        return setIsMatatabiLoading(false);
       const travels = userData.travels.items.map(
         (travelUser) => travelUser.travel
       );
