@@ -26,6 +26,10 @@ export const Layout = ({ handleResetPage, children }) => {
     }
   }, [isToastOpen, toastDetails?.id]);
 
+  // useEffect(() => {
+  //   console.log("isMatatabiLoading: ", isMatatabiLoading);
+  // }, [isMatatabiLoading]);
+
   return (
     <View /*style={{ height: "100%", width: "100%" }}*/>
       <Header handleResetPage={handleResetPage} />

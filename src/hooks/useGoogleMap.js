@@ -31,13 +31,13 @@ export const useGoogleMap = (isDetailMode, values) => {
   }, [isDetailMode]);
 
   useEffect(() => {
-    if (!isDetailMode) return;
+    if (!isDetailMode || !values) return;
     // 最初は1日目の最初のスポットを表示
     setEndSpot({
       latitude: values[Object.keys(values)[0]][0].lat,
       longitude: values[Object.keys(values)[0]][0].lng,
     });
-  }, [values]);
+  }, [values, isDetailMode]);
 
   useEffect(() => {
     if (!isDetailMode) return;
