@@ -6,9 +6,7 @@ import { GoogleMap } from "../molecules/GoogleMap";
 export const Notify = () => {
   return (
     <Layout>
-      <View>
-        <GoogleMap />
-      </View>
+      <View>{/* <GoogleMap /> */}</View>
     </Layout>
   );
 };
