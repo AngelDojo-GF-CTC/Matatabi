@@ -15,22 +15,27 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
   useEffect(() => {
     if (!userId || !pageMode?.listMode) return;
     (async () => {
-      setIsMatatabiLoading(true);
-      const userData = await getUserById(userId);
-      if (userData.travels.items.length === 0)
-        return setIsMatatabiLoading(false);
-      const travels = userData.travels.items.map(
-        (travelUser) => travelUser.travel
-      );
-      // console.log("travels: ", travels);
-      const list = groupsArrayByKey(
-        travels,
-        TRAVEL_KEY.travelName,
-        TRAVEL_KEY.travelDate
-      );
-      // console.log("list: ", list);
-      setTravelList(list);
-      setIsMatatabiLoading(false);
+      try {
+        setIsMatatabiLoading(true);
+        const userData = await getUserById(userId);
+        if (userData.travels.items.length === 0)
+          throw new Error("travels is empty");
+        const travels = userData.travels.items.map(
+          (travelUser) => travelUser.travel
+        );
+        // console.log("travels: ", travels);
+        const list = groupsArrayByKey(
+          travels,
+          TRAVEL_KEY.travelName,
+          TRAVEL_KEY.travelDate
+        );
+        // console.log("list: ", list);
+        setTravelList(list);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsMatatabiLoading(false);
+      }
     })();
   }, [userId, pageMode?.listMode]);
 
