@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  HStack,
-  Heading,
-  Image,
-  Spinner,
-  StatusBar,
-  Text,
-  View,
-} from "native-base";
+import { Image, View } from "native-base";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import footPrint from "../../../assets/footPrint.png";
-import catFoot from "../../../assets/catFoot.png";
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
-import { StyleSheet } from "react-native";
+import { LogBox, StyleSheet } from "react-native";
+import { isMatatabiLoadingState } from "../../recoil/atoms";
+import { useSetRecoilState } from "recoil";
 
 const updateCurrentLocation = (setCurrentCoordinate) => {
   Location.getCurrentPositionAsync({
@@ -39,7 +31,7 @@ const getLocationPermissions = async (
     // 1秒ごとに位置情報を取得
     const locationInterval = setInterval(() => {
       updateCurrentLocation(setCurrentCoordinate);
-      console.log("setInterval is running"); // ログを出力
+      // console.log("setInterval is running"); // ログを出力
     }, 500);
 
     return () => {
@@ -49,6 +41,7 @@ const getLocationPermissions = async (
   }
 };
 export const GoogleMap = ({}) => {
+  const setIsMatatabiLoading = useSetRecoilState(isMatatabiLoadingState);
   const [startSpot, setStartSpot] = useState({
     latitude: 34.7024,
     longitude: 135.4959,
@@ -67,13 +60,18 @@ export const GoogleMap = ({}) => {
   });
 
   useEffect(() => {
+    LogBox.ignoreLogs(["expo-permissions is now deprecated"]);
     getLocationPermissions(setLocationPermission, setCurrentCoordinate);
   }, []);
+
+  useEffect(() => {
+    setIsMatatabiLoading(!currentCoordinate.latitude);
+  }, [currentCoordinate.latitude]);
 
   return (
     <>
       <View style={{ backgroundColor: "white", height: "100%" }}>
-        {currentCoordinate.latitude ? ( // データがあるかどうかをチェック
+        {currentCoordinate.latitude && (
           <MapView
             style={{ height: "30%", width: "100%" }}
             provider={PROVIDER_GOOGLE}
@@ -105,32 +103,6 @@ export const GoogleMap = ({}) => {
               strokeColor="hotpink"
             />
           </MapView>
-        ) : (
-          // 画面中央に大きく表示
-          <View
-            style={{
-              alignContent: "center",
-              alignItems: "center",
-              marginTop: "30%",
-            }}
-          >
-            <HStack space={2} justifyContent="center">
-              <Spinner
-                accessibilityLabel="Loading posts"
-                color="warning.300"
-                size="lg"
-              />
-              <Heading color="warning.300" fontSize="2xl" marginTop="2">
-                <Text>Loading</Text>
-              </Heading>
-              <Image
-                alt="catFoot"
-                source={catFoot}
-                style={{ width: 50, height: 30 }}
-                marginTop={3}
-              />
-            </HStack>
-          </View>
         )}
       </View>
     </>

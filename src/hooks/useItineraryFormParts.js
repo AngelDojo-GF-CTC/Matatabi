@@ -7,15 +7,14 @@ export const useItineraryFormParts = (
   setValue,
   date,
   setAddSpot,
-  isEditMode,
-  isConfirmMode
+  isEditMode
 ) => {
   const value = useMemo(() => {
     return values[date];
   }, [values, date]);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [targetTimeIndex, setTargetTimeIndex] = useState(-1);
-  const [isEndpoint, setIsEndPoint] = useState(!!isConfirmMode);
+  const [isEndpoint, setIsEndPoint] = useState(!isEditMode);
 
   const showTimePicker = useCallback((index) => {
     setTargetTimeIndex(index);

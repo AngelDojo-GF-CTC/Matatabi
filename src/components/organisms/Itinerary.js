@@ -68,7 +68,6 @@ export const Itinerary = ({
                   showSpotModal={showSpotModal}
                   isEndDays={Object.keys(values).length === Number(index + 1)}
                   isEditMode={isEditMode}
-                  isConfirmMode={isConfirmMode}
                 />
               </React.Fragment>
             ))}

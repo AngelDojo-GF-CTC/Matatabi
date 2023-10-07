@@ -15,12 +15,14 @@ import {
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { TOAST } from "../constants/toast";
 import {
+  isMatatabiLoadingState,
   isToastOpenState,
   myUserIdState,
   toastDetailsState,
 } from "../recoil/atoms";
 import { createTravelProject } from "../service/appsync/travel";
-import { groupsArrayByKey } from "../utils/array";
+import "react-native-get-random-values";
+import { v4 } from "uuid";
 
 export const useItinerary = (
   dates,
@@ -29,6 +31,7 @@ export const useItinerary = (
   handleResetPage,
   travelData
 ) => {
+  const setIsMatatabiLoading = useSetRecoilState(isMatatabiLoadingState);
   const userId = useRecoilValue(myUserIdState);
   const setIsToastOpen = useSetRecoilState(isToastOpenState);
   const setIsToastDetails = useSetRecoilState(toastDetailsState);
@@ -72,12 +75,81 @@ export const useItinerary = (
 
   useEffect(() => {
     if (travelData) {
-      const spotValue = groupsArrayByKey(
-        travelData.map((data) => data.spots.items),
-        ITINERARY_KEY.travelDate
-      );
-      console.log(spotValue);
-      setValues(spotValue);
+      // const travelData = {
+      //   "2023-10-30": [
+      //     {
+      //       arrivalTime: "10:07:00.000Z",
+      //       drivingDuration: "",
+      //       lat: 35.6585805,
+      //       lng: 139.7454329,
+      //       spotAddress: "東京都港区芝公園４丁目２−８ 東京タワー",
+      //       spotId: "ChIJCewJkL2LGGAR3Qmk0vCTGkg",
+      //       spotName: "東京タワー",
+      //       stayTimeMin: 150,
+      //       walkingDuration: "",
+      //     },
+      //     {
+      //       arrivalTime: "18:07:00.000Z",
+      //       drivingDuration: "1分",
+      //       lat: 35.6585696,
+      //       lng: 139.745484,
+      //       spotAddress:
+      //         "日本、〒105-0011 東京都港区芝公園４丁目２−８ 東京タワー 2F",
+      //       spotId: "ChIJN2D06d6LGGARyz8lzMkN8Y4",
+      //       spotName: "生パスタ専門店SPALA 東京タワー店",
+      //       stayTimeMin: 0,
+      //       walkingDuration: "1分",
+      //     },
+      //   ],
+      //   "2023-10-31": [
+      //     {
+      //       arrivalTime: "10:07:00.000Z",
+      //       drivingDuration: "",
+      //       lat: 35.71006269999999,
+      //       lng: 139.8107004,
+      //       spotAddress: "東京都墨田区押上１丁目１−２, トウキョウスカイツリー",
+      //       spotId: "ChIJ35ov0dCOGGARKvdDH7NPHX0",
+      //       spotName: "トウキョウスカイツリー",
+      //       stayTimeMin: 120,
+      //       walkingDuration: "",
+      //     },
+      //     {
+      //       arrivalTime: "18:07:00.000Z",
+      //       drivingDuration: "3分",
+      //       lat: 35.7102538,
+      //       lng: 139.8124786,
+      //       spotAddress:
+      //         "日本、〒131-0045 東京都墨田区押上１丁目１−２ 東京スカイツリータウン ソラマチ6F",
+      //       spotId: "ChIJrfccWNaOGGARVhFln5H6kug",
+      //       spotName: "牛たん炭焼 利久 東京ソラマチ店",
+      //       stayTimeMin: 0,
+      //       walkingDuration: "10分",
+      //     },
+      //   ],
+      // };
+      let result;
+      for (const data of travelData) {
+        result = {
+          ...result,
+          [data.travelDate]: [
+            ...data.spots.items
+              .filter((travel) => travel.travelDate === data.travelDate)
+              .map((spot) => ({
+                [ITINERARY_KEY.spotId]: spot.spotId,
+                [ITINERARY_KEY.spotName]: spot.spotName,
+                [ITINERARY_KEY.spotAddress]: spot.spotAddress,
+                [ITINERARY_KEY.arrivalTime]: spot.arrivalTime,
+                [ITINERARY_KEY.stayTimeMin]: spot.stayTimeMin,
+                [ITINERARY_KEY.drivingDuration]: spot.drivingDuration,
+                [ITINERARY_KEY.walkingDuration]: spot.walkingDuration,
+                [ITINERARY_KEY.lat]: spot.lat,
+                [ITINERARY_KEY.lng]: spot.lng,
+              })),
+          ],
+        };
+      }
+      // console.log(result);
+      setValues(result);
     } else {
       let result;
       for (const date in dates) {
@@ -131,14 +203,14 @@ export const useItinerary = (
                 required: true,
               },
               [ITINERARY_KEY.stayTimeMin]: {
-                required: true,
+                required: false,
               },
               [ITINERARY_KEY.drivingDuration]: {
                 required: false,
               },
               [ITINERARY_KEY.walkingDuration]: { required: false },
               [ITINERARY_KEY.lat]: { required: true },
-              [ITINERARY_KEY.lng]: { required: false },
+              [ITINERARY_KEY.lng]: { required: true },
             };
           }),
         };
@@ -307,6 +379,7 @@ export const useItinerary = (
       console.log(value);
       try {
         if (index !== 0) {
+          setIsMatatabiLoading(true);
           // 最初以外は前のスポット情報を取得する
           currentSpotName.current = value[index - 1][ITINERARY_KEY.spotName];
           const currentSpot = {
@@ -327,8 +400,6 @@ export const useItinerary = (
                 lng: location.lng,
               };
             });
-          console.log(currentSpot);
-          console.log(nextSpots);
           const fetchDurationResult = await fetchRouteDurations({
             currentSpot,
             nextSpots,
@@ -361,6 +432,7 @@ export const useItinerary = (
             };
           });
           setSelectSpotsMenu([...durationResultSpots, ...recomendedSpots]);
+          setIsMatatabiLoading(false);
         } else {
           currentSpotName.current = "";
           setSelectSpotsMenu(
@@ -390,8 +462,12 @@ export const useItinerary = (
   }, []);
 
   const handleSubmit = useCallback(async () => {
+    const isError = handleErrorCheck();
+    if (isError)
+      return Alert.alert(ERROR_TYPE.inputError, ERROR_MESSAGE.inputError);
     let isSucess;
     try {
+      setIsMatatabiLoading(true);
       await createTravelProject(travelName, userId, values);
       isSucess = true;
     } catch (err) {
@@ -399,7 +475,7 @@ export const useItinerary = (
       console.log(err);
     } finally {
       setIsToastDetails({
-        id: 1,
+        id: v4(),
         status: isSucess
           ? TOAST.status.travelAddSuccess
           : TOAST.status.travelAddError,
@@ -415,6 +491,7 @@ export const useItinerary = (
         isClosable: true,
       });
       handleResetPage();
+      setIsMatatabiLoading(false);
       setIsToastOpen(true);
     }
   }, [values, travelName, userId]);

@@ -7,4 +7,5 @@ export const ERROR_MESSAGE = {
   prevSpotError: "前の滞在スポットを選択してください",
   addressNotFound: "住所が特定できないスポットです",
   travelNameError: "旅行名を入力してください",
+  inputError: "入力されていない項目があります",
 };

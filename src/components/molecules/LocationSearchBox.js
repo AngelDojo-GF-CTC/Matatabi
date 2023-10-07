@@ -58,10 +58,9 @@ export const LocationSearchBox = ({
             }}
           />
         </View>
-        {/* ここでuseTravelAddformから受け取った値をリスト表示する */}
         <View
           style={{
-            marginTop: -190,
+            marginTop: -180,
             zIndex: zindexValue,
             height: "50%",
             width: "100%",
