@@ -21,7 +21,8 @@ export const TabContainer = () => {
       initialRouteName={navigation.HOME}
     >
       <Tab.Screen
-        name={navigation.HOME}
+        // name={navigation.HOME}
+        name="Home"
         component={Home}
         options={{
           title: "ホーム",
@@ -31,7 +32,8 @@ export const TabContainer = () => {
         }}
       />
       <Tab.Screen
-        name={navigation.NOTIFY}
+        // name={navigation.NOTIFY}
+        name="Notify"
         component={Notify}
         options={{
           title: "通知",
@@ -41,7 +43,8 @@ export const TabContainer = () => {
         }}
       />
       <Tab.Screen
-        name={navigation.SETTINGS}
+        // name={navigation.SETTINGS}
+        name="Settings"
         component={Settings}
         options={{
           title: "設定",

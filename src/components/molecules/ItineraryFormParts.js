@@ -16,6 +16,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { color } from "../../styles/color";
 import { useItineraryFormParts } from "../../hooks/useItineraryFormParts";
 import { convertTimeFromAWSTime } from "../../utils/date";
+import { ImageBox } from "./ImageBox";
 
 export const ItineraryFormParts = ({
   values,
@@ -107,6 +108,7 @@ export const ItineraryFormParts = ({
                   }}
                   zIndex={-1}
                 />
+
                 <VStack marginTop={3}>
                   <HStack>
                     <Text margin={2}>{`${
@@ -156,6 +158,7 @@ export const ItineraryFormParts = ({
                       }`}</Text>
                     )}
                   </HStack>
+                  <ImageBox />
                 </VStack>
               </HStack>
             )}

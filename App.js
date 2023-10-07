@@ -8,12 +8,20 @@ import { translations } from "@aws-amplify/ui";
 import { dict } from "./src/constants/lacales/auth";
 import { TabContainer } from "./src/navigations/TabContainer";
 import awsconfig from "./src/aws-exports";
+import { createStackNavigator } from "@react-navigation/stack";
+import { PhotoGallery } from "./src/components/molecules/PhotoGallery";
+import { ImageBox } from "./src/components/molecules/ImageBox";
+import { Itinerary } from "./src/components/organisms/Itinerary";
+import { LogBox } from "react-native";
+
+LogBox.ignoreAllLogs();
 
 I18n.putVocabularies(translations);
 I18n.setLanguage("ja");
 I18n.putVocabularies({ ...dict });
 
 Amplify.configure(awsconfig);
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
@@ -21,7 +29,13 @@ export default function App() {
       <NativeBaseProvider>
         <Authenticater>
           <NavigationContainer>
-            <TabContainer />
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="TabContainer" component={TabContainer} />
+              <Stack.Screen name="PhotoGallery" component={PhotoGallery} />
+              <Stack.Screen name="Itinerary" component={Itinerary} />
+            </Stack.Navigator>
+
+            {/* <TabContainer /> */}
           </NavigationContainer>
         </Authenticater>
       </NativeBaseProvider>
