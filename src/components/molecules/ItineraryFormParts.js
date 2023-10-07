@@ -100,31 +100,33 @@ export const ItineraryFormParts = ({
                   zIndex={-1}
                 />
                 <VStack marginTop={3}>
-                  <HStack>
-                    <Text margin={2}>{`${
-                      ITINERARY_LABEL[ITINERARY_KEY.stayTimeMin]
-                    }：`}</Text>
-                    <VStack>
-                      {isEditMode ? (
-                        <Input
-                          w={20}
-                          size="md"
-                          value={val.stayTimeMin.toString()}
-                          onChangeText={(text) =>
-                            setValue(
-                              date,
-                              index,
-                              ITINERARY_KEY.stayTimeMin,
-                              text
-                            )
-                          }
-                        />
-                      ) : (
-                        <Text m={2}>{val.stayTimeMin}</Text>
-                      )}
-                    </VStack>
-                    <Text m={2}>分</Text>
-                  </HStack>
+                  {!!val.stayTimeMin && (
+                    <HStack>
+                      <Text margin={2}>{`${
+                        ITINERARY_LABEL[ITINERARY_KEY.stayTimeMin]
+                      }：`}</Text>
+                      <VStack>
+                        {isEditMode ? (
+                          <Input
+                            w={20}
+                            size="md"
+                            value={val.stayTimeMin.toString()}
+                            onChangeText={(text) =>
+                              setValue(
+                                date,
+                                index,
+                                ITINERARY_KEY.stayTimeMin,
+                                text
+                              )
+                            }
+                          />
+                        ) : (
+                          <Text m={2}>{val.stayTimeMin}</Text>
+                        )}
+                      </VStack>
+                      <Text m={2}>分</Text>
+                    </HStack>
+                  )}
                   <HStack margin={2}>
                     {(value[index + 1]?.drivingDuration ||
                       value[index + 1]?.walkingDuration) && (
