@@ -66,6 +66,7 @@ export const Home = () => {
             handleSubmit,
             // locations,
           }}
+          isDetailMode
         />
       ) : (
         <TravelList

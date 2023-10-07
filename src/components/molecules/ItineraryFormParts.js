@@ -27,6 +27,8 @@ export const ItineraryFormParts = ({
   isEndDays,
   isEditMode,
   isConfirmMode,
+  isDetailMode,
+  handleSpotPress,
 }) => {
   const {
     states: { value, isTimePickerVisible, isEndpoint },
@@ -71,9 +73,15 @@ export const ItineraryFormParts = ({
                     w={"80%"}
                     m={0.5}
                     endIcon={!val.spotName && <SearchIcon color={"white"} />}
-                    onPress={() => showSpotModal(date, index)}
+                    onPress={() => {
+                      if (isEditMode) {
+                        showSpotModal(date, index);
+                      } else if (isDetailMode) {
+                        handleSpotPress(val.lat, val.lng);
+                      }
+                    }}
                     backgroundColor={color.add}
-                    disabled={!isEditMode}
+                    disabled={!(isEditMode || isDetailMode)}
                     _text={{ color: "white" }}
                   >
                     {val.spotName ||
