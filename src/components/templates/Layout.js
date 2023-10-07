@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Header } from "../molecules/Header";
 import { View } from "react-native";
 import { useToast } from "native-base";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import {
   isMatatabiLoadingState,
   isToastOpenState,
@@ -15,7 +15,6 @@ export const Layout = ({ handleResetPage, children }) => {
   const isToastOpen = useRecoilValue(isToastOpenState);
   const toastDetails = useRecoilValue(toastDetailsState);
   const isMatatabiLoading = useRecoilValue(isMatatabiLoadingState);
-  const setToastDetails = useSetRecoilState(toastDetailsState);
   const toast = useToast();
   useEffect(() => {
     if (isToastOpen && toastDetails?.id) {
@@ -24,14 +23,6 @@ export const Layout = ({ handleResetPage, children }) => {
       });
     } else {
       toast.closeAll();
-      setToastDetails({
-        id: undefined,
-        title: undefined,
-        status: undefined,
-        variant: undefined,
-        description: undefined,
-        isClosable: undefined,
-      });
     }
   }, [isToastOpen, toastDetails?.id]);
 
