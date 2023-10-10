@@ -4,6 +4,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isMatatabiLoadingState, myUserIdState } from "../recoil/atoms";
 import { groupsArrayByKey } from "../utils/array";
 import { TRAVEL_KEY } from "../constants/itinerary";
+import { Share } from "react-native";
 
 export const useTravelList = (handleTravelDetailMode, pageMode) => {
   const userId = useRecoilValue(myUserIdState);
@@ -47,9 +48,22 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
     },
     [travelList]
   );
+  const handleSharePress = useCallback(
+    (travelName) => {
+      travelId = travelList[travelName][0].travelId;
+      Share.share(
+        {
+          title: "【Matatabi】旅のしおりの共有",
+          message: `Matatabiで一緒に旅に行こう！\n旅行名: ${travelName}\n旅行ID: ${travelId}`,
+        },
+        {}
+      );
+    },
+    [travelList]
+  );
   return {
     state: { travelList, targetTravelName, targetTravelData },
-    handlers: { handleTravelPress },
+    handlers: { handleTravelPress, handleSharePress },
   };
 };
 

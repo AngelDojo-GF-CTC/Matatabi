@@ -21,8 +21,7 @@ import {
   toastDetailsState,
 } from "../recoil/atoms";
 import { createTravelProject } from "../service/appsync/travel";
-import "react-native-get-random-values";
-import { v4 } from "uuid";
+import { generateUuid } from "../service/crypto/uuid";
 
 export const useItinerary = (
   dates,
@@ -465,29 +464,25 @@ export const useItinerary = (
     const isError = handleErrorCheck();
     if (isError)
       return Alert.alert(ERROR_TYPE.inputError, ERROR_MESSAGE.inputError);
-    let isSucess;
+    let isSuccess;
     try {
       setIsMatatabiLoading(true);
       await createTravelProject(travelName, userId, values);
-      isSucess = true;
+      isSuccess = true;
     } catch (err) {
-      isSucess = false;
+      isSuccess = false;
       console.log(err);
     } finally {
       setIsToastDetails({
-        id: v4(),
-        status: isSucess
-          ? TOAST.status.travelAddSuccess
-          : TOAST.status.travelAddError,
-        title: isSucess
+        id: generateUuid(),
+        status: isSuccess ? TOAST.status.success : TOAST.status.error,
+        title: isSuccess
           ? TOAST.title.travelAddSuccess
           : TOAST.title.travelAddError,
-        description: isSucess
+        description: isSuccess
           ? TOAST.description.travelAddSuccess
           : TOAST.description.travelAddError,
-        variant: isSucess
-          ? TOAST.variant.travelAddSuccess
-          : TOAST.variant.travelAddError,
+        variant: TOAST.variant.subtle,
         isClosable: true,
       });
       handleResetPage();

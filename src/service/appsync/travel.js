@@ -3,17 +3,84 @@ import {
   createTravel,
   createTravelUser,
 } from "../../graphql/mutations";
+import { listTravels } from "../../graphql/queries";
+import { generateUuid } from "../crypto/uuid";
 import { execMutate, execQuery } from "./baseApi";
-import "react-native-get-random-values";
-import { v4 } from "uuid";
+import { getUserById } from "./user";
 
 const createTravelApi = (variables) => execMutate(createTravel, variables);
 const createTravelUserApi = (variables) =>
   execMutate(createTravelUser, variables);
 const createSpotApi = (variables) => execMutate(createSpot, variables);
 
+export const fetchTravelById = (id) =>
+  execQuery(listTravels, { travelId: id }, "listTravels");
+
+export const receiveTravelProject = async (travelData, userId) => {
+  try {
+    // 既に登録されていた場合二重管理になってしまうので、既に登録されているかを確認する
+    const userData = await getUserById(userId);
+    if (userData.travels.items.length) {
+      const travels = userData.travels.items.map(
+        (travelUser) => travelUser.travel
+      );
+      if (
+        travels.some(
+          (travel) => travel.travelName === Object.keys(travelData)[0]
+        )
+      ) {
+        throw new Error("既に登録されている旅行です");
+      }
+    }
+    const travelUserVariables = Object.values(travelData)[0].map((travel) => ({
+      userUserId: userId,
+      travelTravelId: travel.travelId,
+      traveltravelDate: travel.travelDate,
+    }));
+    await Promise.all([
+      ...travelUserVariables.map((v) => createTravelUserApi(v)),
+    ]);
+  } catch (err) {
+    console.log(err);
+  }
+};
+// const travelData = {
+//   東京旅行: [
+//     {
+//       __typename: "Travel",
+//       _deleted: null,
+//       _lastChangedAt: 1696585406265,
+//       _version: 1,
+//       createdAt: "2023-10-06T09:43:26.224Z",
+//       owner: [Object],
+//       ownerId: "37a47a88-9011-7074-4ad7-5063bfef27d4",
+//       spots: [Object],
+//       travelDate: "2023-10-12",
+//       travelId: "2e6a08d2-7f30-4f8b-9716-194f316b0b84",
+//       travelName: "東京旅行",
+//       updatedAt: "2023-10-06T09:43:26.224Z",
+//       users: [Object],
+//     },
+//     {
+//       __typename: "Travel",
+//       _deleted: null,
+//       _lastChangedAt: 1696585406261,
+//       _version: 1,
+//       createdAt: "2023-10-06T09:43:26.231Z",
+//       owner: [Object],
+//       ownerId: "37a47a88-9011-7074-4ad7-5063bfef27d4",
+//       spots: [Object],
+//       travelDate: "2023-10-13",
+//       travelId: "2e6a08d2-7f30-4f8b-9716-194f316b0b84",
+//       travelName: "東京旅行",
+//       updatedAt: "2023-10-06T09:43:26.231Z",
+//       users: [Object],
+//     },
+//   ],
+// };
+
 export const createTravelProject = async (travelName, userId, values) => {
-  const travelId = v4();
+  const travelId = generateUuid();
   // console.log(travelId);
   const travelVariables = Object.keys(values).map((date) => ({
     travelId: travelId,
@@ -100,4 +167,42 @@ export const createTravelProject = async (travelName, userId, values) => {
 //       walkingDuration: "10分",
 //     },
 //   ],
+// };
+
+// const travelList = {
+//   __typename: "ModelTravelConnection",
+//   items: [
+//     {
+//       __typename: "Travel",
+//       _deleted: null,
+//       _lastChangedAt: 1696585406265,
+//       _version: 1,
+//       createdAt: "2023-10-06T09:43:26.224Z",
+//       owner: [Object],
+//       ownerId: "37a47a88-9011-7074-4ad7-5063bfef27d4",
+//       spots: [Object],
+//       travelDate: "2023-10-12",
+//       travelId: "2e6a08d2-7f30-4f8b-9716-194f316b0b84",
+//       travelName: "東京旅行",
+//       updatedAt: "2023-10-06T09:43:26.224Z",
+//       users: [Object],
+//     },
+//     {
+//       __typename: "Travel",
+//       _deleted: null,
+//       _lastChangedAt: 1696585406261,
+//       _version: 1,
+//       createdAt: "2023-10-06T09:43:26.231Z",
+//       owner: [Object],
+//       ownerId: "37a47a88-9011-7074-4ad7-5063bfef27d4",
+//       spots: [Object],
+//       travelDate: "2023-10-13",
+//       travelId: "2e6a08d2-7f30-4f8b-9716-194f316b0b84",
+//       travelName: "東京旅行",
+//       updatedAt: "2023-10-06T09:43:26.231Z",
+//       users: [Object],
+//     },
+//   ],
+//   nextToken: null,
+//   startedAt: null,
 // };

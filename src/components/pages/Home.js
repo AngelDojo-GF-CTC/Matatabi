@@ -14,7 +14,7 @@ export const Home = () => {
   } = useHome();
   const {
     state: { travelList, targetTravelName: travelName, targetTravelData },
-    handlers: { handleTravelPress },
+    handlers: { handleTravelPress, handleSharePress },
   } = useTravelList(handleTravelDetailMode, pageMode);
   const {
     states: { values, formConfig, isSpotModal, selectSpotsMenu, zIndex },
@@ -72,6 +72,7 @@ export const Home = () => {
           {...{
             travelList,
             handleTravelPress,
+            handleSharePress,
             handleAddFormMode,
           }}
         />
