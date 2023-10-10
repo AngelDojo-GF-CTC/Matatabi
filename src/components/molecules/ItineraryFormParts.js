@@ -158,7 +158,8 @@ export const ItineraryFormParts = ({
                       }`}</Text>
                     )}
                   </HStack>
-                  <ImageBox />
+
+                  {isDetailMode && <ImageBox />}
                 </VStack>
               </HStack>
             )}

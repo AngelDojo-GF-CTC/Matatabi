@@ -32,7 +32,6 @@ export default function App() {
             <Stack.Navigator screenOptions={{ headerShown: false }}>
               <Stack.Screen name="TabContainer" component={TabContainer} />
               <Stack.Screen name="PhotoGallery" component={PhotoGallery} />
-              <Stack.Screen name="Itinerary" component={Itinerary} />
             </Stack.Navigator>
 
             {/* <TabContainer /> */}
