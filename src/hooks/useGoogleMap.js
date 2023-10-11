@@ -91,7 +91,7 @@ const getLocationPermissions = async (
     const locationInterval = setInterval(() => {
       updateCurrentLocation(setCurrentCoordinate);
       // console.log("setInterval is running"); // ログを出力
-    }, 500);
+    }, 10000);
 
     return () => {
       // コンポーネントがアンマウントされたときにクリア
