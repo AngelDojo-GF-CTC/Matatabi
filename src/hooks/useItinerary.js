@@ -16,7 +16,6 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { TOAST } from "../constants/toast";
 import {
   isMatatabiLoadingState,
-  isToastOpenState,
   myUserIdState,
   toastDetailsState,
 } from "../recoil/atoms";
@@ -32,8 +31,7 @@ export const useItinerary = (
 ) => {
   const setIsMatatabiLoading = useSetRecoilState(isMatatabiLoadingState);
   const userId = useRecoilValue(myUserIdState);
-  const setIsToastOpen = useSetRecoilState(isToastOpenState);
-  const setIsToastDetails = useSetRecoilState(toastDetailsState);
+  const setToastDetails = useSetRecoilState(toastDetailsState);
   /**
    * @values: {
    *  [date]: {
@@ -473,7 +471,7 @@ export const useItinerary = (
       isSuccess = false;
       console.log(err);
     } finally {
-      setIsToastDetails({
+      setToastDetails({
         id: generateUuid(),
         status: isSuccess ? TOAST.status.success : TOAST.status.error,
         title: isSuccess
@@ -487,7 +485,6 @@ export const useItinerary = (
       });
       handleResetPage();
       setIsMatatabiLoading(false);
-      setIsToastOpen(true);
     }
   }, [values, travelName, userId]);
 

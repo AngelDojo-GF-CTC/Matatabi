@@ -43,7 +43,7 @@ export const Authenticater = ({ children }) => {
                   name: "gender",
                   label: "性別",
                   type: "default",
-                  placeholder: "性別を入力してください",
+                  placeholder: "性別を入力してください(MAN or WOMAN)",
                   required: true,
                 },
               ]}

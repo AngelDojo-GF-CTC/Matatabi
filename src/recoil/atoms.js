@@ -17,11 +17,6 @@ export const toastDetailsState = atom({
   },
 });
 
-export const isToastOpenState = atom({
-  key: "isToastOpenState",
-  default: false,
-});
-
 export const isMatatabiLoadingState = atom({
   key: "isMatatabiLoadingState",
   default: false,

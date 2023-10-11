@@ -18,6 +18,7 @@ import { useItineraryFormParts } from "../../hooks/useItineraryFormParts";
 import { convertTimeFromAWSTime } from "../../utils/date";
 import { ImageBox } from "./ImageBox";
 
+// 悩み： 共有化してしまったためスパゲッティコードになってしまったのと他のMoleculesが入ってしまったためorganismsの方が適切か
 export const ItineraryFormParts = ({
   values,
   setValue,
@@ -175,7 +176,6 @@ export const ItineraryFormParts = ({
                 _icon={{
                   color: "white",
                 }}
-                // _text={{ color: color.text }}
                 onPress={() => setAddSpot(date)}
               >
                 {/* 次 */}

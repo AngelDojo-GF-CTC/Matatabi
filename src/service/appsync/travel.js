@@ -103,7 +103,7 @@ export const createTravelProject = async (travelName, userId, values) => {
         spotName: value.spotName,
         spotAddress: value.spotAddress,
         arrivalTime: value.arrivalTime,
-        stayTimeMin: value.stayTimeMin || 0,
+        stayTimeMin: value.stayTimeMin || undefined,
         walkingDuration: value.walkingDuration || "",
         drivingDuration: value.drivingDuration || "",
         lat: value.lat,

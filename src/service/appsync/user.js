@@ -2,7 +2,7 @@ import { execQuery } from "./baseApi";
 import { getUser } from "../../graphql/customQueries";
 
 export const getUserById = (userId) =>
-  execQuery(getUser, { userId }, "getUser");
+  execQuery(getUser, { userId: userId }, "getUser");
 
 // const user = {
 //   __typename: "User",

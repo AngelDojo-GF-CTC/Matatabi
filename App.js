@@ -10,8 +10,6 @@ import { TabContainer } from "./src/navigations/TabContainer";
 import awsconfig from "./src/aws-exports";
 import { createStackNavigator } from "@react-navigation/stack";
 import { PhotoGallery } from "./src/components/molecules/PhotoGallery";
-import { ImageBox } from "./src/components/molecules/ImageBox";
-import { Itinerary } from "./src/components/organisms/Itinerary";
 import { LogBox } from "react-native";
 
 LogBox.ignoreAllLogs();
@@ -33,8 +31,6 @@ export default function App() {
               <Stack.Screen name="TabContainer" component={TabContainer} />
               <Stack.Screen name="PhotoGallery" component={PhotoGallery} />
             </Stack.Navigator>
-
-            {/* <TabContainer /> */}
           </NavigationContainer>
         </Authenticater>
       </NativeBaseProvider>

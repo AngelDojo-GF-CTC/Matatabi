@@ -3,7 +3,7 @@ import { Image, View } from "native-base";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import footPrint from "../../../assets/footPrint.png";
-import { StyleSheet } from "react-native";
+import { GOOGLE_API_KEY } from "@env";
 
 export const GoogleMap = ({ currentCoordinate, endSpot }) => {
   return (
@@ -36,7 +36,7 @@ export const GoogleMap = ({ currentCoordinate, endSpot }) => {
             <MapViewDirections
               origin={currentCoordinate}
               destination={endSpot}
-              apikey="AIzaSyAGwm9_X6uxVsnsCw9yw99QcZyslQOy50I"
+              apikey={GOOGLE_API_KEY}
               strokeWidth={3}
               strokeColor="hotpink"
             />
@@ -46,12 +46,3 @@ export const GoogleMap = ({ currentCoordinate, endSpot }) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

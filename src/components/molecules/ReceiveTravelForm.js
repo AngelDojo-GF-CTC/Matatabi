@@ -10,7 +10,6 @@ import { groupsArrayByKey } from "../../utils/array";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   isMatatabiLoadingState,
-  isToastOpenState,
   myUserIdState,
   toastDetailsState,
 } from "../../recoil/atoms";
@@ -20,12 +19,10 @@ import { TOAST } from "../../constants/toast";
 export const ReceiveTravelForm = () => {
   const userId = useRecoilValue(myUserIdState);
   const setIsMatatabiLoading = useSetRecoilState(isMatatabiLoadingState);
-  const setIsToastOpen = useSetRecoilState(isToastOpenState);
   const setToastDetail = useSetRecoilState(toastDetailsState);
   const [travelId, setTravelId] = useState();
   const [travel, setTravel] = useState();
   const handleSearchPress = async () => {
-    // console.log(travelId);
     try {
       const result = await fetchTravelById(travelId);
       if (!result.items.length) throw new Error("旅行が見つかりませんでした");
@@ -64,7 +61,6 @@ export const ReceiveTravelForm = () => {
         isClosable: true,
       });
       setIsMatatabiLoading(false);
-      setIsToastOpen(true);
     }
   };
   return (

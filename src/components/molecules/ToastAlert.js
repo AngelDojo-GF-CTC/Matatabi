@@ -8,7 +8,7 @@ import {
   useToast,
 } from "native-base";
 import { useSetRecoilState } from "recoil";
-import { isToastOpenState, toastDetailsState } from "../../recoil/atoms";
+import { toastDetailsState } from "../../recoil/atoms";
 
 export const ToastAlert = ({
   id,
@@ -18,7 +18,6 @@ export const ToastAlert = ({
   description,
   isClosable,
 }) => {
-  const setIsToastOpen = useSetRecoilState(isToastOpenState);
   const setToastDetails = useSetRecoilState(toastDetailsState);
   const toast = useToast();
   return (
@@ -61,7 +60,6 @@ export const ToastAlert = ({
               }}
               onPress={() => {
                 toast.close(id);
-                setIsToastOpen(false);
                 setToastDetails({
                   id: undefined,
                   title: undefined,

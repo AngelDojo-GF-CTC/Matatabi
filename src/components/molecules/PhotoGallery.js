@@ -1,15 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
-import { Box, Button, Image, Modal, ScrollView, Text, View } from "native-base";
 import React, { useState } from "react";
-import { Dimensions, StyleSheet } from "react-native";
-import Swiper from "react-native-swiper";
+import { Image, ScrollView, View } from "native-base";
+import { Dimensions } from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Layout } from "../templates/Layout";
 
 export const PhotoGallery = ({ route }) => {
-  const navigation = useNavigation();
-  // console.log("イメージズ！", images);
   const { images } = route.params;
   console.log("イメージズ！", images);
   const [showSlyder, setShowSlyder] = useState(false);
@@ -22,7 +18,6 @@ export const PhotoGallery = ({ route }) => {
 
   // 3. 一行あたりの画像の幅を計算
   const imageWidth = modalWidth / imagesPerRow;
-  const imageMarginWidth = modalWidth;
 
   return (
     <>
@@ -76,32 +71,3 @@ export const PhotoGallery = ({ route }) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    width: "100%",
-    height: "80%",
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  modalImage: {
-    width: "100%",
-    height: "100%",
-  },
-});
-
-// export const PhotoGallery = ({ route }) => {
-//   const { images } = route.params;
-//   // <SliderBox images={images} />
-//   return (
-//     <View>
-//       <SliderBox images={images} dotColor="red" inactiveDotColor="gray" />
-//     </View>
-//   );
-// };

@@ -84,7 +84,7 @@ export const Itinerary = ({
                 </React.Fragment>
               ))}
             <Center>
-              <Container h={400}>
+              <Container h={600}>
                 <View mt={10}>
                   {isConfirmMode && (
                     <Button onPress={handleSubmit}>登録</Button>

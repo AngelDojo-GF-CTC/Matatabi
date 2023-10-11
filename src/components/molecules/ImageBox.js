@@ -1,39 +1,20 @@
-import {
-  HStack,
-  ScrollView,
-  View,
-  Text,
-  Button,
-  Image,
-  Center,
-  Modal,
-} from "native-base";
+import { HStack, ScrollView, View, Image } from "native-base";
 import React, { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
-import Auth from "@aws-amplify/auth";
-import Amplify from "@aws-amplify/core";
-import Storage from "@aws-amplify/storage";
+// import Auth from "@aws-amplify/auth";
+// import Storage from "@aws-amplify/storage";
 import Constants from "expo-constants";
-import { StyleSheet, Dimensions, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import cameraIcon from "../../../assets/camera.png";
 
 export const ImageBox = () => {
   const [images, setImages] = useState([]);
   const navigation = useNavigation();
-  const setLoading = (progress) => {
-    const calculated = parseInt((progress.loaded / progress.total) * 100);
-    updatePercentage(calculated); // due to s3 put function scoped
-  };
-  const screenWidth = Dimensions.get("window").width;
-
-  // 2. 一行あたりの画像数を設定
-  const imagesPerRow = 5;
-  const modalWidth = screenWidth * 0.95;
-
-  // 3. 一行あたりの画像の幅を計算
-  const imageWidth = (modalWidth * 0.95) / imagesPerRow;
-  const imageMarginWidth = modalWidth * 0.015;
+  // const setLoading = (progress) => {
+  //   const calculated = parseInt((progress.loaded / progress.total) * 100);
+  //   updatePercentage(calculated); // due to s3 put function scoped
+  // };
 
   useEffect(() => {
     (async () => {
@@ -51,55 +32,55 @@ export const ImageBox = () => {
     })();
   }, []);
 
-  handleImagePicked = async (pickerResult) => {
-    try {
-      if (pickerResult.cancelled) {
-        alert("Upload cancelled");
-        return;
-      } else {
-        const img = await fetchImageFromUri(pickerResult.uri);
-        const uploadUrl = await uploadImage("demo.jpg", img);
-        downloadImage(uploadUrl);
-      }
-    } catch (e) {
-      console.log(e);
-      alert("Upload failed");
-    }
-  };
+  // const handleImagePicked = async (pickerResult) => {
+  //   try {
+  //     if (pickerResult.cancelled) {
+  //       alert("Upload cancelled");
+  //       return;
+  //     } else {
+  //       const img = await fetchImageFromUri(pickerResult.uri);
+  //       const uploadUrl = await uploadImage("demo.jpg", img);
+  //       downloadImage(uploadUrl);
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //     alert("Upload failed");
+  //   }
+  // };
 
-  uploadImage = (filename, img) => {
-    Auth.currentCredentials();
-    return Storage.put(filename, img, {
-      level: "public",
-      contentType: "image/jpeg",
-      progressCallback(progress) {
-        setLoading(progress);
-      },
-    })
-      .then((response) => {
-        return response.key;
-      })
-      .catch((error) => {
-        console.log(error);
-        return error.response;
-      });
-  };
+  // const uploadImage = (filename, img) => {
+  //   // Auth.currentCredentials();
+  //   return Storage.put(filename, img, {
+  //     level: "public",
+  //     contentType: "image/jpeg",
+  //     progressCallback(progress) {
+  //       setLoading(progress);
+  //     },
+  //   })
+  //     .then((response) => {
+  //       return response.key;
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       return error.response;
+  //     });
+  // };
 
-  const updatePercentage = (number) => {
-    setPercentage(number);
-  };
+  // const updatePercentage = (number) => {
+  //   setPercentage(number);
+  // };
 
-  downloadImage = (uri) => {
-    Storage.get(uri)
-      .then((result) => setImages((prev) => [...prev, result]))
-      .catch((err) => console.log(err));
-  };
+  // const downloadImage = (uri) => {
+  //   Storage.get(uri)
+  //     .then((result) => setImages((prev) => [...prev, result]))
+  //     .catch((err) => console.log(err));
+  // };
 
-  const fetchImageFromUri = async (uri) => {
-    const response = await fetch(uri);
-    const blob = await response.blob();
-    return blob;
-  };
+  // const fetchImageFromUri = async (uri) => {
+  //   const response = await fetch(uri);
+  //   const blob = await response.blob();
+  //   return blob;
+  // };
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -120,8 +101,8 @@ export const ImageBox = () => {
 
   return (
     <>
-      <ScrollView style={styles.container}>
-        <HStack style={{}}>
+      <ScrollView>
+        <HStack>
           <TouchableOpacity onPress={pickImage}>
             <Image
               alt={"stream"}
@@ -149,15 +130,12 @@ export const ImageBox = () => {
                     <TouchableOpacity
                       onPress={() => {
                         navigation.navigate("PhotoGallery", { images: images });
-                        // setShowModal(true);
                       }}
                     >
                       <Image
                         alt={"stream"}
                         source={{ uri: image }}
                         style={{ width: 80, height: 80 }}
-                        // onPressで写真一覧ページに遷移できるようにしたい
-                        onPress={() => navigation.navigate("PhotoGallery")}
                       />
                     </TouchableOpacity>
                   </View>
@@ -168,25 +146,3 @@ export const ImageBox = () => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  // container: {
-  //   backgroundColor: "#F5FCFF",
-  // },
-  // title: {
-  //   fontSize: 20,
-  //   marginBottom: 20,
-  //   textAlign: "center",
-  //   marginHorizontal: 15,
-  // },
-  // percentage: {
-  //   marginBottom: 10,
-  // },
-  // result: {
-  //   paddingTop: 5,
-  // },
-  // info: {
-  //   textAlign: "center",
-  //   marginBottom: 20,
-  // },
-});
