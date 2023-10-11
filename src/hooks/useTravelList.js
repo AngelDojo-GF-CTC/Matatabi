@@ -13,31 +13,37 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
   const [targetTravelName, setTargetTravelName] = useState();
   const [targetTravelData, setTargetTravelData] = useState();
 
+  const fetchTravelList = useCallback(async () => {
+    try {
+      setIsMatatabiLoading(true);
+      const userData = await getUserById(userId);
+      if (userData.travels.items.length === 0)
+        throw new Error("travels is empty");
+      const travels = userData.travels.items.map(
+        (travelUser) => travelUser.travel
+      );
+      // console.log("travels: ", travels);
+      const list = groupsArrayByKey(
+        travels,
+        TRAVEL_KEY.travelName,
+        TRAVEL_KEY.travelDate
+      );
+      // console.log("list: ", list);
+      setTravelList(list);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsMatatabiLoading(false);
+    }
+  }, [userId]);
+
+  const refetch = useCallback(() => {
+    fetchTravelList();
+  }, []);
+
   useEffect(() => {
     if (!userId || !pageMode?.listMode) return;
-    (async () => {
-      try {
-        setIsMatatabiLoading(true);
-        const userData = await getUserById(userId);
-        if (userData.travels.items.length === 0)
-          throw new Error("travels is empty");
-        const travels = userData.travels.items.map(
-          (travelUser) => travelUser.travel
-        );
-        // console.log("travels: ", travels);
-        const list = groupsArrayByKey(
-          travels,
-          TRAVEL_KEY.travelName,
-          TRAVEL_KEY.travelDate
-        );
-        // console.log("list: ", list);
-        setTravelList(list);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsMatatabiLoading(false);
-      }
-    })();
+    fetchTravelList();
   }, [userId, pageMode?.listMode]);
 
   const handleTravelPress = useCallback(
@@ -64,6 +70,7 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
   return {
     state: { travelList, targetTravelName, targetTravelData },
     handlers: { handleTravelPress, handleSharePress },
+    refetch: refetch,
   };
 };
 
