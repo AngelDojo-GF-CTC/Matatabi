@@ -4,6 +4,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isMatatabiLoadingState, myUserIdState } from "../recoil/atoms";
 import { groupsArrayByKey } from "../utils/array";
 import { TRAVEL_KEY } from "../constants/itinerary";
+import { Share } from "react-native";
 
 export const useTravelList = (handleTravelDetailMode, pageMode) => {
   const userId = useRecoilValue(myUserIdState);
@@ -15,21 +16,27 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
   useEffect(() => {
     if (!userId || !pageMode?.listMode) return;
     (async () => {
-      setIsMatatabiLoading(true);
-      const userData = await getUserById(userId);
-      if (userData.travels.items.length === 0) return;
-      const travels = userData.travels.items.map(
-        (travelUser) => travelUser.travel
-      );
-      // console.log("travels: ", travels);
-      const list = groupsArrayByKey(
-        travels,
-        TRAVEL_KEY.travelName,
-        TRAVEL_KEY.travelDate
-      );
-      // console.log("list: ", list);
-      setTravelList(list);
-      setIsMatatabiLoading(false);
+      try {
+        setIsMatatabiLoading(true);
+        const userData = await getUserById(userId);
+        if (userData.travels.items.length === 0)
+          throw new Error("travels is empty");
+        const travels = userData.travels.items.map(
+          (travelUser) => travelUser.travel
+        );
+        // console.log("travels: ", travels);
+        const list = groupsArrayByKey(
+          travels,
+          TRAVEL_KEY.travelName,
+          TRAVEL_KEY.travelDate
+        );
+        // console.log("list: ", list);
+        setTravelList(list);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsMatatabiLoading(false);
+      }
     })();
   }, [userId, pageMode?.listMode]);
 
@@ -41,9 +48,22 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
     },
     [travelList]
   );
+  const handleSharePress = useCallback(
+    (travelName) => {
+      travelId = travelList[travelName][0].travelId;
+      Share.share(
+        {
+          title: "【Matatabi】旅のしおりの共有",
+          message: `Matatabiで一緒に旅に行こう！\n旅行名: ${travelName}\n旅行ID: ${travelId}`,
+        },
+        {}
+      );
+    },
+    [travelList]
+  );
   return {
     state: { travelList, targetTravelName, targetTravelData },
-    handlers: { handleTravelPress },
+    handlers: { handleTravelPress, handleSharePress },
   };
 };
 

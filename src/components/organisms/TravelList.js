@@ -1,10 +1,12 @@
 import React from "react";
 import { VStack, Button, AddIcon, Box, Text, ScrollView } from "native-base";
 import { color } from "../../styles/color";
+import { ShareButton } from "../atoms/Buttons/ShareButton";
 
 export const TravelList = ({
   travelList,
   handleTravelPress,
+  handleSharePress,
   handleAddFormMode,
 }) => {
   return (
@@ -24,7 +26,7 @@ export const TravelList = ({
         {/* TODO: 過去の旅 */}
         {travelList &&
           Object.keys(travelList).map((travelName, id) => (
-            <Box w={"80%"} m={2} key={id}>
+            <Box w={"80%"} m={2} key={id} style={{ position: "relative" }}>
               <Button
                 width={"100%"}
                 backgroundColor={color.gray}
@@ -41,6 +43,10 @@ export const TravelList = ({
                   }`}
                 </Text>
               </Button>
+              <ShareButton
+                style={{ position: "absolute", bottom: 0, right: 0 }}
+                onPress={() => handleSharePress(travelName)}
+              />
             </Box>
           ))}
       </VStack>

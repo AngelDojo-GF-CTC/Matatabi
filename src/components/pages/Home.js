@@ -14,7 +14,7 @@ export const Home = () => {
   } = useHome();
   const {
     state: { travelList, targetTravelName: travelName, targetTravelData },
-    handlers: { handleTravelPress },
+    handlers: { handleTravelPress, handleSharePress },
   } = useTravelList(handleTravelDetailMode, pageMode);
   const {
     states: { values, formConfig, isSpotModal, selectSpotsMenu, zIndex },
@@ -43,7 +43,6 @@ export const Home = () => {
       {pageMode.addFormMode ? (
         <TravelAddForm handleResetPage={handleResetPage} />
       ) : pageMode.travelDetailMode ? (
-        // TODO: 個別の旅のしおり閲覧ページ
         <Itinerary
           {...{
             travelName,
@@ -73,6 +72,7 @@ export const Home = () => {
           {...{
             travelList,
             handleTravelPress,
+            handleSharePress,
             handleAddFormMode,
           }}
         />

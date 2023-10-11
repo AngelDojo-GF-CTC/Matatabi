@@ -1,15 +1,15 @@
 import React from "react";
-import { View, Text } from "react-native";
 import { Layout } from "../templates/Layout";
 import { SignOutButton } from "../atoms/Buttons/SignOutButton";
+import { ReceiveTravelForm } from "../molecules/ReceiveTravelForm";
+import { View } from "native-base";
 
 export const Settings = () => {
   return (
     <Layout>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Settings Screen</Text>
+      <View bgColor={"white"} h={"100%"} w={"100%"}>
+        <ReceiveTravelForm />
       </View>
-      <SignOutButton />
     </Layout>
   );
 };
