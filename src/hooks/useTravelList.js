@@ -5,6 +5,8 @@ import { isMatatabiLoadingState, myUserIdState } from "../recoil/atoms";
 import { groupsArrayByKey } from "../utils/array";
 import { TRAVEL_KEY } from "../constants/itinerary";
 import { Share } from "react-native";
+import { API, graphqlOperation } from "aws-amplify";
+import { onCreateTravelUser } from "../graphql/subscriptions";
 
 export const useTravelList = (handleTravelDetailMode, pageMode) => {
   const userId = useRecoilValue(myUserIdState);
@@ -37,15 +39,29 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
     }
   }, [userId]);
 
-  const refetch = useCallback(() => {
-    fetchTravelList();
-  }, []);
-
   useEffect(() => {
     if (!userId || !pageMode?.listMode) return;
-    // fetchTravelList();
-    // refetch();
     fetchTravelList();
+    (async () => {
+      const subscription = await API.graphql(
+        graphqlOperation(onCreateTravelUser, {
+          filter: {
+            userUserId: { eq: userId },
+          },
+        })
+      );
+      if ("subscribe" in subscription) {
+        subscription.subscribe({
+          next: (data) => {
+            // console.log("subscription data: ", data);
+            fetchTravelList();
+          },
+          error: (error) => {
+            // console.log("subscription error: ", error);
+          },
+        });
+      }
+    })();
   }, [userId, pageMode?.listMode]);
 
   const handleTravelPress = useCallback(
@@ -72,7 +88,7 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
   return {
     state: { travelList, targetTravelName, targetTravelData },
     handlers: { handleTravelPress, handleSharePress },
-    refetch: refetch,
+    funcs: { fetchTravelList },
   };
 };
 

@@ -15,7 +15,7 @@ export const Home = () => {
   const {
     state: { travelList, targetTravelName: travelName, targetTravelData },
     handlers: { handleTravelPress, handleSharePress },
-    refetch: refetch,
+    funcs: { fetchTravelList },
   } = useTravelList(handleTravelDetailMode, pageMode);
   const {
     states: { values, formConfig, isSpotModal, selectSpotsMenu, zIndex },
@@ -42,7 +42,7 @@ export const Home = () => {
   return (
     <Layout
       handleResetPage={() => {
-        refetch();
+        fetchTravelList();
         handleResetPage();
       }}
     >

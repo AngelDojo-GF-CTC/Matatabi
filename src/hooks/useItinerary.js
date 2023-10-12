@@ -21,6 +21,7 @@ import {
 } from "../recoil/atoms";
 import { createTravelProject } from "../service/appsync/travel";
 import { generateUuid } from "../service/crypto/uuid";
+import moment from "moment";
 
 export const useItinerary = (
   dates,
@@ -141,7 +142,12 @@ export const useItinerary = (
                 [ITINERARY_KEY.walkingDuration]: spot.walkingDuration,
                 [ITINERARY_KEY.lat]: spot.lat,
                 [ITINERARY_KEY.lng]: spot.lng,
-              })),
+              }))
+              .sort(
+                (a, b) =>
+                  moment(a.arrivalTime, "HH:mm:ss") -
+                  moment(b.arrivalTime, "HH:mm:ss")
+              ),
           ],
         };
       }
