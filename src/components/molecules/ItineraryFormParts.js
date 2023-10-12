@@ -111,7 +111,7 @@ export const ItineraryFormParts = ({
                 />
 
                 <VStack marginTop={3}>
-                  {(isEditMode || (isDetailMode && !!val.stayTimeMin)) && (
+                  {(isEditMode || !!val.stayTimeMin) && (
                     <HStack>
                       <Text margin={2}>{`${
                         ITINERARY_LABEL[ITINERARY_KEY.stayTimeMin]
