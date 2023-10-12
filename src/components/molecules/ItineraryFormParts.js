@@ -116,15 +116,26 @@ export const ItineraryFormParts = ({
                       ITINERARY_LABEL[ITINERARY_KEY.stayTimeMin]
                     }：`}</Text>
                     <VStack>
-                      <Input
-                        w={20}
-                        size="md"
-                        value={val.stayTimeMin}
-                        isReadOnly={!isEditMode}
-                        onChangeText={(text) =>
-                          setValue(date, index, ITINERARY_KEY.stayTimeMin, text)
-                        }
-                      />
+                      {isEditMode ? (
+                        <Input
+                          w={20}
+                          size="md"
+                          value={val.stayTimeMin}
+                          isReadOnly={!isEditMode}
+                          onChangeText={(text) =>
+                            setValue(
+                              date,
+                              index,
+                              ITINERARY_KEY.stayTimeMin,
+                              text
+                            )
+                          }
+                        />
+                      ) : (
+                        <Text mt={2} mb={2}>
+                          {val.stayTimeMin}
+                        </Text>
+                      )}
                     </VStack>
                     <Text m={2}>分</Text>
                   </HStack>
