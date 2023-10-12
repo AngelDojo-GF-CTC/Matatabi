@@ -48,6 +48,8 @@ export const ReceiveTravelForm = () => {
       isSuccess = false;
       console.log(err);
     } finally {
+      setTravel(undefined);
+      setIsMatatabiLoading(false);
       setToastDetail({
         id: generateUuid(),
         status: isSuccess ? TOAST.status.success : TOAST.status.error,
@@ -60,7 +62,6 @@ export const ReceiveTravelForm = () => {
         variant: TOAST.variant.subtle,
         isClosable: true,
       });
-      setIsMatatabiLoading(false);
     }
   };
   return (

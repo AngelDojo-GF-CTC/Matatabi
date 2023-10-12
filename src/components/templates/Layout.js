@@ -13,7 +13,6 @@ export const Layout = ({ handleResetPage, children }) => {
   const toast = useToast();
 
   useEffect(() => {
-    toast.closeAll();
     if (toastDetails?.id) {
       toast.show({
         render: ({}) => <ToastAlert {...toastDetails} />,
