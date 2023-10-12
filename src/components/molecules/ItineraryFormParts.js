@@ -119,7 +119,7 @@ export const ItineraryFormParts = ({
                       <Input
                         w={20}
                         size="md"
-                        value={val.stayTimeMin.toString()}
+                        value={val.stayTimeMin}
                         isReadOnly={!isEditMode}
                         onChangeText={(text) =>
                           setValue(date, index, ITINERARY_KEY.stayTimeMin, text)
