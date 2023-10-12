@@ -4,10 +4,12 @@ import matatabi_rogo from "../../../assets/Matatabi_rogo.png";
 import { color } from "../../styles/color";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export const Header = ({ handleResetPage }) => {
+  const navigation = useNavigation();
   const handleClick = () => {
-    handleResetPage && handleResetPage();
+    handleResetPage ? handleResetPage() : navigation.navigate("Home");
   };
   return (
     <View
