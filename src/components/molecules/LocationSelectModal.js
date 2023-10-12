@@ -15,7 +15,7 @@ import { TouchableOpacity } from "react-native";
 // import { GOOGLE_API_KEY } from "@env";
 import { color } from "../../styles/color";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faStar, faAward } from "@fortawesome/free-solid-svg-icons";
+import { faAward } from "@fortawesome/free-solid-svg-icons";
 import { LOCATION_TYPE } from "../../constants/itinerary";
 
 export const LocationSelectModal = ({
