@@ -43,7 +43,8 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
 
   useEffect(() => {
     if (!userId || !pageMode?.listMode) return;
-    fetchTravelList();
+    // fetchTravelList();
+    refetch();
   }, [userId, pageMode?.listMode]);
 
   const handleTravelPress = useCallback(

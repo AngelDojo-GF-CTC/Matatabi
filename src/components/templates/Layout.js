@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "../molecules/Header";
 import { View } from "react-native";
 import { useToast } from "native-base";
@@ -11,12 +11,15 @@ export const Layout = ({ handleResetPage, children }) => {
   const toastDetails = useRecoilValue(toastDetailsState);
   const isMatatabiLoading = useRecoilValue(isMatatabiLoadingState);
   const toast = useToast();
+  const [isInitial, setIsInitial] = useState(true);
 
   useEffect(() => {
-    if (toastDetails?.id) {
+    if (toastDetails?.id && !isInitial) {
       toast.show({
         render: ({}) => <ToastAlert {...toastDetails} />,
       });
+    } else {
+      setIsInitial(false);
     }
   }, [toastDetails?.id]);
 
