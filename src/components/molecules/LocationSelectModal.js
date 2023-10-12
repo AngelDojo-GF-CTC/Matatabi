@@ -14,6 +14,9 @@ import { TouchableOpacity } from "react-native";
 // import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 // import { GOOGLE_API_KEY } from "@env";
 import { color } from "../../styles/color";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faStar, faAward } from "@fortawesome/free-solid-svg-icons";
+import { LOCATION_TYPE } from "../../constants/itinerary";
 
 export const LocationSelectModal = ({
   isSpotModal,
@@ -92,31 +95,80 @@ export const LocationSelectModal = ({
                           // h={20}
                           m={2}
                           // backgroundColor={color.add}
-                          borderColor={color.border}
+                          borderColor={
+                            spot.description === LOCATION_TYPE.recomended
+                              ? color.accent
+                              : color.border
+                          }
                           borderWidth={2}
+                          style={{ position: "relative" }}
                         >
-                          <Center>
-                            <Text textAlign={"center"} color={color.text}>
+                          <Center p={2}>
+                            {spot.description === LOCATION_TYPE.recomended && (
+                              <FontAwesomeIcon
+                                icon={faAward}
+                                size={28}
+                                color={color.accent}
+                                style={{
+                                  position: "absolute",
+                                  top: 1,
+                                  left: 1,
+                                }}
+                              />
+                            )}
+                            <Text
+                              textAlign={"center"}
+                              color={
+                                spot.description === LOCATION_TYPE.recomended
+                                  ? color.grayText
+                                  : color.text
+                              }
+                            >
                               {spot.description}
                             </Text>
-                            <Heading textAlign={"center"} color={color.text}>
+                            <Heading
+                              textAlign={"center"}
+                              color={
+                                spot.description === LOCATION_TYPE.recomended
+                                  ? color.grayText
+                                  : color.text
+                              }
+                            >
                               {spot.spotName}
                             </Heading>
                             <HStack>
                               {spot.drivingDuration && (
                                 <Text
                                   textAlign={"center"}
-                                  color={color.text}
+                                  color={
+                                    spot.description ===
+                                    LOCATION_TYPE.recomended
+                                      ? color.grayText
+                                      : color.text
+                                  }
                                 >{`車　${spot.drivingDuration}`}</Text>
                               )}
                               {spot.drivingDuration && spot.walkingDuration && (
-                                <Text textAlign={"center"} color={color.text}>
+                                <Text
+                                  textAlign={"center"}
+                                  color={
+                                    spot.description ===
+                                    LOCATION_TYPE.recomended
+                                      ? color.grayText
+                                      : color.text
+                                  }
+                                >
                                   　/　
                                 </Text>
                               )}
                               {spot.walkingDuration && (
                                 <Text
-                                  color={color.text}
+                                  color={
+                                    spot.description ===
+                                    LOCATION_TYPE.recomended
+                                      ? color.grayText
+                                      : color.text
+                                  }
                                   textAlign={"center"}
                                 >{`歩　${spot.walkingDuration}`}</Text>
                               )}
