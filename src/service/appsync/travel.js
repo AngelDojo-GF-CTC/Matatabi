@@ -113,8 +113,8 @@ export const createTravelProject = async (travelName, userId, values) => {
   }
   await Promise.all([
     ...travelVariables.map((v) => createTravelApi(v)),
-    ...travelUserVariables.map((v) => createTravelUserApi(v)),
     ...spotVariables.map((v) => createSpotApi(v)),
+    ...travelUserVariables.map((v) => createTravelUserApi(v)),
   ]);
 };
 // values = {

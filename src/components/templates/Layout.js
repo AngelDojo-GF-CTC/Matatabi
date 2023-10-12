@@ -11,15 +11,13 @@ export const Layout = ({ handleResetPage, children }) => {
   const toastDetails = useRecoilValue(toastDetailsState);
   const isMatatabiLoading = useRecoilValue(isMatatabiLoadingState);
   const toast = useToast();
-  const [isInitial, setIsInitial] = useState(true);
 
   useEffect(() => {
-    if (toastDetails?.id && !isInitial) {
+    toast.closeAll();
+    if (toastDetails?.id) {
       toast.show({
         render: ({}) => <ToastAlert {...toastDetails} />,
       });
-    } else {
-      setIsInitial(false);
     }
   }, [toastDetails?.id]);
 
