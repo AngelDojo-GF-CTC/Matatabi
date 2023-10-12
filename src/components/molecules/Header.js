@@ -23,7 +23,12 @@ export const Header = ({ handleResetPage }) => {
           <Image
             source={matatabi_rogo}
             alt="logo"
-            style={{ width: 175, height: 50, marginTop: 40, marginLeft: 10 }}
+            style={{
+              width: 175,
+              height: 42,
+              marginTop: 45,
+              marginLeft: 10,
+            }}
           />
         </TouchableOpacity>
       </View>
