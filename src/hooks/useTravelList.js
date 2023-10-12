@@ -19,8 +19,10 @@ export const useTravelList = (handleTravelDetailMode, pageMode) => {
     try {
       setIsMatatabiLoading(true);
       const userData = await getUserById(userId);
-      if (userData.travels.items.length === 0)
+      if (userData.travels.items.length === 0) {
+        setTravelList(undefined);
         throw new Error("travels is empty");
+      }
       const travels = userData.travels.items.map(
         (travelUser) => travelUser.travel
       );
