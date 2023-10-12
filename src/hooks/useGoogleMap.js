@@ -7,10 +7,10 @@ import * as Permissions from "expo-permissions";
 
 export const useGoogleMap = (isDetailMode, values) => {
   const setIsMatatabiLoading = useSetRecoilState(isMatatabiLoadingState);
-  // const [startSpot, setStartSpot] = useState({
-  //   latitude: 34.7024,
-  //   longitude: 135.4959,
-  // });
+  const [startSpot, setStartSpot] = useState({
+    latitude: undefined,
+    longitude: undefined,
+  });
   const [endSpot, setEndSpot] = useState({
     latitude: undefined,
     longitude: undefined,
@@ -42,18 +42,31 @@ export const useGoogleMap = (isDetailMode, values) => {
   useEffect(() => {
     if (!isDetailMode) return;
     setIsMatatabiLoading(!currentCoordinate.latitude);
+    if (!startSpot.latitude) {
+      setStartSpot({
+        latitude: currentCoordinate.latitude,
+        longitude: currentCoordinate.longitude,
+      });
+    }
   }, [currentCoordinate.latitude, isDetailMode]);
 
-  handleSpotPress = useCallback((lat, lng) => {
-    setEndSpot({
-      latitude: lat,
-      longitude: lng,
-    });
-  }, []);
+  handleSpotPress = useCallback(
+    (lat, lng) => {
+      setStartSpot({
+        latitude: currentCoordinate.latitude,
+        longitude: currentCoordinate.longitude,
+      });
+      setEndSpot({
+        latitude: lat,
+        longitude: lng,
+      });
+    },
+    [currentCoordinate]
+  );
 
   return {
     state: {
-      // startSpot,
+      startSpot,
       endSpot,
       locationPermission,
       currentCoordinate,

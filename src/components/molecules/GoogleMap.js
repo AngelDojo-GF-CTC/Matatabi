@@ -5,7 +5,7 @@ import MapViewDirections from "react-native-maps-directions";
 import footPrint from "../../../assets/footPrint.png";
 import { GOOGLE_API_KEY } from "@env";
 
-export const GoogleMap = ({ currentCoordinate, endSpot }) => {
+export const GoogleMap = ({ currentCoordinate, endSpot, startSpot }) => {
   return (
     <>
       <View style={{ backgroundColor: "white", height: "25%" }}>
@@ -34,7 +34,7 @@ export const GoogleMap = ({ currentCoordinate, endSpot }) => {
               />
             </Marker>
             <MapViewDirections
-              origin={currentCoordinate}
+              origin={startSpot}
               destination={endSpot}
               apikey={GOOGLE_API_KEY}
               strokeWidth={3}

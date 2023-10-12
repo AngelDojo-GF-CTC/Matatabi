@@ -35,14 +35,16 @@ export const Itinerary = ({
   isDetailMode,
 }) => {
   const {
-    state: { endSpot, currentCoordinate },
+    state: { endSpot, currentCoordinate, startSpot },
     funcs: { handleSpotPress },
   } = useGoogleMap(isDetailMode, values);
 
   return (
     <>
       <VStack>
-        {isDetailMode && <GoogleMap {...{ currentCoordinate, endSpot }} />}
+        {isDetailMode && (
+          <GoogleMap {...{ currentCoordinate, endSpot, startSpot }} />
+        )}
         <ScrollView>
           <VStack>
             {isConfirmMode && (
