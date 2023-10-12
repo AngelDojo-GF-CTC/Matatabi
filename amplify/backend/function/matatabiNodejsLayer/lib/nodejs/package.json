@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "aws-appsync": "^4.1.9",
+    "aws-sdk": "^2.1448.0",
+    "dayjs": "^1.11.9",
+    "graphql-tag": "^2.12.6"
+  }
+}

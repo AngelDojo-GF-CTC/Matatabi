@@ -1,0 +1,166 @@
+{
+  "api": {
+    "matatabi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "matatabicf3192bacf3192ba"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authmatatabicf3192bacf3192ba"
+            }
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "matatabicf3192bacf3192ba": {
+      "customAuth": false,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "matatabicf3192bacf3192baPostConfirmation",
+          "triggerProvider": "Cognito"
+        }
+      ],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "BIRTHDATE",
+          "EMAIL",
+          "GENDER",
+          "NAME"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "matatabiGoogleResolver": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "matatabiNodejsLayer": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer"
+    },
+    "matatabicf3192bacf3192baPostConfirmation": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "matatabiNodejsLayer"
+        },
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ],
+          "category": "api",
+          "resourceName": "matatabi"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_matatabiGoogleResolver_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiGoogleResolver"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiGoogleResolver_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiGoogleResolver"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiGoogleResolver_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiGoogleResolver"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiNodejsLayer_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiNodejsLayer"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabiNodejsLayer_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabiNodejsLayer"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabicf3192bacf3192baPostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabicf3192bacf3192baPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_matatabicf3192bacf3192baPostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "matatabicf3192bacf3192baPostConfirmation"
+        }
+      ]
+    }
+  }
+}

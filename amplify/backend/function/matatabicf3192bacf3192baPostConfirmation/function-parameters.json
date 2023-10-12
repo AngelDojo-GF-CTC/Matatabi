@@ -1,0 +1,32 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "matatabicf3192bacf3192ba",
+  "functionName": "matatabicf3192bacf3192baPostConfirmation",
+  "resourceName": "matatabicf3192bacf3192baPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/snapshot/amplify-cli/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "matatabicf3192bacf3192baPostConfirmation",
+  "skipEdit": true,
+  "permissions": {
+    "api": {
+      "matatabi": [
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "matatabiNodejsLayer",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true,
+      "env": "dev"
+    }
+  ]
+}

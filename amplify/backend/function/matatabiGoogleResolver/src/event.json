@@ -1,0 +1,12 @@
+{
+  "typeName": "Query",
+  "fieldName": "recomendedSpots",
+  "arguments": {
+    "currentSpot": {
+      "spotName": "清水寺",
+      "spotAddress": "京都府京都市東山区清水１丁目２９４",
+      "lat": 34.9948282,
+      "lng": 135.7848819
+    }
+  }
+}

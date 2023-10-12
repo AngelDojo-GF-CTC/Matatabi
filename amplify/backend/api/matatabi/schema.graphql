@@ -1,0 +1,76 @@
+type User
+  @model
+  @auth(rules: [{ allow: private }, { allow: private, provider: iam }]) {
+  userId: ID! @primaryKey
+  name: String!
+  email: AWSEmail!
+  gender: Gender
+  age: Int
+  travels: [Travel] @manyToMany(relationName: "TravelUser")
+}
+
+type Travel @model @auth(rules: [{ allow: private }]) {
+  travelId: ID! @primaryKey(sortKeyFields: ["travelDate"])
+  travelDate: AWSDate!
+  travelName: String!
+  users: [User] @manyToMany(relationName: "TravelUser")
+  spots: [Spot] @hasMany(indexName: "byTravel", fields: ["travelId"]) # ここ["travelId", "travelDate"]かも
+  ownerId: ID!
+  owner: User @hasOne(fields: ["ownerId"])
+}
+
+type Spot @model @auth(rules: [{ allow: private }]) {
+  id: ID!
+  spotId: ID!
+  spotName: String!
+  spotAddress: String!
+  arrivalTime: AWSTime!
+  lat: Float!
+  lng: Float!
+  drivingDuration: String
+  walkingDuration: String
+  stayTimeMin: Int
+  travelId: ID! @index(name: "byTravel", sortKeyFields: ["travelDate"])
+  travelDate: AWSDate!
+  travel: Travel @belongsTo(fields: ["travelId", "travelDate"])
+}
+
+enum Gender {
+  MAN
+  WOMAN
+}
+
+input SpotsInput {
+  spotId: String!
+  spotName: String!
+  spotAddress: String!
+  lat: Float!
+  lng: Float!
+}
+
+type RouteDurations {
+  spotId: String!
+  spotName: String!
+  spotAddress: String!
+  drivingDuration: String!
+  walkingDuration: String!
+  distance: String!
+  lat: Float!
+  lng: Float!
+}
+
+type SpotsResponse {
+  spots: [RouteDurations!]!
+}
+
+type Query {
+  getRouteDurations(
+    currentSpot: SpotsInput!
+    nextSpots: [SpotsInput!]!
+  ): SpotsResponse!
+    @function(name: "matatabiGoogleResolver-${env}")
+    @auth(rules: [{ allow: private }])
+  recomendedSpots(currentSpot: SpotsInput!): SpotsResponse!
+    @function(name: "matatabiGoogleResolver-${env}")
+    @auth(rules: [{ allow: private }])
+}

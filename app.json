@@ -11,20 +11,41 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.Matatabi",
+      "config": {
+        "googleMapsApiKey": "AIzaSyAGwm9_X6uxVsnsCw9yw99QcZyslQOy50I"
+      },
+      "infoPlist": {
+        "UIBackgroundModes": ["location"]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "config": {
+        "googleSignIn": {
+          "apiKey": "AIzaSyAGwm9_X6uxVsnsCw9yw99QcZyslQOy50I"
+        },
+        "googleMaps": {
+          "apiKey": "AIzaSyAGwm9_X6uxVsnsCw9yw99QcZyslQOy50I"
+        }
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ]
+    ]
   }
 }
