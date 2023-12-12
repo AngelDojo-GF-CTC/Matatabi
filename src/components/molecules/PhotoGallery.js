@@ -7,7 +7,6 @@ import { Layout } from "../templates/Layout";
 
 export const PhotoGallery = ({ route }) => {
   const { images } = route.params;
-  console.log("イメージズ！", images);
   const [showSlyder, setShowSlyder] = useState(false);
   const [index, setIndex] = useState(0);
 
